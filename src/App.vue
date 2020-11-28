@@ -34,12 +34,13 @@ export default defineComponent({
   flex-direction: column;
   align-items: stretch;
   box-sizing: border-box;
-  height: 100vh;
+  min-height: 100vh;
   background-color: variables.$color-lighter;
   color: variables.$color-text;
 
   main {
     flex-grow: 1;
+    display: flex;
   }
 }
 </style>
