@@ -6,13 +6,13 @@
         <input
           type="text"
           v-model="state.number"
-          @input="setNumber"
+          @input="setNumber($event.target.value)"
           placeholder="Ex: 63"
         />
       </label>
       <label class="form-label">
         <span>You can sort output ordering</span>
-        <select v-model="state.options.sort">
+        <select v-model="state.sort" @change="setSort($event.target.value)">
           <option
             :key="sortOption.value"
             v-for="sortOption in sortOptions"
@@ -24,7 +24,11 @@
       </label>
     </div>
     <label class="form-label checkbox-label">
-      <input type="checkbox" v-model="state.options.onlyProperDivisors" />
+      <input
+        type="checkbox"
+        v-model="state.onlyProperDivisors"
+        @change="setProperIndicator($event.target.checked)"
+      />
       <span>Calculate only<strong> proper </strong>divisors?</span>
     </label>
     <button type="submit">
@@ -34,31 +38,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { getDivisors } from 'divisor';
 
+import { useStore } from '@/hooks/useStore';
+
 import FormWrapper from '@/components/FormWrapper.vue';
-
-interface DivisorOptions {
-  sort: 'not_defined' | 'asc' | 'desc';
-  onlyProperDivisors: boolean;
-}
-
-interface DivisorsFormState {
-  number: string;
-  options: DivisorOptions;
-}
+import { DivisorsActionTypes } from '@/store/modules/divisors/divisors.actions';
 
 export default defineComponent({
   components: { FormWrapper },
   setup() {
-    const state = reactive<DivisorsFormState>({
-      number: '',
-      options: {
-        sort: 'not_defined',
-        onlyProperDivisors: false,
-      },
-    });
+    const store = useStore();
+
+    const state = computed(() => store.getters.divisorFormState);
 
     const sortOptions = [
       {
@@ -82,26 +75,32 @@ export default defineComponent({
       return number;
     };
 
-    function setNumber(e: any): void {
-      const { value } = e.target;
-
+    function setNumber(value: string): void {
       // get only numbers from input string
       const number = value.replace(/\D/g, '');
 
-      // set state
-      state.number = number;
+      // update state
+      store.dispatch(DivisorsActionTypes.SetNumber, number);
     }
 
     function setSort(value: 'asc' | 'desc'): void {
-      state.options.sort = value;
+      store.dispatch(DivisorsActionTypes.SetSort, value);
     }
 
     function setProperIndicator(indicator: boolean): void {
-      state.options.onlyProperDivisors = indicator;
+      store.dispatch(DivisorsActionTypes.SetOnlyProperDivisors, indicator);
     }
 
     function handleSubmit(): void {
-      const number = parseNumber(state.number);
+      // destructure form state
+      const {
+        number: n,
+        sort: s,
+        onlyProperDivisors: onlyProper,
+      } = state.value;
+
+      // try to parse number
+      const number = parseNumber(n);
       if (!number) {
         // TODO - Display error
 
@@ -110,12 +109,9 @@ export default defineComponent({
         return;
       }
 
-      console.log(state);
-
       const divisors = getDivisors(number, {
-        sort:
-          state.options.sort === 'not_defined' ? undefined : state.options.sort,
-        onlyProperDivisors: state.options.onlyProperDivisors,
+        sort: s === 'not_defined' ? undefined : s,
+        onlyProperDivisors: onlyProper,
       });
 
       console.log({ divisors });
