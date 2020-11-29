@@ -114,5 +114,10 @@ export default defineComponent({
       }
     }
   }
+
+  .calculator-content {
+    display: flex;
+    flex-grow: 1;
+  }
 }
 </style>
