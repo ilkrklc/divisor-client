@@ -91,27 +91,5 @@ export default defineComponent({
       align-self: flex-start;
     }
   }
-
-  .form-horizontal {
-    display: flex;
-    align-items: stretch;
-    margin-bottom: 1rem;
-
-    .form-label {
-      flex-grow: 1;
-      margin-bottom: 0;
-
-      span {
-        align-self: flex-start;
-      }
-    }
-
-    .form-label:first-child {
-      padding-right: 0.5rem;
-      margin-right: 0.5rem;
-      border-right: 0.5px dashed
-        rgba($color: variables.$color-dark, $alpha: 0.25);
-    }
-  }
 }
 </style>
