@@ -24,7 +24,7 @@
     </div>
     <div class="calculator-content">
       <divisors-form v-if="activeTabName === 'divisors'" />
-      <div v-else>Common Divisors Form</div>
+      <common-divisors-form v-else />
     </div>
   </div>
 </template>
@@ -33,12 +33,13 @@
 import { defineComponent, ref } from 'vue';
 
 import { useStore } from '@/hooks/useStore';
-
-import DivisorsForm from './DivisorsForm.vue';
 import { GreetingActionTypes } from '@/store/modules/greeting/greeting.actions';
 
+import DivisorsForm from './DivisorsForm.vue';
+import CommonDivisorsForm from './CommonDivisorsForm.vue';
+
 export default defineComponent({
-  components: { DivisorsForm },
+  components: { DivisorsForm, CommonDivisorsForm },
   setup() {
     const store = useStore();
 
