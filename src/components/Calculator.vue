@@ -31,6 +31,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+
 import DivisorsForm from './DivisorsForm.vue';
 
 export default defineComponent({
