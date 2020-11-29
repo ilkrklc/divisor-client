@@ -6,7 +6,7 @@
         <input
           type="text"
           v-model="state.number"
-          @input="setNumber"
+          @input="setNumber($event.target.value)"
           placeholder="Ex: 63"
         />
       </label>
@@ -82,9 +82,7 @@ export default defineComponent({
       return number;
     };
 
-    function setNumber(e: any): void {
-      const { value } = e.target;
-
+    function setNumber(value: string): void {
       // get only numbers from input string
       const number = value.replace(/\D/g, '');
 
