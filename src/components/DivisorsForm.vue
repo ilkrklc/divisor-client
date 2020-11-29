@@ -40,6 +40,7 @@ import { defineComponent, computed } from 'vue';
 import { getDivisors } from 'divisor';
 
 import { useStore } from '@/hooks/useStore';
+import { parseNumber } from '@/helpers/number.helpers';
 
 import FormWrapper from '@/components/FormWrapper.vue';
 import { DivisorsActionTypes } from '@/store/modules/divisors/divisors.actions';
@@ -65,13 +66,6 @@ export default defineComponent({
         text: 'Descending',
       },
     ];
-
-    const parseNumber = (n: string): number | null => {
-      const number = parseInt(n, 10);
-      if (isNaN(number)) return null;
-
-      return number;
-    };
 
     function setNumber(value: string): void {
       // get only numbers from input string
