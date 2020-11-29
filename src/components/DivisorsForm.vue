@@ -1,28 +1,26 @@
 <template>
   <form-wrapper :onSubmit="handleSubmit">
-    <div class="form-horizontal">
-      <label class="form-label">
-        <span>Type a natural number</span>
-        <input
-          type="text"
-          v-model="state.number"
-          @input="setNumber($event.target.value)"
-          placeholder="Ex: 63"
-        />
-      </label>
-      <label class="form-label">
-        <span>You can sort output ordering</span>
-        <select v-model="state.sort" @change="setSort($event.target.value)">
-          <option
-            :key="sortOption.value"
-            v-for="sortOption in sortOptions"
-            :value="sortOption.value"
-          >
-            {{ sortOption.text }}
-          </option>
-        </select>
-      </label>
-    </div>
+    <label class="form-label">
+      <span>Type a natural number</span>
+      <input
+        type="text"
+        v-model="state.number"
+        @input="setNumber($event.target.value)"
+        placeholder="Ex: 63"
+      />
+    </label>
+    <label class="form-label">
+      <span>You can sort output ordering</span>
+      <select v-model="state.sort" @change="setSort($event.target.value)">
+        <option
+          :key="sortOption.value"
+          v-for="sortOption in sortOptions"
+          :value="sortOption.value"
+        >
+          {{ sortOption.text }}
+        </option>
+      </select>
+    </label>
     <label class="form-label checkbox-label">
       <input
         type="checkbox"
@@ -129,15 +127,4 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  flex-grow: 1;
-}
-
-.form-label {
-}
-</style>
+<style lang="scss" scoped></style>
