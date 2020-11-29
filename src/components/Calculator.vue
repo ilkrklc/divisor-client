@@ -72,19 +72,19 @@ export default defineComponent({
   min-width: 350px;
   max-width: 600px;
   border-radius: 0.375rem;
-  -webkit-box-shadow: 0px 0px 23px 0px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 0px 23px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
   margin-top: 4rem;
   margin-bottom: 4rem;
+  background-color: #fdfffc;
 
   .calculator-navigation {
     display: flex;
     height: 3.5rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 
     .calculator-tab-item {
       flex-grow: 1;
