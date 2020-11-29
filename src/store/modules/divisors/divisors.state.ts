@@ -1,3 +1,5 @@
+import DivisorFormState from '@/interfaces/divisor-form-state.interface';
+
 export interface DivisorsResult {
   divisors: number[];
   count: number;
@@ -5,12 +7,6 @@ export interface DivisorsResult {
   multiplication: number;
   greatest: number;
   smallest: number;
-}
-
-export interface DivisorFormState {
-  number: string;
-  sort: 'not_defined' | 'asc' | 'desc';
-  onlyProperDivisors: boolean;
 }
 
 export type DivisorsState = {
