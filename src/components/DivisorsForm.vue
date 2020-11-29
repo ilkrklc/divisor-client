@@ -35,6 +35,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
+import { getDivisors } from 'divisor';
 
 import FormWrapper from '@/components/FormWrapper.vue';
 
@@ -74,11 +75,11 @@ export default defineComponent({
       },
     ];
 
-    const validateNumberValue = (n: string): boolean => {
+    const parseNumber = (n: string): number | null => {
       const number = parseInt(n, 10);
-      if (isNaN(number)) return false;
+      if (isNaN(number)) return null;
 
-      return true;
+      return number;
     };
 
     function setNumber(e: any): void {
@@ -100,12 +101,24 @@ export default defineComponent({
     }
 
     function handleSubmit(): void {
-      if (validateNumberValue(state.number) === false) {
-        // TODO - Display error to user
+      const number = parseNumber(state.number);
+      if (!number) {
+        // TODO - Display error
+
+        console.log('wrong number format.');
+
         return;
       }
 
       console.log(state);
+
+      const divisors = getDivisors(number, {
+        sort:
+          state.options.sort === 'not_defined' ? undefined : state.options.sort,
+        onlyProperDivisors: state.options.onlyProperDivisors,
+      });
+
+      console.log({ divisors });
     }
 
     return {
