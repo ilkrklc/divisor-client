@@ -24,24 +24,36 @@
     </div>
     <div class="calculator-content">
       <divisors-form v-if="activeTabName === 'divisors'" />
-      <div v-else>Common Divisors Form</div>
+      <common-divisors-form v-else />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+
+import { useStore } from '@/hooks/useStore';
+import { GreetingActionTypes } from '@/store/modules/greeting/greeting.actions';
+
 import DivisorsForm from './DivisorsForm.vue';
+import CommonDivisorsForm from './CommonDivisorsForm.vue';
 
 export default defineComponent({
-  components: { DivisorsForm },
+  components: { DivisorsForm, CommonDivisorsForm },
   setup() {
+    const store = useStore();
+
     const activeTabName = ref<string>('divisors');
 
     function setActiveTabName(tabName: string): void {
       if (!tabName || tabName === activeTabName.value) return;
 
+      // update local state
       activeTabName.value = tabName;
+
+      // update greeting vuex state
+      const message = tabName === 'divisors' ? 'divisors' : 'common divisors';
+      store.dispatch(GreetingActionTypes.SetCalculationTypeMessage, message);
     }
 
     return {
@@ -56,23 +68,24 @@ export default defineComponent({
 @use '@/styles/variables.scss';
 
 .calculator-wrapper {
-  height: 500px;
+  height: 400px;
   width: 50%;
   min-width: 350px;
+  max-width: 600px;
   border-radius: 0.375rem;
-  -webkit-box-shadow: 0px 0px 23px 0px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 0px 23px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
   margin-top: 4rem;
   margin-bottom: 4rem;
+  background-color: #fdfffc;
 
   .calculator-navigation {
     display: flex;
     height: 3.5rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 
     .calculator-tab-item {
       flex-grow: 1;
@@ -101,6 +114,11 @@ export default defineComponent({
         box-shadow: inset 6px 0px 11px 0px rgba(0, 0, 0, 0.29);
       }
     }
+  }
+
+  .calculator-content {
+    display: flex;
+    flex-grow: 1;
   }
 }
 </style>
