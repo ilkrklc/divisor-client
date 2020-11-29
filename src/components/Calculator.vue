@@ -23,15 +23,18 @@
       </button>
     </div>
     <div class="calculator-content">
-      Form
+      <divisors-form v-if="activeTabName === 'divisors'" />
+      <div v-else>Common Divisors Form</div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import DivisorsForm from './DivisorsForm.vue';
 
 export default defineComponent({
+  components: { DivisorsForm },
   setup() {
     const activeTabName = ref<string>('divisors');
 
