@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <greating />
+    <greeting />
     <calculator />
     <recent />
   </div>
@@ -9,12 +9,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import Greating from '@/components/Greating.vue';
+import Greeting from '@/components/Greeting.vue';
 import Calculator from '@/components/Calculator.vue';
 import Recent from '@/components/Recent.vue';
 
 export default defineComponent({
-  components: { Greating, Calculator, Recent },
+  components: { Greeting, Calculator, Recent },
 });
 </script>
 
