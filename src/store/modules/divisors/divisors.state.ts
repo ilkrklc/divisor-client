@@ -1,4 +1,4 @@
-import DivisorFormState from '@/interfaces/divisor-form-state.interface';
+import { DivisorFormState } from '@/typings/interfaces';
 
 export interface DivisorsResult {
   divisors: number[];

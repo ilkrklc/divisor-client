@@ -1,9 +1,9 @@
 import { GetterTree } from 'vuex';
 
+import { DivisorFormState } from '@/typings/interfaces';
 import { State } from '@/store/state';
 import {
   DivisorsState,
-  DivisorFormState,
   DivisorsResult,
 } from '@/store/modules/divisors/divisors.state';
 
