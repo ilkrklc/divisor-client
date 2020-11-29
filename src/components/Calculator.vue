@@ -67,9 +67,10 @@ export default defineComponent({
 @use '@/styles/variables.scss';
 
 .calculator-wrapper {
-  height: 500px;
+  height: 400px;
   width: 50%;
   min-width: 350px;
+  max-width: 600px;
   border-radius: 0.375rem;
   -webkit-box-shadow: 0px 0px 23px 0px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 0px 23px 0px rgba(0, 0, 0, 0.25);
