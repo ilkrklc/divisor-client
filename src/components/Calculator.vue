@@ -32,17 +32,27 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
+import { useStore } from '@/hooks/useStore';
+
 import DivisorsForm from './DivisorsForm.vue';
+import { GreetingActionTypes } from '@/store/modules/greeting/greeting.actions';
 
 export default defineComponent({
   components: { DivisorsForm },
   setup() {
+    const store = useStore();
+
     const activeTabName = ref<string>('divisors');
 
     function setActiveTabName(tabName: string): void {
       if (!tabName || tabName === activeTabName.value) return;
 
+      // update local state
       activeTabName.value = tabName;
+
+      // update greeting vuex state
+      const message = tabName === 'divisors' ? 'divisors' : 'common divisors';
+      store.dispatch(GreetingActionTypes.SetCalculationTypeMessage, message);
     }
 
     return {
