@@ -15,3 +15,7 @@ export enum ValidationErrors {
   SortNotValid = 'Invalid sort expression.',
   CommonFormError = 'An unexpected error encountered. Please try again later.',
 }
+
+export enum PersistStateKey {
+  RecentItems = 'VUEX_RECENT_ITEMS',
+}

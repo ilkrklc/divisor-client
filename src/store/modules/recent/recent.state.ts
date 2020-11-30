@@ -1,4 +1,4 @@
-import { RecentItem } from '@/typings/interfaces';
+import RecentItem from '@/models/recent-item.model';
 
 export type RecentState = {
   loading: boolean;
