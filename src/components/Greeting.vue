@@ -16,7 +16,9 @@ export default defineComponent({
   setup() {
     const store = useStore();
 
-    const calculationName = computed(() => store.getters.calculationName);
+    const calculationName = computed(
+      () => store.getters.calculationDisplayName,
+    );
 
     return {
       calculationName,

@@ -1,7 +1,9 @@
+import { CalculationType } from '@/typings/enums';
+
 export type GreetingState = {
-  calculationTypeName: string;
+  calculationTypeName: CalculationType;
 };
 
 export const greetingState: GreetingState = {
-  calculationTypeName: 'divisors',
+  calculationTypeName: CalculationType.Divisors,
 };
