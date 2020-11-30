@@ -8,3 +8,10 @@ export enum CalculationType {
   Divisors = 'divisors',
   CommonDivisors = 'common_divisors',
 }
+
+export enum ValidationErrors {
+  NumberEmpty = 'Number input is required!',
+  NumberNotValid = 'Please provide a natural number.',
+  SortNotValid = 'Invalid sort expression.',
+  CommonFormError = 'An unexpected error encountered. Please try again later.',
+}
