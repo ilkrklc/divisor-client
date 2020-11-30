@@ -4,11 +4,15 @@ import { State } from '@/store/state';
 import { RecentState } from '@/store/modules/recent/recent.state';
 
 export type RecentGetters = {
-  totalCount(state: RecentState): number;
+  totalRecentCount(state: RecentState): number;
+  isRecentLoading(state: RecentState): boolean;
 };
 
 export const recentGetters: GetterTree<RecentState, State> & RecentGetters = {
-  totalCount(state) {
+  totalRecentCount(state) {
     return state.items.length;
+  },
+  isRecentLoading(state) {
+    return state.loading;
   },
 };
