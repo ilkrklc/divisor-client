@@ -1,6 +1,7 @@
 import { MutationTree } from 'vuex';
 
-import { RecentState, RecentItem } from '@/store/modules/recent/recent.state';
+import { RecentItem } from '@/typings/interfaces';
+import { RecentState } from '@/store/modules/recent/recent.state';
 
 export enum RecentMutationType {
   SetLoading = 'SET_LOADING',
