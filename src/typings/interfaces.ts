@@ -28,4 +28,5 @@ export interface SelectList {
 
 export interface RecentItem extends BaseResult {
   calculationType: CalculationType;
+  leastCommonMultiple?: number;
 }
