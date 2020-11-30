@@ -37,13 +37,16 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import { getDivisors } from 'divisor';
 
 import { useStore } from '@/hooks/useStore';
+import { DivisorsActionTypes } from '@/store/modules/divisors/divisors.actions';
+
+import { useSortOptions } from '@/hooks/useSortOptions';
 import { parseNumber } from '@/helpers/number.helpers';
+import DivisorResult from '@/models/divisor-result.model';
 
 import FormWrapper from '@/components/FormWrapper.vue';
-import { DivisorsActionTypes } from '@/store/modules/divisors/divisors.actions';
+import { SortOptions } from '@/typings/enums';
 
 export default defineComponent({
   components: { FormWrapper },
@@ -52,24 +55,14 @@ export default defineComponent({
 
     const state = computed(() => store.getters.divisorFormState);
 
-    const sortOptions = [
-      {
-        value: 'not_defined',
-        text: 'Please select...',
-      },
-      {
-        value: 'asc',
-        text: 'Ascending',
-      },
-      {
-        value: 'desc',
-        text: 'Descending',
-      },
-    ];
+    const sortOptions = useSortOptions();
 
     function setNumber(value: string): void {
       // get only numbers from input string
-      const number = value.replace(/\D/g, '');
+      const numberText = value.replace(/\D/g, '');
+
+      // parse input number
+      const number = parseNumber(numberText);
 
       // update state
       store.dispatch(DivisorsActionTypes.SetNumber, number);
@@ -85,28 +78,19 @@ export default defineComponent({
 
     function handleSubmit(): void {
       // destructure form state
-      const {
-        number: n,
-        sort: s,
-        onlyProperDivisors: onlyProper,
-      } = state.value;
+      const { number, sort: s, onlyProperDivisors: onlyProper } = state.value;
 
-      // try to parse number
-      const number = parseNumber(n);
-      if (!number) {
-        // TODO - Display error
+      // TODO - Display Error
+      if (!number) return;
 
-        console.log('wrong number format.');
-
-        return;
-      }
-
-      const divisors = getDivisors(number, {
-        sort: s === 'not_defined' ? undefined : s,
+      // try to get divisors
+      const result = new DivisorResult({
+        number,
+        sort: s === SortOptions.NotDefined ? undefined : s,
         onlyProperDivisors: onlyProper,
       });
 
-      console.log({ divisors });
+      console.log({ result });
     }
 
     return {
