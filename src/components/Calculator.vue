@@ -3,7 +3,7 @@
     <div class="calculator-navigation">
       <button
         type="button"
-        @click="setActiveTabName('divisors')"
+        @click="setActiveTabName(CalculationType.Divisors)"
         :class="[
           'calculator-tab-item',
           activeTabName === 'divisors' ? 'active' : '',
@@ -13,7 +13,7 @@
       </button>
       <button
         type="button"
-        @click="setActiveTabName('common_divisors')"
+        @click="setActiveTabName(CalculationType.CommonDivisors)"
         :class="[
           'calculator-tab-item',
           activeTabName === 'common_divisors' ? 'active' : '',
@@ -23,7 +23,7 @@
       </button>
     </div>
     <div class="calculator-content">
-      <divisors-form v-if="activeTabName === 'divisors'" />
+      <divisors-form v-if="activeTabName === CalculationType.Divisors" />
       <common-divisors-form v-else />
     </div>
   </div>
@@ -31,6 +31,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+
+import { CalculationType } from '@/typings/enums';
 
 import { useStore } from '@/hooks/useStore';
 import { GreetingActionTypes } from '@/store/modules/greeting/greeting.actions';
@@ -43,22 +45,22 @@ export default defineComponent({
   setup() {
     const store = useStore();
 
-    const activeTabName = ref<string>('divisors');
+    const activeTabName = ref<CalculationType>(CalculationType.Divisors);
 
-    function setActiveTabName(tabName: string): void {
+    function setActiveTabName(tabName: CalculationType): void {
       if (!tabName || tabName === activeTabName.value) return;
 
       // update local state
       activeTabName.value = tabName;
 
       // update greeting vuex state
-      const message = tabName === 'divisors' ? 'divisors' : 'common divisors';
-      store.dispatch(GreetingActionTypes.SetCalculationTypeMessage, message);
+      store.dispatch(GreetingActionTypes.SetCalculationTypeName, tabName);
     }
 
     return {
       activeTabName,
       setActiveTabName,
+      CalculationType,
     };
   },
 });

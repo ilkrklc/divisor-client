@@ -26,7 +26,7 @@ type DivisorsActionAugments = Omit<
 export type DivisorsActions = {
   [DivisorsActionTypes.SetNumber](
     action: DivisorsActionAugments,
-    number: string,
+    number: number,
   ): void;
   [DivisorsActionTypes.SetSort](
     action: DivisorsActionAugments,

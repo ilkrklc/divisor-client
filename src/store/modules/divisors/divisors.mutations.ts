@@ -9,7 +9,7 @@ export enum DivisorsMutationType {
 }
 
 export type DivisorsMutations = {
-  [DivisorsMutationType.SetNumber](state: DivisorsState, number: string): void;
+  [DivisorsMutationType.SetNumber](state: DivisorsState, number: number): void;
   [DivisorsMutationType.SetSort](
     state: DivisorsState,
     sort: 'not_defined' | 'asc' | 'desc',

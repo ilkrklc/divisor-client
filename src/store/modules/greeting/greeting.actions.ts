@@ -1,5 +1,6 @@
 import { ActionContext, ActionTree } from 'vuex';
 
+import { CalculationType } from '@/typings/enums';
 import { State } from '@/store/state';
 import { GreetingState } from '@/store/modules/greeting/greeting.state';
 import {
@@ -8,7 +9,7 @@ import {
 } from '@/store/modules/greeting/greeting.mutations';
 
 export enum GreetingActionTypes {
-  SetCalculationTypeMessage = 'SET_CALCULATION_TYPE_MESSAGE',
+  SetCalculationTypeName = 'SET_CALCULATION_TYPE_NAME',
 }
 
 type GreetingActionAugments = Omit<
@@ -22,15 +23,15 @@ type GreetingActionAugments = Omit<
 };
 
 export type GreetingActions = {
-  [GreetingActionTypes.SetCalculationTypeMessage](
+  [GreetingActionTypes.SetCalculationTypeName](
     action: GreetingActionAugments,
-    name: string,
+    name: CalculationType,
   ): void;
 };
 
 export const greetingActions: ActionTree<GreetingState, State> &
   GreetingActions = {
-  [GreetingActionTypes.SetCalculationTypeMessage]({ commit }, name) {
+  [GreetingActionTypes.SetCalculationTypeName]({ commit }, name) {
     commit(GreetingMutationType.SetCalculationTypeName, name);
   },
 };
