@@ -78,14 +78,14 @@ export default defineComponent({
     const store = useStore();
 
     /**
-     * Holds a value to indicate if number input is touched until page load
-     */
-    const isNumberInputDirty = ref<boolean>(false);
-
-    /**
      * Form state
      */
     const state = computed(() => store.getters.divisorFormState);
+
+    /**
+     * Holds a value to indicate if number input is touched until page load
+     */
+    const isNumberInputDirty = ref<boolean>(state.value.number !== undefined);
 
     /**
      * Sort options as selectlist
