@@ -14,7 +14,7 @@ export enum RecentMutationType {
 export type RecentMutations = {
   [RecentMutationType.SetLoading](state: RecentState, loading: boolean): void;
   [RecentMutationType.SetItems](state: RecentState, items: RecentItem[]): void;
-  [RecentMutationType.AddItem](state: RecentState, item: RecentItem): void;
+  [RecentMutationType.AddItem](state: RecentState, items: RecentItem[]): void;
   [RecentMutationType.RemoveItem](state: RecentState, index: number): void;
   [RecentMutationType.ClearItems](state: RecentState): void;
 };
@@ -26,8 +26,8 @@ export const recentMutations: MutationTree<RecentState> & RecentMutations = {
   [RecentMutationType.SetItems](state, items) {
     state.items = items;
   },
-  [RecentMutationType.AddItem](state, item) {
-    state.items = [...[item], ...state.items];
+  [RecentMutationType.AddItem](state, items) {
+    state.items = items;
   },
   [RecentMutationType.RemoveItem](state, index) {
     state.items = state.items.splice(index, 1);
