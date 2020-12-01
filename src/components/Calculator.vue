@@ -83,7 +83,7 @@ export default defineComponent({
   align-items: stretch;
   margin-top: 4rem;
   margin-bottom: 4rem;
-  background-color: #fdfffc;
+  background-color: variables.$color-white;
 
   .calculator-navigation {
     display: flex;

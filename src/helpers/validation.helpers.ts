@@ -7,7 +7,6 @@ import { parseNumber } from '@/helpers/number.helpers';
  * @returns {boolean} Validation result
  */
 export function validateSortList(value: string): boolean {
-  console.log('sort options', SortOptions as Record<string, string>);
   return Object.values(SortOptions as Record<string, string>).includes(value);
 }
 

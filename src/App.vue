@@ -43,4 +43,9 @@ export default defineComponent({
     display: flex;
   }
 }
+
+ul {
+  padding: 0;
+  list-style: none;
+}
 </style>

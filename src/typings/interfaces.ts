@@ -1,12 +1,14 @@
 import { CalculationType } from '@/typings/enums';
 
 export interface BaseResult {
+  calculationType?: CalculationType;
   divisors?: number[];
   count: number;
   sum?: number;
   multiplication?: number;
   greatest?: number;
   smallest?: number;
+  leastCommonMultiple?: number;
 }
 
 export interface DivisorFormState {
@@ -24,9 +26,4 @@ export interface CommonDivisorFormState {
 export interface SelectList {
   text: string;
   value: string;
-}
-
-export interface RecentItem extends BaseResult {
-  calculationType: CalculationType;
-  leastCommonMultiple?: number;
 }

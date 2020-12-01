@@ -66,6 +66,8 @@ import {
 import DivisorResult from '@/models/divisor-result.model';
 
 import FormWrapper from '@/components/FormWrapper.vue';
+import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
+import RecentItem from '@/models/recent-item.model';
 
 export default defineComponent({
   components: { FormWrapper },
@@ -159,14 +161,23 @@ export default defineComponent({
           return;
         }
 
+        // parse sort expression
+        const sort = s === SortOptions.NotDefined ? undefined : s;
+
         // try to get divisors by initializing divisor result class using divisor package
         const result = new DivisorResult({
           number,
-          sort: s === SortOptions.NotDefined ? undefined : s,
+          sort,
           onlyProperDivisors: onlyProper,
         });
 
-        console.log({ result });
+        // add new result to recent state
+        store.dispatch(
+          RecentActionTypes.AddItem,
+          new RecentItem(number, sort, onlyProper).fromCalculationResult(
+            result,
+          ),
+        );
 
         // reset form
         store.dispatch(DivisorsActionTypes.SetNumber, undefined);
