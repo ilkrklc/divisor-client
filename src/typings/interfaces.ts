@@ -1,4 +1,4 @@
-import { CalculationType } from '@/typings/enums';
+import { CalculationType, SortOptions } from '@/typings/enums';
 
 export interface BaseResult {
   calculationType?: CalculationType;
@@ -18,9 +18,9 @@ export interface DivisorFormState {
 }
 
 export interface CommonDivisorFormState {
-  number: string;
-  sort: 'not_defined' | 'asc' | 'desc';
-  onlyProperDivisors: boolean;
+  number1?: number;
+  number2?: number;
+  sort: SortOptions;
 }
 
 export interface SelectList {
