@@ -14,4 +14,4 @@ export const store = createStore<State>({
 
 export type Store = RecentModule<Pick<Modules, 'recent'>> &
   GreetingModule<Pick<Modules, 'greeting'>> &
-  DivisorsModule<Pick<Modules, 'greeting'>>;
+  DivisorsModule<Pick<Modules, 'divisors'>>;
