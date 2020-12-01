@@ -4,7 +4,7 @@ import {
   getPersistedJsonValue,
   setPersistedJsonValue,
 } from '@/helpers/persist.helpers';
-import { PersistStateKey } from '@/typings/enums';
+import { PersistStateKey, SortOptions } from '@/typings/enums';
 import RecentItem from '@/models/recent-item.model';
 
 import { State } from '@/store/state';
@@ -63,13 +63,14 @@ export const recentActions: ActionTree<RecentState, State> & RecentActions = {
 
       if (Array.isArray(persistedItems) && persistedItems.length > 0)
         items = persistedItems.map(item =>
-          new RecentItem(
-            item.number as number,
-            item.sort as 'asc' | 'desc' | undefined,
-            item.onlyProperDivisors as boolean,
-            item.id as string,
-            item.createdOn as string,
-          ).deserialize(item),
+          new RecentItem({
+            number1: item.number1 as number,
+            number2: item.number2 as number,
+            sort: item.sort as SortOptions,
+            onlyProperDivisors: item.onlyProperDivisors as boolean,
+            id: item.id as string,
+            createdOn: item.createdOn as string,
+          }).deserialize(item),
         );
     }
 

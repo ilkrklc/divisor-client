@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 
 import { BaseResult } from '@/typings/interfaces';
-import { CalculationType } from '@/typings/enums';
+import { CalculationType, SortOptions } from '@/typings/enums';
 import { getFormattedDateString } from '@/helpers/date-time.helpers';
 
 export default class RecentItem implements BaseResult {
@@ -16,19 +16,29 @@ export default class RecentItem implements BaseResult {
   leastCommonMultiple?: number;
   createdOn?: string;
 
-  number: number;
-  sort?: 'asc' | 'desc';
+  number1: number;
+  number2: number;
+  sort?: SortOptions;
   onlyProperDivisors: boolean;
 
-  constructor(
-    number?: number,
-    sort?: 'asc' | 'desc',
-    onlyProperDivisors?: boolean,
-    id?: string,
-    createdOn?: string,
-  ) {
+  constructor({
+    number1,
+    number2,
+    sort,
+    onlyProperDivisors,
+    id,
+    createdOn,
+  }: {
+    number1: number;
+    number2?: number;
+    sort: SortOptions;
+    onlyProperDivisors?: boolean;
+    id?: string;
+    createdOn?: string;
+  }) {
     this.id = id || nanoid();
-    this.number = number || 0;
+    this.number1 = number1 || 0;
+    this.number2 = number2 || 0;
     this.sort = sort || undefined;
     this.onlyProperDivisors = onlyProperDivisors || false;
     this.createdOn = createdOn || getFormattedDateString(new Date());
