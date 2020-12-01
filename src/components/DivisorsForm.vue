@@ -110,7 +110,7 @@ export default defineComponent({
       toggleInputErrorText(result, name);
 
       // update state
-      store.dispatch(DivisorsActionTypes.SetNumber, number);
+      store.dispatch(DivisorsActionTypes.SetDivisorsNumber, number);
     }
 
     /**
@@ -128,7 +128,7 @@ export default defineComponent({
       if (validationResult === false) sort = SortOptions.NotDefined;
 
       // update state
-      store.dispatch(DivisorsActionTypes.SetSort, sort);
+      store.dispatch(DivisorsActionTypes.SetDivisorsSort, sort);
     }
 
     /**
@@ -137,7 +137,10 @@ export default defineComponent({
      */
     function setProperIndicator(indicator: boolean): void {
       // update state
-      store.dispatch(DivisorsActionTypes.SetOnlyProperDivisors, indicator);
+      store.dispatch(
+        DivisorsActionTypes.SetDivisorsOnlyProperDivisors,
+        indicator,
+      );
     }
 
     /**
@@ -180,9 +183,15 @@ export default defineComponent({
         );
 
         // reset form
-        store.dispatch(DivisorsActionTypes.SetNumber, undefined);
-        store.dispatch(DivisorsActionTypes.SetSort, SortOptions.NotDefined);
-        store.dispatch(DivisorsActionTypes.SetOnlyProperDivisors, false);
+        store.dispatch(DivisorsActionTypes.SetDivisorsNumber, undefined);
+        store.dispatch(
+          DivisorsActionTypes.SetDivisorsSort,
+          SortOptions.NotDefined,
+        );
+        store.dispatch(
+          DivisorsActionTypes.SetDivisorsOnlyProperDivisors,
+          false,
+        );
         isNumberInputDirty.value = false;
       } catch (error) {
         // display common error text if unexpected error encountered

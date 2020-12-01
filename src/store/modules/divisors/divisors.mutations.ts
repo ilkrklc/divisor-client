@@ -4,15 +4,21 @@ import { DivisorsState } from '@/store/modules/divisors/divisors.state';
 import { SortOptions } from '@/typings/enums';
 
 export enum DivisorsMutationType {
-  SetNumber = 'SET_NUMBER',
-  SetSort = 'SET_SORT',
-  SetOnlyProperDivisors = 'SET_ONLY_PROPER_DIVISORS',
+  SetDivisorsNumber = 'SET_DIVISORS_NUMBER',
+  SetDivisorsSort = 'SET_DIVISORS_SORT',
+  SetDivisorsOnlyProperDivisors = 'SET_DIVISORS_ONLY_PROPER_DIVISORS',
 }
 
 export type DivisorsMutations = {
-  [DivisorsMutationType.SetNumber](state: DivisorsState, number: number): void;
-  [DivisorsMutationType.SetSort](state: DivisorsState, sort: SortOptions): void;
-  [DivisorsMutationType.SetOnlyProperDivisors](
+  [DivisorsMutationType.SetDivisorsNumber](
+    state: DivisorsState,
+    number: number,
+  ): void;
+  [DivisorsMutationType.SetDivisorsSort](
+    state: DivisorsState,
+    sort: SortOptions,
+  ): void;
+  [DivisorsMutationType.SetDivisorsOnlyProperDivisors](
     state: DivisorsState,
     onlyProperDivisors: boolean,
   ): void;
@@ -20,13 +26,16 @@ export type DivisorsMutations = {
 
 export const divisorsMutations: MutationTree<DivisorsState> &
   DivisorsMutations = {
-  [DivisorsMutationType.SetNumber](state, number) {
+  [DivisorsMutationType.SetDivisorsNumber](state, number) {
     state.form.number = number;
   },
-  [DivisorsMutationType.SetSort](state, sort) {
+  [DivisorsMutationType.SetDivisorsSort](state, sort) {
     state.form.sort = sort;
   },
-  [DivisorsMutationType.SetOnlyProperDivisors](state, onlyProperDivisors) {
+  [DivisorsMutationType.SetDivisorsOnlyProperDivisors](
+    state,
+    onlyProperDivisors,
+  ) {
     state.form.onlyProperDivisors = onlyProperDivisors;
   },
 };

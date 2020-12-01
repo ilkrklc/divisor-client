@@ -9,9 +9,9 @@ import {
 import { SortOptions } from '@/typings/enums';
 
 export enum DivisorsActionTypes {
-  SetNumber = 'SET_NUMBER',
-  SetSort = 'SET_SORT',
-  SetOnlyProperDivisors = 'SET_ONLY_PROPER_DIVISORS',
+  SetDivisorsNumber = 'SET_DIVISORS_NUMBER',
+  SetDivisorsSort = 'SET_DIVISORS_SORT',
+  SetDivisorsOnlyProperDivisors = 'SET_DIVISORS_ONLY_PROPER_DIVISORS',
 }
 
 type DivisorsActionAugments = Omit<
@@ -25,15 +25,15 @@ type DivisorsActionAugments = Omit<
 };
 
 export type DivisorsActions = {
-  [DivisorsActionTypes.SetNumber](
+  [DivisorsActionTypes.SetDivisorsNumber](
     action: DivisorsActionAugments,
     number: number,
   ): void;
-  [DivisorsActionTypes.SetSort](
+  [DivisorsActionTypes.SetDivisorsSort](
     action: DivisorsActionAugments,
     sort: SortOptions,
   ): void;
-  [DivisorsActionTypes.SetOnlyProperDivisors](
+  [DivisorsActionTypes.SetDivisorsOnlyProperDivisors](
     action: DivisorsActionAugments,
     onlyProperDivisors: boolean,
   ): void;
@@ -41,13 +41,19 @@ export type DivisorsActions = {
 
 export const divisorsActions: ActionTree<DivisorsState, State> &
   DivisorsActions = {
-  [DivisorsActionTypes.SetNumber]({ commit }, number) {
-    commit(DivisorsMutationType.SetNumber, number);
+  [DivisorsActionTypes.SetDivisorsNumber]({ commit }, number) {
+    commit(DivisorsMutationType.SetDivisorsNumber, number);
   },
-  [DivisorsActionTypes.SetSort]({ commit }, sort) {
-    commit(DivisorsMutationType.SetSort, sort);
+  [DivisorsActionTypes.SetDivisorsSort]({ commit }, sort) {
+    commit(DivisorsMutationType.SetDivisorsSort, sort);
   },
-  [DivisorsActionTypes.SetOnlyProperDivisors]({ commit }, onlyProperDivisors) {
-    commit(DivisorsMutationType.SetOnlyProperDivisors, onlyProperDivisors);
+  [DivisorsActionTypes.SetDivisorsOnlyProperDivisors](
+    { commit },
+    onlyProperDivisors,
+  ) {
+    commit(
+      DivisorsMutationType.SetDivisorsOnlyProperDivisors,
+      onlyProperDivisors,
+    );
   },
 };
