@@ -1,6 +1,7 @@
 import { MutationTree } from 'vuex';
 
 import { DivisorsState } from '@/store/modules/divisors/divisors.state';
+import { SortOptions } from '@/typings/enums';
 
 export enum DivisorsMutationType {
   SetNumber = 'SET_NUMBER',
@@ -10,10 +11,7 @@ export enum DivisorsMutationType {
 
 export type DivisorsMutations = {
   [DivisorsMutationType.SetNumber](state: DivisorsState, number: number): void;
-  [DivisorsMutationType.SetSort](
-    state: DivisorsState,
-    sort: 'not_defined' | 'asc' | 'desc',
-  ): void;
+  [DivisorsMutationType.SetSort](state: DivisorsState, sort: SortOptions): void;
   [DivisorsMutationType.SetOnlyProperDivisors](
     state: DivisorsState,
     onlyProperDivisors: boolean,

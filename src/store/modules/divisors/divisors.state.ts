@@ -1,3 +1,4 @@
+import { SortOptions } from '@/typings/enums';
 import { DivisorFormState } from '@/typings/interfaces';
 
 export type DivisorsState = {
@@ -8,7 +9,7 @@ export type DivisorsState = {
 export const divisorsState: DivisorsState = {
   form: {
     number: undefined,
-    sort: 'not_defined',
+    sort: SortOptions.NotDefined,
     onlyProperDivisors: false,
   },
   calculating: false,

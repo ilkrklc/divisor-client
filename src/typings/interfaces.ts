@@ -13,7 +13,7 @@ export interface BaseResult {
 
 export interface DivisorFormState {
   number?: number;
-  sort: 'not_defined' | 'asc' | 'desc';
+  sort: SortOptions;
   onlyProperDivisors: boolean;
 }
 

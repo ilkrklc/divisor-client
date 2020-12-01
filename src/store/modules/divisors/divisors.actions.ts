@@ -6,6 +6,7 @@ import {
   DivisorsMutationType,
   DivisorsMutations,
 } from '@/store/modules/divisors/divisors.mutations';
+import { SortOptions } from '@/typings/enums';
 
 export enum DivisorsActionTypes {
   SetNumber = 'SET_NUMBER',
@@ -30,7 +31,7 @@ export type DivisorsActions = {
   ): void;
   [DivisorsActionTypes.SetSort](
     action: DivisorsActionAugments,
-    sort: 'not_defined' | 'asc' | 'desc',
+    sort: SortOptions,
   ): void;
   [DivisorsActionTypes.SetOnlyProperDivisors](
     action: DivisorsActionAugments,
