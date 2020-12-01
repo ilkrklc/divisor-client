@@ -17,8 +17,11 @@
       </div>
     </div>
     <div class="recent-divisors">
-      <span>{{ divisorsHeader }}</span>
+      <span :class="{ 'no-result': recentItem.count === 0 }">{{
+        divisorsHeader
+      }}</span>
       <div
+        v-if="recentItem.count > 0"
         :class="{
           'long-number': commaSeparatedDivisors.length > 40,
           'very-long-number': commaSeparatedDivisors.length > 90,
@@ -27,7 +30,7 @@
         <span>{{ commaSeparatedDivisors }}</span>
       </div>
     </div>
-    <div class="recent-other">
+    <div v-if="recentItem.count > 0" class="recent-other">
       <div class="count">
         <span>Count</span>
         <div>
@@ -234,6 +237,14 @@ export default defineComponent({
       font-size: 0.95rem;
       font-weight: 400;
       margin-bottom: 1.25rem;
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.no-result {
+        font-size: 1.25rem;
+      }
     }
 
     > div {
@@ -378,7 +389,7 @@ export default defineComponent({
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    flex-grow: 0.5;
+    height: 1rem;
     width: 100%;
     margin-top: 0.75rem;
     font-size: 0.7rem;
