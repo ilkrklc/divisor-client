@@ -8,7 +8,7 @@ import {
 } from 'divisor';
 
 import { BaseResult } from '@/typings/interfaces';
-import { CalculationType } from '@/typings/enums';
+import { CalculationType, SortOptions } from '@/typings/enums';
 
 export default class DivisorResult implements BaseResult {
   calculationType?: CalculationType;
@@ -25,12 +25,12 @@ export default class DivisorResult implements BaseResult {
     onlyProperDivisors,
   }: {
     number: number;
-    sort?: string;
+    sort?: SortOptions;
     onlyProperDivisors: boolean;
   }) {
     this.calculationType = CalculationType.Divisors;
     this.divisors = getDivisors(number, {
-      sort,
+      sort: sort === SortOptions.NotDefined ? undefined : sort,
       onlyProperDivisors,
     });
     this.count = countDivisors(number, onlyProperDivisors) || 0;

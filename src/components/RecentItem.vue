@@ -6,7 +6,10 @@
       {{ calculationTypeDisplayName }}
     </h3>
     <div class="recent-item-badges">
-      <div v-if="recentItem.sort !== undefined" class="recent-item-badge">
+      <div
+        v-if="recentItem.sort !== SortOptions.NotDefined"
+        class="recent-item-badge"
+      >
         {{ sortDisplayName }}
       </div>
       <div v-if="recentItem.onlyProperDivisors" class="recent-item-badge">
@@ -108,6 +111,8 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, computed } from 'vue';
+
 import RecentItem from '@/models/recent-item.model';
 import { CalculationType, SortOptions } from '@/typings/enums';
 import {
@@ -115,7 +120,7 @@ import {
   getCalculationTypeDisplayName,
 } from '@/helpers/enum.helpers';
 
-export default {
+export default defineComponent({
   props: {
     item: {
       type: RecentItem,
@@ -126,15 +131,25 @@ export default {
     const sortDisplayName = getSortOptionDisplayName(
       props.item.sort as SortOptions,
     );
+
     const calculationTypeDisplayName = getCalculationTypeDisplayName(
       props.item.calculationType,
     );
     const commaSeparatedDivisors = props.item.divisors?.join(', ');
-    const divisorsHeader = `Number ${props.item.number} has ${
-      props.item.count
-    }${
-      props.item.onlyProperDivisors ? ' proper ' : ' '
-    }${calculationTypeDisplayName}:`;
+
+    const divisorsHeader = computed(() => {
+      let result = '';
+      if (props.item.calculationType === CalculationType.Divisors)
+        result += `Number ${props.item.number1} has `;
+      if (props.item.calculationType === CalculationType.CommonDivisors)
+        result += `Numbers ${props.item.number1} and ${props.item.number2} has `;
+
+      result += `${props.item.count}${
+        props.item.onlyProperDivisors ? ' proper ' : ' '
+      }${calculationTypeDisplayName}:`;
+
+      return result;
+    });
 
     return {
       recentItem: props.item,
@@ -143,9 +158,10 @@ export default {
       CalculationType,
       commaSeparatedDivisors,
       divisorsHeader,
+      SortOptions,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
@@ -176,13 +192,14 @@ export default {
     width: 100px;
     line-height: 1.2rem;
     padding: 0.1rem 0.25rem;
+    border-radius: 5px;
 
     &.divisors-recent-item {
       background-color: variables.$color-light;
     }
 
     &.common_divisors-recent-item {
-      background-color: variables.$color-lighter;
+      background-color: variables.$color-danger;
     }
   }
 

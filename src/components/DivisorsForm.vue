@@ -156,16 +156,13 @@ export default defineComponent({
         }
 
         // destructure form state
-        const { number, sort: s, onlyProperDivisors: onlyProper } = state.value;
+        const { number, sort, onlyProperDivisors: onlyProper } = state.value;
         // if no number found display number error
         if (!number) {
           toggleInputErrorText(false, 'number');
 
           return;
         }
-
-        // parse sort expression
-        const sort = s === SortOptions.NotDefined ? undefined : s;
 
         // try to get divisors by initializing divisor result class using divisor package
         const result = new DivisorResult({
@@ -177,9 +174,11 @@ export default defineComponent({
         // add new result to recent state
         store.dispatch(
           RecentActionTypes.AddItem,
-          new RecentItem(number, sort, onlyProper).fromCalculationResult(
-            result,
-          ),
+          new RecentItem({
+            number1: number,
+            sort,
+            onlyProperDivisors: onlyProper,
+          }).fromCalculationResult(result),
         );
 
         // reset form
@@ -194,6 +193,8 @@ export default defineComponent({
         );
         isNumberInputDirty.value = false;
       } catch (error) {
+        console.log(error);
+
         // display common error text if unexpected error encountered
         toggleFormErrorText(false, 'divisors-form');
       }
