@@ -85,19 +85,19 @@ export default defineComponent({
     const store = useStore();
 
     /**
+     * Form state
+     */
+    const state = computed(() => store.getters.commonDivisorFormState);
+
+    /**
      * Holds a value to indicate if first number input is touched until page load
      */
-    const isNumber1InputDirty = ref<boolean>(false);
+    const isNumber1InputDirty = ref<boolean>(state.value.number1 !== undefined);
 
     /**
      * Holds a value to indicate if second number input is touched until page load
      */
-    const isNumber2InputDirty = ref<boolean>(false);
-
-    /**
-     * Form state
-     */
-    const state = computed(() => store.getters.commonDivisorFormState);
+    const isNumber2InputDirty = ref<boolean>(state.value.number2 !== undefined);
 
     /**
      * Sort options as selectlist
