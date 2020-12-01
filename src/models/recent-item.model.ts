@@ -1,7 +1,11 @@
+import { nanoid } from 'nanoid';
+
 import { BaseResult } from '@/typings/interfaces';
 import { CalculationType } from '@/typings/enums';
+import { getFormattedDateString } from '@/helpers/date-time.helpers';
 
 export default class RecentItem implements BaseResult {
+  id?: string;
   calculationType: CalculationType;
   divisors?: number[];
   count: number;
@@ -10,8 +14,25 @@ export default class RecentItem implements BaseResult {
   greatest?: number;
   smallest?: number;
   leastCommonMultiple?: number;
+  createdOn?: string;
 
-  constructor() {
+  number: number;
+  sort?: 'asc' | 'desc';
+  onlyProperDivisors: boolean;
+
+  constructor(
+    number?: number,
+    sort?: 'asc' | 'desc',
+    onlyProperDivisors?: boolean,
+    id?: string,
+    createdOn?: string,
+  ) {
+    this.id = id || nanoid();
+    this.number = number || 0;
+    this.sort = sort || undefined;
+    this.onlyProperDivisors = onlyProperDivisors || false;
+    this.createdOn = createdOn || getFormattedDateString(new Date());
+
     this.count = 0;
     this.calculationType = CalculationType.Divisors;
   }

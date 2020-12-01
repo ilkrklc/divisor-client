@@ -161,17 +161,22 @@ export default defineComponent({
           return;
         }
 
+        // parse sort expression
+        const sort = s === SortOptions.NotDefined ? undefined : s;
+
         // try to get divisors by initializing divisor result class using divisor package
         const result = new DivisorResult({
           number,
-          sort: s === SortOptions.NotDefined ? undefined : s,
+          sort,
           onlyProperDivisors: onlyProper,
         });
 
         // add new result to recent state
         store.dispatch(
           RecentActionTypes.AddItem,
-          new RecentItem().fromCalculationResult(result),
+          new RecentItem(number, sort, onlyProper).fromCalculationResult(
+            result,
+          ),
         );
 
         // reset form

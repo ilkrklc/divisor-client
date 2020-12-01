@@ -60,8 +60,17 @@ export const recentActions: ActionTree<RecentState, State> & RecentActions = {
       const persistedItems: Record<string, unknown> = JSON.parse(
         persistedItemsJson,
       );
+
       if (Array.isArray(persistedItems) && persistedItems.length > 0)
-        items = persistedItems.map(item => new RecentItem().deserialize(item));
+        items = persistedItems.map(item =>
+          new RecentItem(
+            item.number as number,
+            item.sort as 'asc' | 'desc' | undefined,
+            item.onlyProperDivisors as boolean,
+            item.id as string,
+            item.createdOn as string,
+          ).deserialize(item),
+        );
     }
 
     // turn off loading
@@ -74,7 +83,7 @@ export const recentActions: ActionTree<RecentState, State> & RecentActions = {
     // update locale storage
     setPersistedJsonValue(
       PersistStateKey.RecentItems,
-      JSON.stringify([...state.items, ...[item]]),
+      JSON.stringify([...[item], ...state.items]),
     );
 
     // add new item
