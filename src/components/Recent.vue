@@ -102,6 +102,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/variables.scss';
+
 .recent {
   display: flex;
   flex-direction: column;
@@ -145,6 +147,17 @@ export default defineComponent({
     margin-bottom: 5px;
     margin-left: 1.75rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+  }
+}
+
+@media (max-width: variables.$breakpoint-desktop) {
+  .recent {
+    .results {
+      max-width: 100%;
+      width: 100%;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 }
 </style>
