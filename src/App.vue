@@ -25,6 +25,10 @@ export default defineComponent({
 <style lang="scss">
 @use '@/styles/variables.scss';
 
+* {
+  box-sizing: border-box;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -33,19 +37,27 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  box-sizing: border-box;
   min-height: 100vh;
   background-color: variables.$color-lighter;
   color: variables.$color-text;
+}
 
-  main {
-    flex-grow: 1;
-    display: flex;
-  }
+main {
+  flex-grow: 1;
+  display: flex;
+  width: 1000px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 ul {
   padding: 0;
   list-style: none;
+}
+
+@media (max-width: variables.$breakpoint-desktop) {
+  main {
+    width: 100%;
+  }
 }
 </style>
