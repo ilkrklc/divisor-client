@@ -28,16 +28,16 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@use '@/styles/variables.scss';
+@use '@/styles/_variables.scss' as *;
+@use '@/styles/_mixins.scss' as *;
 
 #greeting {
+  @include font-style(1.2rem, 400, 0.9);
+
   margin-top: 5rem;
-  font-size: 1.2rem;
-  font-weight: 400;
-  opacity: 0.9;
 
   strong {
-    color: variables.$color-dark;
+    color: $color-dark;
   }
 }
 </style>

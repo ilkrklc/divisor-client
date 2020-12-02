@@ -21,19 +21,17 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/_mixins.scss' as *;
+
 footer {
+  @include flex(row, space-between, center);
+  @include margin-x(4rem);
+
   height: 3rem;
   max-height: 3rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-left: 4rem;
-  margin-right: 4rem;
 
   span {
-    font-size: 0.75rem;
-    font-weight: 500;
-    opacity: 0.9;
+    @include font-style(0.75rem, 500, 0.9);
   }
 }
 </style>

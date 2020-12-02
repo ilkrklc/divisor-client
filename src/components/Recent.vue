@@ -102,32 +102,29 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@use '@/styles/variables.scss';
+@use '@/styles/_variables.scss' as *;
+@use '@/styles/_mixins.scss' as *;
 
 .recent {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
+  @include flex(column, flex-start, stretch);
+
   flex-grow: 1;
   width: 100%;
 
   .results {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
+    @include flex(column, flex-start, stretch);
+    @include margin-y(0);
+
     flex-grow: 1;
     max-width: 750px;
     width: 750px;
-    margin: 0 auto;
   }
 }
 
 .recent-header {
+  @include font-style(1.25rem, 700);
+
   margin-bottom: 2.5rem;
-  font-size: 1.25rem;
-  font-weight: 700;
 
   &::before {
     content: '';
@@ -150,13 +147,13 @@ export default defineComponent({
   }
 }
 
-@media (max-width: variables.$breakpoint-desktop) {
+@media (max-width: $breakpoint-desktop) {
   .recent {
     .results {
+      @include padding-x(1rem);
+
       max-width: 100%;
       width: 100%;
-      padding-left: 1rem;
-      padding-right: 1rem;
     }
   }
 }

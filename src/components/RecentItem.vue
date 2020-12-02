@@ -168,19 +168,19 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@use '@/styles/variables.scss';
+@use '@/styles/_variables.scss' as *;
+@use '@/styles/_mixins.scss' as *;
 
 .recent-item {
+  @include flex(column, flex-start, center);
+  @include padding-x(1.25rem);
+  @include padding-y(0.75rem);
+
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   height: 16rem;
   border-radius: 0.3rem;
-  border: 1px solid rgba($color: variables.$color-dark, $alpha: 0.5);
-  background-color: variables.$color-white;
-  padding: 0.75rem 1.25rem;
+  border: 1px solid rgba($color: $color-dark, $alpha: 0.5);
+  background-color: $color-white;
 
   &:not(:last-child) {
     margin-bottom: 1rem;
@@ -188,40 +188,36 @@ export default defineComponent({
 }
 
 .recent-item-badges {
+  @include flex(row, flex-end, center);
+
   position: relative;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
   height: 1.5rem;
   max-height: 1.5rem;
   width: 100%;
 
   .recent-item-badge {
-    padding: 0.25rem 1rem;
+    @include padding-x(1rem);
+    @include padding-y(0.25rem);
+    @include font-style(0.75rem, 400);
+
     border-radius: 25px;
-    border: 0.8px solid rgba($color: variables.$color-dark, $alpha: 0.75);
+    border: 0.8px solid rgba($color: $color-dark, $alpha: 0.75);
     margin-right: 0.25rem;
-    font-size: 0.75rem;
-    font-weight: 400;
   }
 }
 
 .recent-divisors {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
+  @include flex(column, flex-start, stretch);
+
   flex-grow: 1;
   width: 100%;
 
   > span {
-    font-size: 0.95rem;
-    font-weight: 400;
+    @include flex(row, center, center);
+    @include font-style(0.95rem, 400);
+
     margin-bottom: 1.25rem;
     flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     &.no-result {
       font-size: 1.25rem;
@@ -234,9 +230,9 @@ export default defineComponent({
     max-width: 90%;
 
     span {
+      @include font-style(1.5rem, 800);
+
       display: block;
-      font-size: 1.5rem;
-      font-weight: 800;
       overflow-x: auto;
       overflow-y: hidden;
       white-space: nowrap;
@@ -304,77 +300,70 @@ export default defineComponent({
   border-radius: 5px;
 
   &.divisors-recent-item {
-    background-color: variables.$color-light;
+    background-color: $color-light;
   }
 
   &.common_divisors-recent-item {
-    background-color: variables.$color-danger;
+    background-color: $color-danger;
   }
 }
 
 .recent-other {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: flex-end;
+  @include flex(row, space-evenly, flex-end);
+  @include margin-y(0.25rem);
+
   flex-grow: 4;
   width: 100%;
 
   > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
+    @include flex(column, flex-start, stretch);
+    @include shadow-centered(5px, 0.35);
+
     height: 5rem;
     width: 7rem;
-    border: 0.8px solid rgba($color: variables.$color-dark, $alpha: 0.5);
+    border: 0.8px solid rgba($color: $color-dark, $alpha: 0.5);
     border-radius: 10px;
-    color: variables.$color-text;
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.35);
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.35);
+    color: $color-text;
 
     &.count {
-      background-color: rgba($color: variables.$color-dark, $alpha: 0.25);
+      background-color: rgba($color: $color-dark, $alpha: 0.25);
     }
 
     &.sum {
-      background-color: rgba($color: variables.$color-light, $alpha: 0.5);
+      background-color: rgba($color: $color-light, $alpha: 0.5);
     }
 
     &.multiply {
-      background-color: rgba($color: variables.$color-lighter, $alpha: 0.5);
+      background-color: rgba($color: $color-lighter, $alpha: 0.5);
     }
 
     &.gcd {
-      background-color: rgba($color: variables.$color-danger, $alpha: 0.75);
+      background-color: rgba($color: $color-danger, $alpha: 0.75);
     }
 
     &.smallest,
     &.lcm {
-      background-color: rgba($color: variables.$color-medium, $alpha: 0.25);
+      background-color: rgba($color: $color-medium, $alpha: 0.25);
     }
 
     > span {
+      @include flex(row, center, center);
+      @include font-style(0.95rem, 400);
+
       flex-grow: 1;
-      font-size: 0.95rem;
-      font-weight: 400;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     > div {
+      @include flex(row, center, center);
+
       flex-grow: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
 
       > span {
-        font-size: 1.5rem;
-        font-weight: 700;
+        @include font-style(1.5rem, 700);
 
         &.long-number {
-          font-size: 1rem;
-          font-weight: 700;
+          @include font-style(1rem, 700);
+
           word-break: break-all;
         }
 
@@ -387,13 +376,20 @@ export default defineComponent({
 }
 
 .recent-created-on {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  @include flex(row, flex-end, flex-end);
+  @include font-style(0.7rem, 700);
+
   height: 1rem;
   width: 100%;
-  margin-top: 0.75rem;
-  font-size: 0.7rem;
-  font-weight: 400;
+}
+
+@media (max-width: $breakpoint-desktop) {
+  .recent-item {
+    height: 20rem;
+  }
+
+  .recent-other {
+    flex-wrap: wrap;
+  }
 }
 </style>

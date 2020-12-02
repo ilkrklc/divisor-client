@@ -67,61 +67,54 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@use '@/styles/variables.scss';
+@use '@/styles/_variables.scss' as *;
+@use '@/styles/_mixins.scss' as *;
 
 .calculator-wrapper {
+  @include flex(column, flex-start, stretch);
+  @include shadow-centered(20px, 0.35);
+  @include margin-x(auto);
+  @include margin-y(4rem);
+
   height: 400px;
   width: 50%;
   min-width: 500px;
   max-width: 600px;
   border-radius: 0.375rem;
-  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.35);
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.35);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-  background-color: variables.$color-white;
-  margin-left: auto;
-  margin-right: auto;
+  background-color: $color-white;
 
   .calculator-navigation {
-    display: flex;
+    @include flex(row);
+
     height: 3.5rem;
 
     .calculator-tab-item {
+      @include font-style(1rem, 500, 0.5, $color-medium);
+      @include no-outline;
+
       flex-grow: 1;
-      font-weight: 500;
       background: transparent;
       border: none;
-      opacity: 0.5;
-      transition: opacity 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
-      color: variables.$color-medium;
-      outline: 2px solid transparent;
-      outline-offset: 2px;
+      transition: color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
       cursor: pointer;
 
       &.active {
-        opacity: 1;
-        color: variables.$color-dark;
+        color: $color-dark;
       }
 
       &:first-child:not(.active) {
-        -webkit-box-shadow: inset -6px 0px 11px 0px rgba(0, 0, 0, 0.29);
-        box-shadow: inset -6px 0px 11px 0px rgba(0, 0, 0, 0.29);
+        @include shadow-inset(-6px, 0px, 11px, 0.29);
       }
 
       &:last-child:not(.active) {
-        -webkit-box-shadow: inset 6px 0px 11px 0px rgba(0, 0, 0, 0.29);
-        box-shadow: inset 6px 0px 11px 0px rgba(0, 0, 0, 0.29);
+        @include shadow-inset(6px, 0px, 11px, 0.29);
       }
     }
   }
 
   .calculator-content {
-    display: flex;
+    @include flex(row);
+
     flex-grow: 1;
   }
 }

@@ -19,11 +19,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/_mixins.scss' as *;
+
 .home {
-  display: flex;
+  @include flex(column, flex-start, stretch);
+
   flex-grow: 1;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
 }
 </style>

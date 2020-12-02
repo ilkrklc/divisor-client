@@ -45,39 +45,33 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@use '@/styles/variables.scss';
+@use '@/styles/_variables.scss' as *;
+@use '@/styles/_mixins.scss' as *;
 
 #navbar {
-  display: flex;
-  justify-content: space-between;
+  @include flex(row, space-between);
+
   height: 5rem;
   max-height: 5rem;
 
   #navbar-name {
+    @include flex(row, center, center);
+    @include font-style(1.6rem, 700, 1, $color-medium);
+
     width: 20rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: variables.$color-medium;
     margin-right: 2rem;
     text-decoration: none;
   }
 
   .navbar-links {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    @include flex(row, flex-start, center);
+
     flex-grow: 1;
 
     a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.05rem;
-      font-weight: bold;
-      color: rgba($color: variables.$color-text, $alpha: 0.75);
+      @include flex(row, center, center);
+      @include font-style(1.05rem, 700, 0.75, $color-text);
+
       text-decoration: none;
       border-bottom-width: 0.75px;
       border-bottom-style: solid;
@@ -93,17 +87,16 @@ export default defineComponent({
 
       &.router-link-exact-active {
         font-size: 1.1rem;
-        color: variables.$color-medium;
-        border-bottom-color: rgba($color: variables.$color-medium, $alpha: 0.5);
+        color: $color-medium;
+        border-bottom-color: rgba($color: $color-medium, $alpha: 0.5);
       }
     }
   }
 
   #navbar-github {
+    @include flex(row, flex-end, center);
+
     position: relative;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
     width: 15rem;
     margin-right: 1.5rem;
     overflow: hidden;
@@ -119,34 +112,31 @@ export default defineComponent({
     }
 
     a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex(row, center, center);
+
       height: 100%;
 
       img {
         width: 38px;
         height: 38px;
         z-index: 20;
-        background-color: variables.$color-lighter;
+        background-color: $color-lighter;
         opacity: 0.75;
         transition: opacity 0.1s ease-in-out;
       }
     }
 
     .navbar-github-description {
+      @include flex(row, center, center);
+      @include font-style(0.8rem, 500);
+
       position: absolute;
       right: -10rem;
       top: 0;
       height: 100%;
       width: 10rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       transition: right 0.25s ease-in-out;
       z-index: 1;
-      font-size: 0.8rem;
-      font-weight: 500;
     }
   }
 }
