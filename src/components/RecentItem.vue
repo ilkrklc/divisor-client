@@ -185,215 +185,215 @@ export default defineComponent({
   &:not(:last-child) {
     margin-bottom: 1rem;
   }
+}
 
-  .recent-item-name {
-    position: absolute;
-    left: -1.75rem;
-    top: -0.5rem;
-    transform: rotate(-30deg);
-    word-break: break-word;
-    width: 100px;
-    line-height: 1.2rem;
-    padding: 0.1rem 0.25rem;
-    border-radius: 5px;
+.recent-item-badges {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 1.5rem;
+  max-height: 1.5rem;
+  width: 100%;
 
-    &.divisors-recent-item {
-      background-color: variables.$color-light;
-    }
-
-    &.common_divisors-recent-item {
-      background-color: variables.$color-danger;
-    }
+  .recent-item-badge {
+    padding: 0.25rem 1rem;
+    border-radius: 25px;
+    border: 0.8px solid rgba($color: variables.$color-dark, $alpha: 0.75);
+    margin-right: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 400;
   }
+}
 
-  .recent-item-badges {
-    position: relative;
+.recent-divisors {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-grow: 1;
+  width: 100%;
+
+  > span {
+    font-size: 0.95rem;
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    height: 1.5rem;
-    max-height: 1.5rem;
-    width: 100%;
 
-    .recent-item-badge {
-      padding: 0.25rem 1rem;
-      border-radius: 25px;
-      border: 0.8px solid rgba($color: variables.$color-dark, $alpha: 0.75);
-      margin-right: 0.25rem;
-      font-size: 0.75rem;
-      font-weight: 400;
+    &.no-result {
+      font-size: 1.25rem;
     }
   }
 
-  .recent-divisors {
+  > div {
+    align-self: center;
+    position: relative;
+    max-width: 90%;
+
+    span {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 800;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+    }
+
+    &::before {
+      content: '[';
+      position: absolute;
+      display: block;
+      left: -2.5rem;
+      top: -1rem;
+      font-size: 3rem;
+    }
+
+    &::after {
+      content: ']';
+      position: absolute;
+      display: block;
+      right: -2.5rem;
+      top: -1rem;
+      font-size: 3rem;
+    }
+
+    &.long-number {
+      &::before {
+        top: -1.275rem;
+      }
+
+      &::after {
+        top: -1.275rem;
+      }
+
+      span {
+        font-size: 1rem;
+      }
+    }
+
+    &.very-long-number {
+      &::before {
+        top: -0.8rem;
+        font-size: 2rem;
+      }
+
+      &::after {
+        top: -0.8rem;
+        font-size: 2rem;
+      }
+
+      span {
+        font-size: 0.85rem;
+      }
+    }
+  }
+}
+
+.recent-item-name {
+  position: absolute;
+  left: -1.75rem;
+  top: -0.5rem;
+  transform: rotate(-30deg);
+  word-break: break-word;
+  width: 100px;
+  line-height: 1.2rem;
+  padding: 0.1rem 0.25rem;
+  border-radius: 5px;
+
+  &.divisors-recent-item {
+    background-color: variables.$color-light;
+  }
+
+  &.common_divisors-recent-item {
+    background-color: variables.$color-danger;
+  }
+}
+
+.recent-other {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  flex-grow: 4;
+  width: 100%;
+
+  > div {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    flex-grow: 1;
-    width: 100%;
+    height: 5rem;
+    width: 7rem;
+    border: 0.8px solid rgba($color: variables.$color-dark, $alpha: 0.5);
+    border-radius: 10px;
+    color: variables.$color-text;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.35);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.35);
+
+    &.count {
+      background-color: rgba($color: variables.$color-dark, $alpha: 0.25);
+    }
+
+    &.sum {
+      background-color: rgba($color: variables.$color-light, $alpha: 0.5);
+    }
+
+    &.multiply {
+      background-color: rgba($color: variables.$color-lighter, $alpha: 0.5);
+    }
+
+    &.gcd {
+      background-color: rgba($color: variables.$color-danger, $alpha: 0.75);
+    }
+
+    &.smallest,
+    &.lcm {
+      background-color: rgba($color: variables.$color-medium, $alpha: 0.25);
+    }
 
     > span {
+      flex-grow: 1;
       font-size: 0.95rem;
       font-weight: 400;
-      margin-bottom: 1.25rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    > div {
       flex-grow: 1;
       display: flex;
       justify-content: center;
       align-items: center;
 
-      &.no-result {
-        font-size: 1.25rem;
-      }
-    }
-
-    > div {
-      align-self: center;
-      position: relative;
-      max-width: 90%;
-
-      span {
-        display: block;
-        font-size: 1.5rem;
-        font-weight: 800;
-        overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
-      }
-
-      &::before {
-        content: '[';
-        position: absolute;
-        display: block;
-        left: -2.5rem;
-        top: -1rem;
-        font-size: 3rem;
-      }
-
-      &::after {
-        content: ']';
-        position: absolute;
-        display: block;
-        right: -2.5rem;
-        top: -1rem;
-        font-size: 3rem;
-      }
-
-      &.long-number {
-        &::before {
-          top: -1.275rem;
-        }
-
-        &::after {
-          top: -1.275rem;
-        }
-
-        span {
-          font-size: 1rem;
-        }
-      }
-
-      &.very-long-number {
-        &::before {
-          top: -0.8rem;
-          font-size: 2rem;
-        }
-
-        &::after {
-          top: -0.8rem;
-          font-size: 2rem;
-        }
-
-        span {
-          font-size: 0.85rem;
-        }
-      }
-    }
-  }
-
-  .recent-other {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-end;
-    flex-grow: 4;
-    width: 100%;
-
-    > div {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: stretch;
-      height: 5rem;
-      width: 7rem;
-      border: 0.8px solid rgba($color: variables.$color-dark, $alpha: 0.5);
-      border-radius: 10px;
-      color: variables.$color-text;
-      -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.35);
-      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.35);
-
-      &.count {
-        background-color: rgba($color: variables.$color-dark, $alpha: 0.25);
-      }
-
-      &.sum {
-        background-color: rgba($color: variables.$color-light, $alpha: 0.5);
-      }
-
-      &.multiply {
-        background-color: rgba($color: variables.$color-lighter, $alpha: 0.5);
-      }
-
-      &.gcd {
-        background-color: rgba($color: variables.$color-danger, $alpha: 0.75);
-      }
-
-      &.smallest,
-      &.lcm {
-        background-color: rgba($color: variables.$color-medium, $alpha: 0.25);
-      }
-
       > span {
-        flex-grow: 1;
-        font-size: 0.95rem;
-        font-weight: 400;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+        font-size: 1.5rem;
+        font-weight: 700;
 
-      > div {
-        flex-grow: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        > span {
-          font-size: 1.5rem;
+        &.long-number {
+          font-size: 1rem;
           font-weight: 700;
+          word-break: break-all;
+        }
 
-          &.long-number {
-            font-size: 1rem;
-            font-weight: 700;
-            word-break: break-all;
-          }
-
-          &.very-long-number {
-            font-size: 0.75rem;
-          }
+        &.very-long-number {
+          font-size: 0.75rem;
         }
       }
     }
   }
+}
 
-  .recent-created-on {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    height: 1rem;
-    width: 100%;
-    margin-top: 0.75rem;
-    font-size: 0.7rem;
-    font-weight: 400;
-  }
+.recent-created-on {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 1rem;
+  width: 100%;
+  margin-top: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 400;
 }
 </style>
