@@ -43,7 +43,7 @@
           >
         </div>
       </div>
-      <div class="sum">
+      <div v-if="recentItem.sum !== undefined" class="sum">
         <span>Sum</span>
         <div>
           <span
@@ -55,7 +55,7 @@
           >
         </div>
       </div>
-      <div class="multiply">
+      <div v-if="recentItem.multiplication !== undefined" class="multiply">
         <span>Multiply</span>
         <div>
           <span
@@ -68,7 +68,7 @@
           >
         </div>
       </div>
-      <div class="gcd">
+      <div v-if="recentItem.greatest !== undefined" class="gcd">
         <span>GCD</span>
         <div>
           <span
