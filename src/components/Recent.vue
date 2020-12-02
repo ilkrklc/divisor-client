@@ -102,23 +102,68 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/_variables.scss' as *;
+@use '@/styles/_mixins.scss' as *;
+
 .recent {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
+  @include flex(column, flex-start, stretch);
+  @include margin-x(auto);
+
   flex-grow: 1;
-  width: 100%;
+  width: 90%;
+
+  .results {
+    @include flex(column, flex-start, stretch);
+    @include margin-y(0);
+    @include margin-x(auto);
+
+    flex-grow: 1;
+    max-width: 750px;
+    width: 750px;
+  }
+}
+
+.recent-header {
+  @include font-style(1.25rem, 700);
+
+  margin-bottom: 2.5rem;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 15rem;
+    height: 100%;
+    margin-bottom: 5px;
+    margin-right: 1.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+  }
+
+  &::after {
+    content: '';
+    display: inline-block;
+    width: 15rem;
+    height: 100%;
+    margin-bottom: 5px;
+    margin-left: 1.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+  }
+}
+
+@media (max-width: $breakpoint-desktop) {
+  .recent {
+    .results {
+      @include padding-x(1rem);
+
+      max-width: 100%;
+      width: 100%;
+    }
+  }
 
   .recent-header {
-    margin-bottom: 2.5rem;
-    font-size: 1.25rem;
-    font-weight: 700;
-
     &::before {
       content: '';
       display: inline-block;
-      width: 15rem;
+      width: 12.5rem;
       height: 100%;
       margin-bottom: 5px;
       margin-right: 1.75rem;
@@ -128,23 +173,66 @@ export default defineComponent({
     &::after {
       content: '';
       display: inline-block;
-      width: 15rem;
+      width: 12.5rem;
       height: 100%;
       margin-bottom: 5px;
       margin-left: 1.75rem;
       border-bottom: 1px solid rgba(0, 0, 0, 0.225);
     }
   }
+}
 
-  .results {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    flex-grow: 1;
-    max-width: 750px;
-    width: 750px;
-    margin: 0 auto;
+@media (max-width: $breakpoint-tablet) {
+  .recent-header {
+    @include font-style(1.1rem, 600);
+
+    margin-bottom: 2.5rem;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 6.5rem;
+      height: 100%;
+      margin-bottom: 5px;
+      margin-right: 1.75rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+    }
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 6.5rem;
+      height: 100%;
+      margin-bottom: 5px;
+      margin-left: 1.75rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .recent-header {
+    @include font-style(1rem, 600);
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 4rem;
+      height: 100%;
+      margin-bottom: 5px;
+      margin-right: 1.75rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+    }
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 4rem;
+      height: 100%;
+      margin-bottom: 5px;
+      margin-left: 1.75rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+    }
   }
 }
 </style>
