@@ -72,7 +72,7 @@ export default defineComponent({
 .calculator-wrapper {
   height: 400px;
   width: 50%;
-  min-width: 350px;
+  min-width: 500px;
   max-width: 600px;
   border-radius: 0.375rem;
   -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.35);
@@ -84,6 +84,8 @@ export default defineComponent({
   margin-top: 4rem;
   margin-bottom: 4rem;
   background-color: variables.$color-white;
+  margin-left: auto;
+  margin-right: auto;
 
   .calculator-navigation {
     display: flex;
