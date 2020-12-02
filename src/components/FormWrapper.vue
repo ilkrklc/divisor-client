@@ -149,4 +149,16 @@ export default defineComponent({
     }
   }
 }
+
+@media (max-width: $breakpoint-desktop) {
+  .form {
+    @include padding-x(2.5rem);
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .form {
+    @include padding-x(1rem);
+  }
+}
 </style>

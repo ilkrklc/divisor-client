@@ -16,15 +16,18 @@
         Proper
       </div>
     </div>
-    <div class="recent-divisors">
+    <div
+      class="recent-divisors"
+      :class="{ 'long-number': commaSeparatedDivisors.length > 50 }"
+    >
       <span :class="{ 'no-result': recentItem.count === 0 }">{{
         divisorsHeader
       }}</span>
       <div
         v-if="recentItem.count > 0"
         :class="{
-          'long-number': commaSeparatedDivisors.length > 40,
-          'very-long-number': commaSeparatedDivisors.length > 90,
+          'long-number': commaSeparatedDivisors.length > 50,
+          'very-long-number': commaSeparatedDivisors.length > 200,
         }"
       >
         <span>{{ commaSeparatedDivisors }}</span>
@@ -177,10 +180,10 @@ export default defineComponent({
   @include padding-y(0.75rem);
 
   position: relative;
-  height: 16rem;
   border-radius: 0.3rem;
   border: 1px solid rgba($color: $color-dark, $alpha: 0.5);
   background-color: $color-white;
+  min-height: 225px;
 
   &:not(:last-child) {
     margin-bottom: 1rem;
@@ -211,6 +214,11 @@ export default defineComponent({
 
   flex-grow: 1;
   width: 100%;
+  margin-bottom: 1rem;
+
+  &.long-number {
+    margin-bottom: 2rem;
+  }
 
   > span {
     @include flex(row, center, center);
@@ -227,7 +235,7 @@ export default defineComponent({
   > div {
     align-self: center;
     position: relative;
-    max-width: 90%;
+    max-width: 85%;
 
     span {
       @include font-style(1.5rem, 800);
@@ -235,7 +243,6 @@ export default defineComponent({
       display: block;
       overflow-x: auto;
       overflow-y: hidden;
-      white-space: nowrap;
     }
 
     &::before {
@@ -259,10 +266,12 @@ export default defineComponent({
     &.long-number {
       &::before {
         top: -1.275rem;
+        font-size: 3.5rem;
       }
 
       &::after {
         top: -1.275rem;
+        font-size: 3.5rem;
       }
 
       span {
@@ -273,12 +282,12 @@ export default defineComponent({
     &.very-long-number {
       &::before {
         top: -0.8rem;
-        font-size: 2rem;
+        font-size: 3.5rem;
       }
 
       &::after {
         top: -0.8rem;
-        font-size: 2rem;
+        font-size: 3.5rem;
       }
 
       span {
@@ -384,12 +393,65 @@ export default defineComponent({
 }
 
 @media (max-width: $breakpoint-desktop) {
-  .recent-item {
-    height: 20rem;
-  }
-
   .recent-other {
     flex-wrap: wrap;
+
+    > div {
+      @include shadow-centered(2.5px, 0.3);
+
+      height: 4rem;
+      width: 5rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+
+      > span {
+        @include font-style(0.85rem, 400);
+      }
+
+      > div {
+        > span {
+          @include font-style(1.25rem, 700);
+
+          &.long-number {
+            @include font-style(0.9rem, 700);
+
+            word-break: break-all;
+          }
+
+          &.very-long-number {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+
+  .recent-divisors {
+    > span {
+      @include font-style(0.9rem, 400);
+
+      &.no-result {
+        font-size: 1rem;
+      }
+    }
+
+    > div {
+      span {
+        @include font-style(1.25rem, 800);
+      }
+
+      &::before {
+        left: -1rem;
+      }
+
+      &::after {
+        right: -1rem;
+      }
+    }
+  }
+
+  .recent-created-on {
+    @include font-style(0.5rem, 500);
   }
 }
 </style>

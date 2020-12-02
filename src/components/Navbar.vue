@@ -58,7 +58,7 @@ export default defineComponent({
     @include flex(row, center, center);
     @include font-style(1.6rem, 700, 1, $color-medium);
 
-    width: 20rem;
+    width: 15rem;
     margin-right: 2rem;
     text-decoration: none;
   }
@@ -137,6 +137,46 @@ export default defineComponent({
       width: 10rem;
       transition: right 0.25s ease-in-out;
       z-index: 1;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
+  #navbar {
+    #navbar-name {
+      width: 12.5rem;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  #navbar {
+    #navbar-name {
+      width: 12.5rem;
+      margin-right: 1.5rem;
+      font-size: 1.3rem;
+    }
+
+    .navbar-links {
+      a {
+        @include font-style(0.8rem, 600, 0.75, $color-text);
+
+        &:not(:first-child) {
+          margin-left: 0.75rem;
+        }
+
+        &.router-link-exact-active {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  #navbar {
+    #navbar-name {
+      margin-right: 1rem;
     }
   }
 }

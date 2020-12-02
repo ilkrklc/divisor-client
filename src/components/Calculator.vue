@@ -77,8 +77,7 @@ export default defineComponent({
   @include margin-y(4rem);
 
   height: 400px;
-  width: 50%;
-  min-width: 500px;
+  min-width: 600px;
   max-width: 600px;
   border-radius: 0.375rem;
   background-color: $color-white;
@@ -116,6 +115,18 @@ export default defineComponent({
     @include flex(row);
 
     flex-grow: 1;
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .calculator-wrapper {
+    min-width: 80%;
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .calculator-wrapper {
+    min-width: 95%;
   }
 }
 </style>

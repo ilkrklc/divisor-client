@@ -107,13 +107,15 @@ export default defineComponent({
 
 .recent {
   @include flex(column, flex-start, stretch);
+  @include margin-x(auto);
 
   flex-grow: 1;
-  width: 100%;
+  width: 90%;
 
   .results {
     @include flex(column, flex-start, stretch);
     @include margin-y(0);
+    @include margin-x(auto);
 
     flex-grow: 1;
     max-width: 750px;
@@ -154,6 +156,82 @@ export default defineComponent({
 
       max-width: 100%;
       width: 100%;
+    }
+  }
+
+  .recent-header {
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 12.5rem;
+      height: 100%;
+      margin-bottom: 5px;
+      margin-right: 1.75rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+    }
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 12.5rem;
+      height: 100%;
+      margin-bottom: 5px;
+      margin-left: 1.75rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+    }
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .recent-header {
+    @include font-style(1.1rem, 600);
+
+    margin-bottom: 2.5rem;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 6.5rem;
+      height: 100%;
+      margin-bottom: 5px;
+      margin-right: 1.75rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+    }
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 6.5rem;
+      height: 100%;
+      margin-bottom: 5px;
+      margin-left: 1.75rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .recent-header {
+    @include font-style(1rem, 600);
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 4rem;
+      height: 100%;
+      margin-bottom: 5px;
+      margin-right: 1.75rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+    }
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 4rem;
+      height: 100%;
+      margin-bottom: 5px;
+      margin-left: 1.75rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.225);
     }
   }
 }
