@@ -42,7 +42,7 @@ export default defineComponent({
   padding: 1rem 5rem;
 
   input[type='text'] {
-    height: 1.25rem;
+    height: 2.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     padding-left: 0.75rem;
