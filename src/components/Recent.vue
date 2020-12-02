@@ -110,32 +110,6 @@ export default defineComponent({
   flex-grow: 1;
   width: 100%;
 
-  .recent-header {
-    margin-bottom: 2.5rem;
-    font-size: 1.25rem;
-    font-weight: 700;
-
-    &::before {
-      content: '';
-      display: inline-block;
-      width: 15rem;
-      height: 100%;
-      margin-bottom: 5px;
-      margin-right: 1.75rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.225);
-    }
-
-    &::after {
-      content: '';
-      display: inline-block;
-      width: 15rem;
-      height: 100%;
-      margin-bottom: 5px;
-      margin-left: 1.75rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.225);
-    }
-  }
-
   .results {
     display: flex;
     flex-direction: column;
@@ -145,6 +119,32 @@ export default defineComponent({
     max-width: 750px;
     width: 750px;
     margin: 0 auto;
+  }
+}
+
+.recent-header {
+  margin-bottom: 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 15rem;
+    height: 100%;
+    margin-bottom: 5px;
+    margin-right: 1.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+  }
+
+  &::after {
+    content: '';
+    display: inline-block;
+    width: 15rem;
+    height: 100%;
+    margin-bottom: 5px;
+    margin-left: 1.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.225);
   }
 }
 </style>
