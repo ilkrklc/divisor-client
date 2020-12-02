@@ -176,7 +176,7 @@ export default defineComponent({
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 14rem;
+  height: 16rem;
   border-radius: 0.3rem;
   border: 1px solid rgba($color: variables.$color-dark, $alpha: 0.5);
   background-color: variables.$color-white;
