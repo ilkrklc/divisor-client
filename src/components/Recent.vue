@@ -8,25 +8,43 @@
       <recent-item
         :key="calculation.id"
         :item="calculation"
-        v-for="calculation in recentCalculations"
+        v-for="calculation in pagedRecentItems"
       />
     </ul>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onBeforeMount } from 'vue';
+import {
+  defineComponent,
+  ref,
+  computed,
+  onBeforeMount,
+  onMounted,
+  onUnmounted,
+} from 'vue';
 
+import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { useStore } from '@/hooks/useStore';
 import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
-import RecentItem from './RecentItem.vue';
+
+import RecentItem from '@/components/RecentItem.vue';
+import RecentItemModel from '@/models/recent-item.model';
 
 export default defineComponent({
   components: {
     RecentItem,
   },
   setup() {
+    const INFINITE_SCROLL_OFFSET = 300;
+    const INFINITE_SCROLL_PAGE_SIZE = 5;
+
+    const infiniteScrollPageIndex = ref<number>(0);
+    const allItemsLoaded = ref<boolean>(false);
+
     const store = useStore();
+
+    const { scrollPosition } = useScrollPosition();
 
     const recentCalculations = computed(() => store.getters.recentCalculations);
     const isRecentLoading = computed(() => store.getters.isRecentLoading);
@@ -35,13 +53,49 @@ export default defineComponent({
       () => store.getters.hasRecentCalculations,
     );
 
+    const pagedRecentItems = computed<RecentItemModel[]>(() => {
+      if (recentCalculations.value.length <= 5) return recentCalculations.value;
+
+      const toBeLoadedItemsCount =
+        infiniteScrollPageIndex.value * INFINITE_SCROLL_PAGE_SIZE +
+        INFINITE_SCROLL_PAGE_SIZE;
+
+      const pagedItems = recentCalculations.value.slice(
+        0,
+        infiniteScrollPageIndex.value * INFINITE_SCROLL_PAGE_SIZE +
+          INFINITE_SCROLL_PAGE_SIZE,
+      );
+
+      if (toBeLoadedItemsCount > recentCalculations.value.length)
+        allItemsLoaded.value = true;
+
+      return pagedItems;
+    });
+
+    function checkScrollOffset() {
+      if (allItemsLoaded.value) return;
+
+      if (scrollPosition.value > INFINITE_SCROLL_OFFSET) return;
+
+      infiniteScrollPageIndex.value++;
+    }
+
     onBeforeMount(() => store.dispatch(RecentActionTypes.GetItems));
+
+    onMounted(() => {
+      window.addEventListener('scroll', checkScrollOffset);
+    });
+
+    onUnmounted(() => {
+      window.addEventListener('scroll', checkScrollOffset);
+    });
 
     return {
       recentCalculations,
       hasRecentCalculations,
       isRecentLoading,
       totalRecentItemCount,
+      pagedRecentItems,
     };
   },
 });
