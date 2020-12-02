@@ -30,42 +30,40 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@use '@/styles/_variables.scss';
+@use '@/styles/_variables.scss' as *;
+@use '@/styles/_mixins.scss' as *;
 
 .form {
+  @include flex(column, space-evenly, stretch);
+  @include padding-x(5rem);
+  @include padding-y(1rem);
+
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: stretch;
   flex-grow: 1;
-  padding: 1rem 5rem;
 
   input[type='text'] {
+    @include padding-x(0.75rem);
+    @include padding-y(0.5rem);
+
     height: 2.5rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
     border: 1px solid rgba(0, 0, 0, 0.6);
   }
 
   button[type='submit'] {
+    @include font-style(1.2rem, 600, 1, $color-dark);
+    @include padding-x(4rem);
+    @include padding-y(0.75rem);
+
     background: transparent;
-    border: 1px solid variables.$color-dark;
-    color: variables.$color-dark;
-    padding: 0.75rem 4rem;
-    font-size: 1.2rem;
-    font-weight: 600;
+    border: 1px solid $color-dark;
   }
 
   select {
+    @include padding-x(0.75rem);
+    @include padding-y(0.25rem);
+
     flex-grow: 1;
     height: 2.5rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
   }
 
   select,
@@ -75,11 +73,9 @@ export default defineComponent({
   }
 
   .form-label {
+    @include flex(column, flex-start, stretch);
+
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
 
     &:not(:last-child) {
       margin-bottom: 1rem;
@@ -102,31 +98,30 @@ export default defineComponent({
 
     &.error {
       input[type='text'] {
-        border: 1px solid rgba($color: variables.$color-danger, $alpha: 0.6);
-        border-color: variables.$color-danger;
+        border: 1px solid rgba($color: $color-danger, $alpha: 0.6);
+        border-color: $color-danger;
       }
 
       span {
-        color: variables.$color-danger;
+        color: $color-danger;
       }
 
       small {
+        @include font-style(0.75rem, 300, 1, $color-danger);
+
         display: block;
-        font-size: 0.75rem;
-        font-weight: 300;
         align-self: flex-start;
-        color: variables.$color-danger;
         margin-top: 0.25rem;
       }
     }
 
     span {
-      font-size: 0.9rem;
-      font-weight: 300;
+      @include font-style(0.9rem, 300, 1);
+
       align-self: flex-start;
 
       &.error {
-        color: variables.$color-danger;
+        color: $color-danger;
       }
     }
 
@@ -140,15 +135,14 @@ export default defineComponent({
   }
 
   .form-error {
+    @include font-style(1rem, 400, 1, $color-danger);
+
     position: absolute;
     display: none;
     bottom: -2rem;
     height: 1rem;
     left: 0;
     width: 100%;
-    font-size: 1rem;
-    font-weight: 400;
-    color: variables.$color-danger;
 
     &.display {
       display: block;
