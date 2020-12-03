@@ -1,18 +1,29 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <greeting />
+    <calculator />
+    <recent />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import { defineComponent } from 'vue';
+
+import Greeting from '@/components/Greeting.vue';
+import Calculator from '@/components/Calculator.vue';
+import Recent from '@/components/Recent.vue';
 
 export default defineComponent({
-  name: "Home",
-  components: {
-    HelloWorld
-  }
+  components: { Greeting, Calculator, Recent },
 });
 </script>
+
+<style lang="scss" scoped>
+@use '@/styles/_mixins.scss' as *;
+
+.home {
+  @include flex(column, flex-start, stretch);
+
+  flex-grow: 1;
+}
+</style>
