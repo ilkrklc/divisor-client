@@ -1,0 +1,15 @@
+name: Build and Deploy
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install and Build
+      - run: |
+          npm install
+          npm run-script build
+
+      - name: Deploy
+      - run: ../../gh-pages
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
