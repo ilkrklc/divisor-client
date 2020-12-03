@@ -4,13 +4,13 @@
     <div v-if="hasRecentCalculations === false" class="no-results">
       Your recent calculation results will be listed here.
     </div>
-    <ul v-else class="results">
+    <transition-group v-else name="recent-list" tag="ul" class="results">
       <recent-item
         :key="calculation.id"
         :item="calculation"
         v-for="calculation in pagedRecentItems"
       />
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -44,7 +44,7 @@ export default defineComponent({
 
     const store = useStore();
 
-    const { scrollPosition } = useScrollPosition();
+    const { scrollPosition, scrollOffset } = useScrollPosition();
 
     const recentCalculations = computed(() => store.getters.recentCalculations);
     const isRecentLoading = computed(() => store.getters.isRecentLoading);
@@ -75,7 +75,7 @@ export default defineComponent({
     function checkScrollOffset() {
       if (allItemsLoaded.value) return;
 
-      if (scrollPosition.value > INFINITE_SCROLL_OFFSET) return;
+      if (scrollOffset.value > INFINITE_SCROLL_OFFSET) return;
 
       infiniteScrollPageIndex.value++;
     }
@@ -120,6 +120,21 @@ export default defineComponent({
     flex-grow: 1;
     max-width: 750px;
     width: 750px;
+
+    .recent-list-enter-active,
+    .recent-list-leave-active {
+      transition: all 0.9s ease;
+    }
+
+    .recent-list-enter-from,
+    .recent-list-leave-to {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+
+    .recent-list-move {
+      transition: transform 0.8s ease;
+    }
   }
 }
 
