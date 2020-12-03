@@ -4,13 +4,20 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Install and Build
-        run: |
-          cd ..
-          npm install
-          npm run-script build
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+        with:
+          persist-credentials: false
 
-      - name: Deploy
-        run: ../../gh-pages
-        env:
-          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+      - name: Install and Build 🔧
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          ACCESS_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist
+          CLEAN: true
