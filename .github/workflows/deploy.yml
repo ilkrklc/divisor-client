@@ -5,11 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install and Build
-      - run: |
+        run: |
           npm install
           npm run-script build
 
       - name: Deploy
-      - run: ../../gh-pages
+        run: ../../gh-pages
         env:
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
