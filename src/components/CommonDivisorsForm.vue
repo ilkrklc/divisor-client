@@ -18,7 +18,7 @@
       }}</small>
     </label>
     <label class="form-label" for="number2">
-      <span>Type a natural number</span>
+      <span>Type another natural number</span>
       <input
         type="text"
         name="number2"
@@ -63,6 +63,7 @@ import { defineComponent, computed, ref } from 'vue';
 import { useStore } from '@/hooks/useStore';
 import { useSortOptions } from '@/hooks/useSortOptions';
 import { CommonDivisorsActionTypes } from '@/store/modules/common-divisors/common-divisors.actions';
+import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
 import { SortOptions, ValidationErrors } from '@/typings/enums';
 import {
   validateSortList,
@@ -71,10 +72,9 @@ import {
   toggleFormErrorText,
 } from '@/helpers/validation.helpers';
 import CommonDivisorResult from '@/models/common-divisor-result.model';
+import RecentItem from '@/models/recent-item.model';
 
 import FormWrapper from '@/components/FormWrapper.vue';
-import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
-import RecentItem from '@/models/recent-item.model';
 
 export default defineComponent({
   components: { FormWrapper },

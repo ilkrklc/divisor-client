@@ -10,6 +10,18 @@ import {
 import { BaseResult } from '@/typings/interfaces';
 import { CalculationType, SortOptions } from '@/typings/enums';
 
+/**
+ * Common divisor result model
+ * @summary Common divisor calculation response
+ * @property {CalculationType|undefined} calculationType Calculation type
+ * @property {number[]|undefined} divisors Divisors result
+ * @property {number} count Divisors count
+ * @property {number|undefined} sum Sum of divisors
+ * @property {number|undefined} multiplication Multiplication of divisors
+ * @property {number|undefined} greatest Greatest common divisor - gcd
+ * @property {number|undefined} smallest Smallest common divisor
+ * @property {number|undefined} leastCommonMultiple Least common multiple - lcm
+ */
 export default class CommonDivisorResult implements BaseResult {
   calculationType?: CalculationType;
   divisors?: number[];

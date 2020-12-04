@@ -134,22 +134,39 @@ export default defineComponent({
     },
   },
   setup(props: { item: RecentItem }) {
+    /**
+     * Applied sort option display name
+     */
     const sortDisplayName = getSortOptionDisplayName(
       props.item.sort as SortOptions,
     );
 
+    /**
+     * Calculation type display name
+     */
     const calculationTypeDisplayName = getCalculationTypeDisplayName(
       props.item.calculationType,
     );
+
+    /**
+     * Comma separated calculated divisors ready for display
+     */
     const commaSeparatedDivisors = props.item.divisors?.join(', ');
 
+    /**
+     * Calculated divisor seciton header ready for display
+     */
     const divisorsHeader = computed(() => {
+      // initialize header
       let result = '';
+
+      // determine header start according to calculation type
       if (props.item.calculationType === CalculationType.Divisors)
         result += `Number ${props.item.number1} has `;
       if (props.item.calculationType === CalculationType.CommonDivisors)
         result += `Numbers ${props.item.number1} and ${props.item.number2} has `;
 
+      // check for applied proper divisors filter
       result += `${props.item.count}${
         props.item.onlyProperDivisors ? ' proper ' : ' '
       }${calculationTypeDisplayName}:`;

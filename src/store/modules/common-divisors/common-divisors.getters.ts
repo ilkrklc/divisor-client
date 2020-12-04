@@ -6,15 +6,11 @@ import { CommonDivisorsState } from '@/store/modules/common-divisors/common-divi
 
 export type CommonDivisorsGetters = {
   commonDivisorFormState(state: CommonDivisorsState): CommonDivisorFormState;
-  commonDivisorCalculating(state: CommonDivisorsState): boolean;
 };
 
 export const commonDivisorsGetters: GetterTree<CommonDivisorsState, State> &
   CommonDivisorsGetters = {
   commonDivisorFormState(state) {
     return state.form;
-  },
-  commonDivisorCalculating(state) {
-    return state.calculating;
   },
 };

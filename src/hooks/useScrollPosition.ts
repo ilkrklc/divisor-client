@@ -1,12 +1,25 @@
 import { ref, onMounted, onUnmounted, Ref } from 'vue';
 
+/**
+ * Gets current scroll position and offset from scroll event
+ */
 export function useScrollPosition(): {
   scrollPosition: Ref<number>;
   scrollOffset: Ref<number>;
 } {
+  /**
+   * Scroll position in pixels
+   */
   const scrollPosition = ref<number>(0);
+
+  /**
+   * Scroll offset from bottom of the page in pixels
+   */
   const scrollOffset = ref<number>(0);
 
+  /**
+   * Updates exported values - scroll event handler
+   */
   function update() {
     // get variables required for scroll calculations
     const viewportHeight = Math.max(
