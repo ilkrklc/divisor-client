@@ -50,6 +50,7 @@ export default defineComponent({
 
 #navbar {
   @include flex(row, space-between);
+  font-family: $font-lato;
 
   height: 5rem;
   max-height: 5rem;
@@ -70,7 +71,7 @@ export default defineComponent({
 
     a {
       @include flex(row, center, center);
-      @include font-style(1.05rem, 700, 0.75, $color-text);
+      @include font-style(1.075rem, 400, 0.75, $color-text);
 
       text-decoration: none;
       border-bottom-width: 0.75px;
@@ -86,7 +87,7 @@ export default defineComponent({
       }
 
       &.router-link-exact-active {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
         color: $color-medium;
         border-bottom-color: rgba($color: $color-medium, $alpha: 0.5);
       }
@@ -128,7 +129,7 @@ export default defineComponent({
 
     .navbar-github-description {
       @include flex(row, center, center);
-      @include font-style(0.8rem, 500);
+      @include font-style(0.8rem, 400);
 
       position: absolute;
       right: -10rem;
@@ -154,19 +155,19 @@ export default defineComponent({
     #navbar-name {
       width: 12.5rem;
       margin-right: 1.5rem;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
     }
 
     .navbar-links {
       a {
-        @include font-style(0.8rem, 600, 0.75, $color-text);
+        @include font-style(1rem, 400, 0.75, $color-text);
 
         &:not(:first-child) {
           margin-left: 0.75rem;
         }
 
         &.router-link-exact-active {
-          font-size: 0.9rem;
+          font-size: 1.1rem;
         }
       }
     }

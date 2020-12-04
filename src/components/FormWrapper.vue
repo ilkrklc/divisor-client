@@ -45,6 +45,7 @@ export default defineComponent({
     @include padding-x(0.75rem);
     @include padding-y(0.5rem);
 
+    font-family: $font-lato;
     height: 2.5rem;
     border: 1px solid rgba(0, 0, 0, 0.6);
   }
@@ -62,6 +63,7 @@ export default defineComponent({
     @include padding-x(0.75rem);
     @include padding-y(0.25rem);
 
+    font-family: $font-lato;
     flex-grow: 1;
     height: 2.5rem;
   }
@@ -107,7 +109,7 @@ export default defineComponent({
       }
 
       small {
-        @include font-style(0.75rem, 300, 1, $color-danger);
+        @include font-style(0.8rem, 400, 1, $color-danger);
 
         display: block;
         align-self: flex-start;
@@ -116,7 +118,7 @@ export default defineComponent({
     }
 
     span {
-      @include font-style(0.9rem, 300, 1);
+      @include font-style(0.875rem, 500, 1);
 
       align-self: flex-start;
 
