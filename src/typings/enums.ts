@@ -18,4 +18,5 @@ export enum ValidationErrors {
 
 export enum PersistStateKey {
   RecentItems = 'VUEX_RECENT_ITEMS',
+  DataVersion = 'DATA_VERSION',
 }
