@@ -10,6 +10,8 @@
 <script>
 import { defineComponent } from 'vue';
 
+import { useDataIntegrity } from '@/hooks/useDataIntegrity';
+
 import Navbar from '@/components/Navbar.vue';
 import FooterBar from '@/components/FooterBar.vue';
 import ScrollTop from './components/ScrollTop.vue';
@@ -21,6 +23,12 @@ export default defineComponent({
     Navbar,
     FooterBar,
     ScrollTop,
+  },
+  setup() {
+    // check for data integrity
+    useDataIntegrity();
+
+    return {};
   },
 });
 </script>
