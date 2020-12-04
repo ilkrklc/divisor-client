@@ -89,7 +89,6 @@ export default defineComponent({
 
     .calculator-tab-item {
       @include font-style(1rem, 600, 0.5, $color-medium);
-      @include no-outline;
 
       flex-grow: 1;
       background: transparent;
