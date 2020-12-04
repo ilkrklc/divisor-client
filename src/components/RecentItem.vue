@@ -222,7 +222,7 @@ export default defineComponent({
 
   > span {
     @include flex(row, center, center);
-    @include font-style(0.95rem, 400);
+    @include font-style(1.1rem, 400);
 
     margin-bottom: 1.25rem;
     flex-grow: 1;
@@ -250,7 +250,7 @@ export default defineComponent({
       position: absolute;
       display: block;
       left: -2.5rem;
-      top: -1rem;
+      top: -0.8rem;
       font-size: 3rem;
     }
 
@@ -259,7 +259,7 @@ export default defineComponent({
       position: absolute;
       display: block;
       right: -2.5rem;
-      top: -1rem;
+      top: -0.8rem;
       font-size: 3rem;
     }
 
@@ -298,6 +298,8 @@ export default defineComponent({
 }
 
 .recent-item-name {
+  @include font-style(1rem, 500);
+
   position: absolute;
   left: -1.75rem;
   top: -0.5rem;
@@ -305,7 +307,7 @@ export default defineComponent({
   word-break: break-word;
   width: 100px;
   line-height: 1.2rem;
-  padding: 0.1rem 0.25rem;
+  padding: 0.2rem 0.3rem;
   border-radius: 5px;
 
   &.divisors-recent-item {
@@ -357,15 +359,15 @@ export default defineComponent({
 
     > span {
       @include flex(row, center, center);
-      @include font-style(0.95rem, 400);
+      @include font-style(1rem, 400);
 
-      flex-grow: 1;
+      height: 50%;
     }
 
     > div {
-      @include flex(row, center, center);
+      @include flex(row, center, flex-start);
 
-      flex-grow: 1;
+      height: 50%;
 
       > span {
         @include font-style(1.5rem, 700);
@@ -386,7 +388,7 @@ export default defineComponent({
 
 .recent-created-on {
   @include flex(row, flex-end, flex-end);
-  @include font-style(0.7rem, 700);
+  @include font-style(0.7rem, 500);
 
   height: 1rem;
   width: 100%;
