@@ -16,7 +16,7 @@
         target="_blank"
         rel="noreferrer noopener"
       >
-        <img src="../assets/git-logo.png" alt="github project link" />
+        <img src="../assets/images/git-logo.png" alt="github project link" />
       </a>
       <span class="navbar-github-description">
         Visit project repository...
