@@ -16,6 +16,7 @@
     "divisor": "^1.0.0",
     "nanoid": "^3.1.18",
     "normalize.css": "^8.0.1",
+    "semver": "^7.3.4",
     "vue": "^3.0.0",
     "vue-gtm": "^3.1.1",
     "vue-router": "^4.0.0-0",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
+    "@types/semver": "^7.3.4",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.0",
