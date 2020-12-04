@@ -26,6 +26,8 @@ export default defineComponent({
 @use '@/styles/_variables.scss' as *;
 @use '@/styles/_mixins.scss' as *;
 
+@import '@/styles/_fonts.scss';
+
 * {
   box-sizing: border-box;
 }
@@ -33,7 +35,7 @@ export default defineComponent({
 #app {
   @include flex(column, flex-start, stretch);
 
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: $font-raleway;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
