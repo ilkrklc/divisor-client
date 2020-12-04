@@ -68,12 +68,6 @@ export default defineComponent({
     height: 2.5rem;
   }
 
-  select,
-  button,
-  .checkbox-label {
-    cursor: pointer;
-  }
-
   .form-label {
     @include flex(column, flex-start, stretch);
 

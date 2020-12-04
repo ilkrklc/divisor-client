@@ -4,6 +4,7 @@
     <router-view />
   </main>
   <footer-bar />
+  <scroll-top />
 </template>
 
 <script>
@@ -11,6 +12,7 @@ import { defineComponent } from 'vue';
 
 import Navbar from '@/components/Navbar.vue';
 import FooterBar from '@/components/FooterBar.vue';
+import ScrollTop from './components/ScrollTop.vue';
 
 import 'normalize.css';
 
@@ -18,6 +20,7 @@ export default defineComponent({
   components: {
     Navbar,
     FooterBar,
+    ScrollTop,
   },
 });
 </script>
@@ -30,6 +33,23 @@ export default defineComponent({
 
 * {
   box-sizing: border-box;
+}
+
+select,
+button,
+.checkbox-label {
+  cursor: pointer;
+}
+
+button {
+  @include no-outline;
+
+  background: transparent;
+  border: none;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 #app {
