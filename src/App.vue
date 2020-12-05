@@ -37,8 +37,6 @@ export default defineComponent({
 @use '@/styles/_variables.scss' as *;
 @use '@/styles/_mixins.scss' as *;
 
-@import '@/styles/_fonts.scss';
-
 * {
   box-sizing: border-box;
 }
