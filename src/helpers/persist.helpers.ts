@@ -18,7 +18,7 @@ export function isLocaleStorageExists(): boolean {
  * @param {string} key Locale store key
  * @return {string | null} Value if key found null if not
  */
-export function getPersistedJsonValue(key: string): string | null {
+export function getPersistedValue(key: string): string | null {
   // if key is faulty return null
   if (!key) return null;
 
@@ -34,7 +34,7 @@ export function getPersistedJsonValue(key: string): string | null {
  * @param {string} key Locale store key
  * @param {string} value Serialized data
  */
-export function setPersistedJsonValue(key: string, value: string): void {
+export function setPersistedValue(key: string, value: string): void {
   // if key is faulty do nothing
   if (!key) return;
 

@@ -1,8 +1,8 @@
 import { ActionContext, ActionTree } from 'vuex';
 
 import {
-  getPersistedJsonValue,
-  setPersistedJsonValue,
+  getPersistedValue,
+  setPersistedValue,
 } from '@/helpers/persist.helpers';
 import { PersistStateKey, SortOptions } from '@/typings/enums';
 import RecentItem from '@/models/recent-item.model';
@@ -50,9 +50,7 @@ export const recentActions: ActionTree<RecentState, State> & RecentActions = {
     let items: RecentItem[] = [];
 
     // try to persist recent items from locale storage
-    const persistedItemsJson = getPersistedJsonValue(
-      PersistStateKey.RecentItems,
-    );
+    const persistedItemsJson = getPersistedValue(PersistStateKey.RecentItems);
     if (persistedItemsJson) {
       const persistedItems: Record<string, unknown> = JSON.parse(
         persistedItemsJson,
@@ -78,10 +76,7 @@ export const recentActions: ActionTree<RecentState, State> & RecentActions = {
     const newItems = [...[item], ...state.items];
 
     // update locale storage
-    setPersistedJsonValue(
-      PersistStateKey.RecentItems,
-      JSON.stringify(newItems),
-    );
+    setPersistedValue(PersistStateKey.RecentItems, JSON.stringify(newItems));
 
     // add new item
     commit(RecentMutationType.AddItem, newItems);
