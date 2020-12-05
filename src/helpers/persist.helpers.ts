@@ -1,7 +1,7 @@
 /**
  * Checks for locale storage support
  */
-function isLocaleStorageExists(): boolean {
+export function isLocaleStorageExists(): boolean {
   try {
     const testKeyValue = 'test';
     localStorage.setItem(testKeyValue, testKeyValue);
