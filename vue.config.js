@@ -16,5 +16,11 @@ module.exports = {
       }),
     ],
   },
+  chainWebpack: config => {
+    config.plugin('html').tap(args => {
+      args[0].title = 'Divisor';
+      return args;
+    });
+  },
   publicPath: process.env.NODE_ENV === 'production' ? '/divisor-client/' : '/',
 };
