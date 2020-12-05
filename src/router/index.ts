@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-import { prepareTitle } from '@/helpers/seo-helpers';
+import { prepareTitle } from '@/helpers/seo.helpers';
 
 import Home from '@/views/Home.vue';
 
