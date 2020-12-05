@@ -3,7 +3,6 @@ import { DivisorFormState } from '@/typings/interfaces';
 
 export type DivisorsState = {
   form: DivisorFormState;
-  calculating: boolean;
 };
 
 export const divisorsState: DivisorsState = {
@@ -12,5 +11,4 @@ export const divisorsState: DivisorsState = {
     sort: SortOptions.NotDefined,
     onlyProperDivisors: false,
   },
-  calculating: false,
 };

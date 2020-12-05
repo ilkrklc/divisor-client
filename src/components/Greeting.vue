@@ -14,8 +14,14 @@ import { useStore } from '@/hooks/useStore';
 
 export default defineComponent({
   setup() {
+    /**
+     * Vuex store
+     */
     const store = useStore();
 
+    /**
+     * Calculation display name
+     */
     const calculationName = computed(
       () => store.getters.calculationDisplayName,
     );

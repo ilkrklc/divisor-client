@@ -18,12 +18,24 @@ import { useScrollPosition } from '@/hooks/useScrollPosition';
 
 export default defineComponent({
   setup() {
+    /**
+     * Offset in pixels to display scroll top button
+     */
     const SCROLL_TOP_OFFSET = 400; // in pixels
 
+    /**
+     * Current scroll position
+     */
     const { scrollPosition } = useScrollPosition();
 
+    /**
+     * Indicator for displaying scroll top button
+     */
     const displayScrollTopButton = ref<boolean>(false);
 
+    /**
+     * Controls display of scroll top button - scroll event handler
+     */
     function scrollTop(): void {
       const currentStatus = scrollPosition.value >= SCROLL_TOP_OFFSET;
 
@@ -31,6 +43,10 @@ export default defineComponent({
         displayScrollTopButton.value = currentStatus;
     }
 
+    /**
+     * Handles scroll top button click - scroll button click event handler
+     * @summary Scrolls up document
+     */
     function handleScrollTopClick(): void {
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;

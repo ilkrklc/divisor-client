@@ -43,11 +43,22 @@ import CommonDivisorsForm from './CommonDivisorsForm.vue';
 export default defineComponent({
   components: { DivisorsForm, CommonDivisorsForm },
   setup() {
+    /**
+     * Vuex store
+     */
     const store = useStore();
 
+    /**
+     * Active tab name as calculation type
+     */
     const activeTabName = ref<CalculationType>(CalculationType.Divisors);
 
+    /**
+     * Sets active tab name - Calculator nav item click event handler
+     * @param {CalculationType} tabName Clicked tab name
+     */
     function setActiveTabName(tabName: CalculationType): void {
+      // if faulty tab name encounterd do nothing
       if (!tabName || tabName === activeTabName.value) return;
 
       // update local state

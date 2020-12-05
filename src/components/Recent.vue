@@ -27,51 +27,88 @@ import {
 import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { useStore } from '@/hooks/useStore';
 import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
+import RecentItemModel from '@/models/recent-item.model';
 
 import RecentItem from '@/components/RecentItem.vue';
-import RecentItemModel from '@/models/recent-item.model';
 
 export default defineComponent({
   components: {
     RecentItem,
   },
   setup() {
+    /**
+     * Scroll offset for infinite scroll effect
+     * @summary Offset from page bottom in pixels to trigger loading new items
+     */
     const INFINITE_SCROLL_OFFSET = 300;
+
+    /**
+     * Item count to load on every load event trigger
+     * @summary Indicates least items can be shown as paged
+     */
     const INFINITE_SCROLL_PAGE_SIZE = 5;
 
+    /**
+     * Current infinite scroll trigger count. Used to calculate displayed item count
+     */
     const infiniteScrollPageIndex = ref<number>(0);
+
+    /**
+     * Indicator for no more items left to load
+     */
     const allItemsLoaded = ref<boolean>(false);
 
+    /**
+     * Vuex store
+     */
     const store = useStore();
 
-    const { scrollPosition, scrollOffset } = useScrollPosition();
+    /**
+     * Current scroll offset
+     */
+    const { scrollOffset } = useScrollPosition();
 
-    const recentCalculations = computed(() => store.getters.recentCalculations);
-    const isRecentLoading = computed(() => store.getters.isRecentLoading);
-    const totalRecentItemCount = computed(() => store.getters.totalRecentCount);
+    /**
+     * Recent calculation items to display
+     */
+    const items = computed(() => store.getters.recentCalculations);
+
+    /**
+     * Indicator for any recent calculation exists
+     */
     const hasRecentCalculations = computed(
       () => store.getters.hasRecentCalculations,
     );
 
+    /**
+     * Paged calculation items for infinite scroll effect
+     */
     const pagedRecentItems = computed<RecentItemModel[]>(() => {
-      if (recentCalculations.value.length <= 5) return recentCalculations.value;
+      // if items length does not need pagination do nothing
+      if (items.value.length <= INFINITE_SCROLL_PAGE_SIZE) return items.value;
 
+      // calculate total displayed item count
       const toBeLoadedItemsCount =
         infiniteScrollPageIndex.value * INFINITE_SCROLL_PAGE_SIZE +
         INFINITE_SCROLL_PAGE_SIZE;
 
-      const pagedItems = recentCalculations.value.slice(
+      // get paged items
+      const pagedItems = items.value.slice(
         0,
         infiniteScrollPageIndex.value * INFINITE_SCROLL_PAGE_SIZE +
           INFINITE_SCROLL_PAGE_SIZE,
       );
 
-      if (toBeLoadedItemsCount > recentCalculations.value.length)
+      // check for any items left mark loaded indicator if not
+      if (toBeLoadedItemsCount > items.value.length)
         allItemsLoaded.value = true;
 
       return pagedItems;
     });
 
+    /**
+     * Check scroll offset and increments scroll index - scroll event handler
+     */
     function checkScrollOffset() {
       if (allItemsLoaded.value) return;
 
@@ -91,10 +128,8 @@ export default defineComponent({
     });
 
     return {
-      recentCalculations,
+      items,
       hasRecentCalculations,
-      isRecentLoading,
-      totalRecentItemCount,
       pagedRecentItems,
     };
   },

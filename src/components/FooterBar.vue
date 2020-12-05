@@ -1,21 +1,32 @@
 <template>
   <footer>
-    <span>Copyright &copy; {{ getYear }} İlker Kılıç</span>
+    <span>Copyright &copy; {{ year }} İlker Kılıç</span>
     <span>Released under the<strong> MIT License</strong></span>
   </footer>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
-  name: 'footer-bar',
-  computed: {
-    getYear(): number {
+  setup() {
+    /**
+     * Gets current year as 4 digit display format
+     */
+    function getYear(): number {
+      // get current date
       const d = new Date();
 
+      // return year as 4 digit display format
       return d.getUTCFullYear();
-    },
+    }
+
+    /**
+     * Current year as 4 digit display format
+     */
+    const year = ref<number>(getYear());
+
+    return { year };
   },
 });
 </script>

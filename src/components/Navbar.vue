@@ -30,8 +30,15 @@ import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   setup() {
+    /**
+     * Indicator for git logo hover status
+     */
     const isGitLogoHovered = ref<boolean>(false);
 
+    /**
+     * Switches git logo hover status - git section hover event handler
+     * @param {boolean} isHovered Hover indicator
+     */
     function handleGitLogoHover(isHovered: boolean): void {
       isGitLogoHovered.value = isHovered;
     }
@@ -44,7 +51,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @use '@/styles/_variables.scss' as *;
 @use '@/styles/_mixins.scss' as *;
 

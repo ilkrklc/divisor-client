@@ -3,7 +3,6 @@ import { SortOptions } from '@/typings/enums';
 
 export type CommonDivisorsState = {
   form: CommonDivisorFormState;
-  calculating: boolean;
 };
 
 export const commonDivisorsState: CommonDivisorsState = {
@@ -12,5 +11,4 @@ export const commonDivisorsState: CommonDivisorsState = {
     number2: undefined,
     sort: SortOptions.NotDefined,
   },
-  calculating: false,
 };
