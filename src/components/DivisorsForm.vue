@@ -56,6 +56,7 @@ import { defineComponent, computed, ref } from 'vue';
 import { useStore } from '@/hooks/useStore';
 import { useSortOptions } from '@/hooks/useSortOptions';
 import { DivisorsActionTypes } from '@/store/modules/divisors/divisors.actions';
+import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
 import { SortOptions, ValidationErrors } from '@/typings/enums';
 import {
   validateSortList,
@@ -64,10 +65,9 @@ import {
   toggleFormErrorText,
 } from '@/helpers/validation.helpers';
 import DivisorResult from '@/models/divisor-result.model';
+import RecentItem from '@/models/recent-item.model';
 
 import FormWrapper from '@/components/FormWrapper.vue';
-import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
-import RecentItem from '@/models/recent-item.model';
 
 export default defineComponent({
   components: { FormWrapper },

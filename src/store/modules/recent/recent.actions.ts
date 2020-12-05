@@ -46,9 +46,6 @@ export type RecentActions = {
 
 export const recentActions: ActionTree<RecentState, State> & RecentActions = {
   [RecentActionTypes.GetItems]({ commit }) {
-    // turn on loading
-    commit(RecentMutationType.SetLoading, true);
-
     // initialize returned items
     let items: RecentItem[] = [];
 
@@ -73,9 +70,6 @@ export const recentActions: ActionTree<RecentState, State> & RecentActions = {
           }).deserialize(item),
         );
     }
-
-    // turn off loading
-    commit(RecentMutationType.SetLoading, false);
 
     // set fetched items
     commit(RecentMutationType.SetItems, items);

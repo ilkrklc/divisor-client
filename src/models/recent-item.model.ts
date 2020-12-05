@@ -4,6 +4,23 @@ import { BaseResult } from '@/typings/interfaces';
 import { CalculationType, SortOptions } from '@/typings/enums';
 import { getFormattedDateString } from '@/helpers/date-time.helpers';
 
+/**
+ * Recent item
+ * @property {string|undefined} id Unique item identifier
+ * @property {CalculationType} calculationType Calculation type
+ * @property {number[]|undefined} divisors Divisors result
+ * @property {number} count Divisors count
+ * @property {number|undefined} sum Sum of divisors
+ * @property {number|undefined} multiplication Multiplication of divisors
+ * @property {number|undefined} greatest Greatest common divisor - gcd
+ * @property {number|undefined} smallest Smallest common divisor
+ * @property {number|undefined} leastCommonMultiple Least common multiple - lcm
+ * @property {string|undefined} createdOn Creation date
+ * @property {number} number1 Calculation number one input
+ * @property {number} number2 Calculation number two input
+ * @property {SortOptions} number2 Calculation sort option selection
+ * @property {boolean} onlyProperDivisors Calculation proper divisors selection
+ */
 export default class RecentItem implements BaseResult {
   id?: string;
   calculationType: CalculationType;
@@ -47,6 +64,11 @@ export default class RecentItem implements BaseResult {
     this.calculationType = CalculationType.Divisors;
   }
 
+  /**
+   * Deserializes recent item
+   * @param {Record<string, unknown>} item Serialized recent item
+   * @returns {RecentItem} Recent item
+   */
   deserialize(item: Record<string, unknown>): RecentItem {
     this.calculationType = item.calculationType as CalculationType;
     this.divisors = (item.divisors as number[]) || undefined;
@@ -61,6 +83,11 @@ export default class RecentItem implements BaseResult {
     return this;
   }
 
+  /**
+   * Maps calculation result to recent item
+   * @param {BaseResult} item Calculation result
+   * @returns {RecentItem} Recent item
+   */
   fromCalculationResult(result: BaseResult): RecentItem {
     this.calculationType = result.calculationType || this.calculationType;
     this.divisors = result.divisors || this.divisors;
