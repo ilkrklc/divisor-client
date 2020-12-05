@@ -6,7 +6,7 @@ const Component = defineComponent({});
 
 export const store = new Vuex.Store({
   getters: {
-    getVersion: jest.fn(),
+    getVersion: jest.fn(() => '1.0.0'),
   },
 });
 
