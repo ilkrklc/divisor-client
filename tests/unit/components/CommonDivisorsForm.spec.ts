@@ -45,15 +45,15 @@ describe('number inputs clean/dirty status', () => {
   it('number inputs should display error text when inputs are dirty', () => {
     wrapper.vm.isNumber1InputDirty = false;
     wrapper.vm.isNumber2InputDirty = false;
-    wrapper.find('#common-divisors-form').trigger('submit');
+    form.trigger('submit');
 
     expect(toggleInputErrorTextSpy).toHaveBeenCalledTimes(2);
   });
 
   it('number inputs should be clean when form successful submit happens', () => {
-    wrapper.find('#number1').setValue('200');
-    wrapper.find('#number2').setValue('20');
-    wrapper.find('#common-divisors-form').trigger('submit');
+    numberInput1.setValue('200');
+    numberInput2.setValue('20');
+    form.trigger('submit');
 
     expect(wrapper.vm.isNumber1InputDirty).toBe(false);
     expect(wrapper.vm.isNumber2InputDirty).toBe(false);
