@@ -202,6 +202,7 @@ export default defineComponent({
 
     return {
       state,
+      isNumberInputDirty,
       sortOptions,
       setNumber,
       setSort,
