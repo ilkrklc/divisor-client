@@ -1,8 +1,9 @@
 import { shallowMount } from '@vue/test-utils';
+import Vuex from 'vuex';
 
 import App from '@/App.vue';
 import * as helpers from '@/helpers/persist.helpers';
-import { store, router } from '@/../mocks/vue-plugins.mock';
+import router from '@/router';
 
 describe('useDataIntegrity', () => {
   let getPersistedValueSpy: jest.SpyInstance;
@@ -19,6 +20,12 @@ describe('useDataIntegrity', () => {
   });
 
   it('should set version if no version already stored', async () => {
+    const store = new Vuex.Store({
+      getters: {
+        getVersion: jest.fn(() => null),
+      },
+    });
+
     shallowMount(App, {
       global: {
         plugins: [store, router],
@@ -31,6 +38,12 @@ describe('useDataIntegrity', () => {
   });
 
   it('should reset stored data when major change occured', async () => {
+    const store = new Vuex.Store({
+      getters: {
+        getVersion: jest.fn(() => '1.0.0'),
+      },
+    });
+
     getPersistedValueSpy.mockImplementation(() => '0.0.1');
 
     shallowMount(App, {
