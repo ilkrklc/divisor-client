@@ -1,4 +1,4 @@
-import { shallowMount, VueWrapper } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 
 import ScrollTop from '@/components/ScrollTop.vue';
 
