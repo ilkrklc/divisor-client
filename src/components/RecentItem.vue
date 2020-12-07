@@ -1,118 +1,130 @@
 <template>
   <li class="recent-item">
-    <h3
-      :class="['recent-item-name', `${recentItem.calculationType}-recent-item`]"
-    >
-      {{ calculationTypeDisplayName }}
-    </h3>
-    <div class="recent-item-badges">
-      <div
-        v-if="recentItem.sort !== SortOptions.NotDefined"
-        class="recent-item-badge"
+    <div class="recent-content">
+      <h3
+        :class="[
+          'recent-item-name',
+          `${recentItem.calculationType}-recent-item`,
+        ]"
       >
-        {{ sortDisplayName }}
+        {{ calculationTypeDisplayName }}
+      </h3>
+      <div class="recent-item-badges">
+        <div
+          v-if="recentItem.sort !== SortOptions.NotDefined"
+          class="recent-item-badge"
+        >
+          {{ sortDisplayName }}
+        </div>
+        <div v-if="recentItem.onlyProperDivisors" class="recent-item-badge">
+          Proper
+        </div>
       </div>
-      <div v-if="recentItem.onlyProperDivisors" class="recent-item-badge">
-        Proper
-      </div>
-    </div>
-    <div
-      class="recent-divisors"
-      :class="{ 'long-number': commaSeparatedDivisors.length > 50 }"
-    >
-      <span :class="{ 'no-result': recentItem.count === 0 }">{{
-        divisorsHeader
-      }}</span>
       <div
-        v-if="recentItem.count > 0"
-        :class="{
-          'long-number': commaSeparatedDivisors.length > 50,
-          'very-long-number': commaSeparatedDivisors.length > 200,
-        }"
+        class="recent-divisors"
+        :class="{ 'long-number': commaSeparatedDivisors.length > 50 }"
       >
-        <span>{{ commaSeparatedDivisors }}</span>
+        <span :class="{ 'no-result': recentItem.count === 0 }">{{
+          divisorsHeader
+        }}</span>
+        <div
+          v-if="recentItem.count > 0"
+          :class="{
+            'long-number': commaSeparatedDivisors.length > 50,
+            'very-long-number': commaSeparatedDivisors.length > 200,
+          }"
+        >
+          <span>{{ commaSeparatedDivisors }}</span>
+        </div>
+      </div>
+      <div v-if="recentItem.count > 0" class="recent-other">
+        <div class="count">
+          <span>Count</span>
+          <div>
+            <span
+              :class="{
+                'long-number': recentItem.count.toString().length > 7,
+                'very-long-number': recentItem.count.toString().length > 15,
+              }"
+              >{{ recentItem.count }}</span
+            >
+          </div>
+        </div>
+        <div v-if="recentItem.sum !== undefined" class="sum">
+          <span>Sum</span>
+          <div>
+            <span
+              :class="{
+                'long-number': recentItem.sum.toString().length > 7,
+                'very-long-number': recentItem.sum.toString().length > 15,
+              }"
+              >{{ recentItem.sum }}</span
+            >
+          </div>
+        </div>
+        <div v-if="recentItem.multiplication !== undefined" class="multiply">
+          <span>Multiply</span>
+          <div>
+            <span
+              :class="{
+                'long-number': recentItem.multiplication.toString().length > 7,
+                'very-long-number':
+                  recentItem.multiplication.toString().length > 15,
+              }"
+              >{{ recentItem.multiplication }}</span
+            >
+          </div>
+        </div>
+        <div v-if="recentItem.greatest !== undefined" class="gcd">
+          <span>GCD</span>
+          <div>
+            <span
+              :class="{
+                'long-number': recentItem.greatest.toString().length > 7,
+                'very-long-number': recentItem.greatest.toString().length > 15,
+              }"
+              >{{ recentItem.greatest }}</span
+            >
+          </div>
+        </div>
+        <div v-if="recentItem.smallest !== undefined" class="smallest">
+          <span>Smallest</span>
+          <div>
+            <span
+              :class="{
+                'long-number': recentItem.smallest.toString().length > 7,
+                'very-long-number': recentItem.smallest.toString().length > 15,
+              }"
+              >{{ recentItem.smallest }}</span
+            >
+          </div>
+        </div>
+        <div v-if="recentItem.leastCommonMultiple !== undefined" class="lcm">
+          <span>LCM</span>
+          <div>
+            <span
+              :class="{
+                'long-number':
+                  recentItem.leastCommonMultiple.toString().length > 7,
+                'very-long-number':
+                  recentItem.leastCommonMultiple.toString().length > 15,
+              }"
+              >{{ recentItem.leastCommonMultiple }}</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="recent-created-on">
+        <span>{{ recentItem.createdOn }}</span>
       </div>
     </div>
-    <div v-if="recentItem.count > 0" class="recent-other">
-      <div class="count">
-        <span>Count</span>
-        <div>
-          <span
-            :class="{
-              'long-number': recentItem.count.toString().length > 7,
-              'very-long-number': recentItem.count.toString().length > 15,
-            }"
-            >{{ recentItem.count }}</span
-          >
-        </div>
-      </div>
-      <div v-if="recentItem.sum !== undefined" class="sum">
-        <span>Sum</span>
-        <div>
-          <span
-            :class="{
-              'long-number': recentItem.sum.toString().length > 7,
-              'very-long-number': recentItem.sum.toString().length > 15,
-            }"
-            >{{ recentItem.sum }}</span
-          >
-        </div>
-      </div>
-      <div v-if="recentItem.multiplication !== undefined" class="multiply">
-        <span>Multiply</span>
-        <div>
-          <span
-            :class="{
-              'long-number': recentItem.multiplication.toString().length > 7,
-              'very-long-number':
-                recentItem.multiplication.toString().length > 15,
-            }"
-            >{{ recentItem.multiplication }}</span
-          >
-        </div>
-      </div>
-      <div v-if="recentItem.greatest !== undefined" class="gcd">
-        <span>GCD</span>
-        <div>
-          <span
-            :class="{
-              'long-number': recentItem.greatest.toString().length > 7,
-              'very-long-number': recentItem.greatest.toString().length > 15,
-            }"
-            >{{ recentItem.greatest }}</span
-          >
-        </div>
-      </div>
-      <div v-if="recentItem.smallest !== undefined" class="smallest">
-        <span>Smallest</span>
-        <div>
-          <span
-            :class="{
-              'long-number': recentItem.smallest.toString().length > 7,
-              'very-long-number': recentItem.smallest.toString().length > 15,
-            }"
-            >{{ recentItem.smallest }}</span
-          >
-        </div>
-      </div>
-      <div v-if="recentItem.leastCommonMultiple !== undefined" class="lcm">
-        <span>LCM</span>
-        <div>
-          <span
-            :class="{
-              'long-number':
-                recentItem.leastCommonMultiple.toString().length > 7,
-              'very-long-number':
-                recentItem.leastCommonMultiple.toString().length > 15,
-            }"
-            >{{ recentItem.leastCommonMultiple }}</span
-          >
-        </div>
-      </div>
-    </div>
-    <div class="recent-created-on">
-      <span>{{ recentItem.createdOn }}</span>
-    </div>
+    <button
+      type="button"
+      class="recent-item-close-button"
+      @click="handleDelete(recentItem.id)"
+    >
+      <span>x</span>
+    </button>
   </li>
 </template>
 
@@ -125,6 +137,8 @@ import {
   getSortOptionDisplayName,
   getCalculationTypeDisplayName,
 } from '@/helpers/enum.helpers';
+import { useStore } from '@/hooks/useStore';
+import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
 
 export default defineComponent({
   props: {
@@ -134,6 +148,11 @@ export default defineComponent({
     },
   },
   setup(props: { item: RecentItem }) {
+    /**
+     * Vuex store
+     */
+    const store = useStore();
+
     /**
      * Applied sort option display name
      */
@@ -174,6 +193,12 @@ export default defineComponent({
       return result;
     });
 
+    function handleDelete(id: string): void {
+      if (!id) return;
+
+      store.dispatch(RecentActionTypes.RemoveItem, id);
+    }
+
     return {
       recentItem: props.item,
       sortDisplayName,
@@ -181,6 +206,7 @@ export default defineComponent({
       CalculationType,
       commaSeparatedDivisors,
       divisorsHeader,
+      handleDelete,
       SortOptions,
     };
   },
@@ -192,18 +218,58 @@ export default defineComponent({
 @use '@/styles/_mixins.scss' as *;
 
 .recent-item {
-  @include flex(column, flex-start, center);
-  @include padding-x(1.25rem);
-  @include padding-y(0.75rem);
+  @include flex(row);
 
   position: relative;
   border-radius: 0.3rem;
   border: 1px solid rgba($color: $color-dark, $alpha: 0.5);
-  background-color: $color-white;
   min-height: 225px;
 
   &:not(:last-child) {
     margin-bottom: 1rem;
+  }
+
+  &:hover &-close-button {
+    top: -1.6rem;
+    right: -2rem;
+    z-index: 12;
+  }
+
+  &:hover .recent-content {
+    z-index: 17;
+  }
+
+  &:hover &-close-button:hover {
+    z-index: 20;
+  }
+
+  &-close-button {
+    @include flex(row, center, center);
+    @include font-style(1.75rem, 800, 1, $color-white);
+
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    font-family: $font-raleway;
+    background-color: $color-danger;
+    z-index: 5;
+    transition: top 0.25s, right 0.25s;
+  }
+
+  .recent-content {
+    @include flex(column, flex-start, center);
+    @include padding-x(1.25rem);
+    @include padding-y(0.75rem);
+
+    flex-grow: 1;
+    z-index: 10;
+    background-color: $color-white;
+    border-radius: 0.3rem;
   }
 }
 
