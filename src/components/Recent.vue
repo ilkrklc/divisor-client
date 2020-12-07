@@ -28,6 +28,10 @@ import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { useStore } from '@/hooks/useStore';
 import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
 import RecentItemModel from '@/models/recent-item.model';
+import {
+  INFINITE_SCROLL_OFFSET,
+  INFINITE_SCROLL_PAGE_SIZE,
+} from '@/helpers/constants';
 
 import RecentItem from '@/components/RecentItem.vue';
 
@@ -36,18 +40,6 @@ export default defineComponent({
     RecentItem,
   },
   setup() {
-    /**
-     * Scroll offset for infinite scroll effect
-     * @summary Offset from page bottom in pixels to trigger loading new items
-     */
-    const INFINITE_SCROLL_OFFSET = 300;
-
-    /**
-     * Item count to load on every load event trigger
-     * @summary Indicates least items can be shown as paged
-     */
-    const INFINITE_SCROLL_PAGE_SIZE = 5;
-
     /**
      * Current infinite scroll trigger count. Used to calculate displayed item count
      */

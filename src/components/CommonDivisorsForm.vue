@@ -238,6 +238,8 @@ export default defineComponent({
       sortOptions,
       setNumber1,
       setNumber2,
+      isNumber1InputDirty,
+      isNumber2InputDirty,
       setSort,
       handleSubmit,
       ValidationErrors,
