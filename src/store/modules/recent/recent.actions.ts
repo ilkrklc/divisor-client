@@ -79,7 +79,7 @@ export const recentActions: ActionTree<RecentState, State> & RecentActions = {
     setPersistedValue(PersistStateKey.RecentItems, JSON.stringify(newItems));
 
     // add new item
-    commit(RecentMutationType.AddItem, newItems);
+    commit(RecentMutationType.SetItems, newItems);
   },
   [RecentActionTypes.RemoveItem]({ commit }, index) {
     commit(RecentMutationType.RemoveItem, index);
