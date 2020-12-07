@@ -81,8 +81,13 @@ export const recentActions: ActionTree<RecentState, State> & RecentActions = {
     // add new item
     commit(RecentMutationType.SetItems, newItems);
   },
-  [RecentActionTypes.RemoveItem]({ commit }, id) {
-    commit(RecentMutationType.RemoveItem, id);
+  [RecentActionTypes.RemoveItem]({ commit, state }, id) {
+    const newItems = state.items.filter(item => item.id !== id);
+
+    // update locale storage
+    setPersistedValue(PersistStateKey.RecentItems, JSON.stringify(newItems));
+
+    commit(RecentMutationType.SetItems, newItems);
   },
   [RecentActionTypes.ClearItems]({ commit }) {
     commit(RecentMutationType.ClearItems, undefined);

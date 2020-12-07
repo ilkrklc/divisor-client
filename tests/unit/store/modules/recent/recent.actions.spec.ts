@@ -91,12 +91,20 @@ describe('recent actions', () => {
   });
 
   it(RecentActionTypes.RemoveItem, () => {
+    actionContext.state.items = [
+      { id: '1', count: 1, number1: 1, divisors: [1] },
+      { id: '2', count: 1, number1: 1, divisors: [1] },
+      { id: '3', count: 1, number1: 1, divisors: [1] },
+      { id: '4', count: 1, number1: 1, divisors: [1] },
+    ] as RecentItem[];
+
     recentActions.REMOVE_ITEM(actionContext, '2');
 
-    expect(actionContext.commit).toBeCalledWith(
-      RecentMutationType.RemoveItem,
-      '2',
-    );
+    expect(actionContext.commit).toBeCalledWith(RecentMutationType.SetItems, [
+      { id: '1', count: 1, number1: 1, divisors: [1] },
+      { id: '3', count: 1, number1: 1, divisors: [1] },
+      { id: '4', count: 1, number1: 1, divisors: [1] },
+    ]);
   });
 
   it(RecentActionTypes.ClearItems, () => {
