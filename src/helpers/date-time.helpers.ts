@@ -1,4 +1,4 @@
-import { DefaultLocale } from '@/helpers/constants';
+import { DEFAULT_LOCALE } from '@/helpers/constants';
 
 /**
  * Gets user locale
@@ -6,7 +6,7 @@ import { DefaultLocale } from '@/helpers/constants';
  */
 export function getUserLocale(): string {
   if (navigator.languages.length !== 0) return navigator.languages[0];
-  else return navigator.language || DefaultLocale;
+  else return navigator.language || DEFAULT_LOCALE;
 }
 
 /**

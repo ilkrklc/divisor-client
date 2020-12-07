@@ -1,4 +1,4 @@
-import { DefaultLocale } from '@/helpers/constants';
+import { DEFAULT_LOCALE } from '@/helpers/constants';
 import {
   getUserLocale,
   getFormattedDateString,
@@ -21,7 +21,7 @@ describe('getUserLocale', () => {
     navigatorLanguagesSpy.mockImplementation(() => []);
     navigatorLanguageSpy.mockImplementation(() => '');
 
-    expect(getUserLocale()).toBe(DefaultLocale);
+    expect(getUserLocale()).toBe(DEFAULT_LOCALE);
   });
 
   it('should return corresponding locale date string', () => {
