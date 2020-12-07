@@ -91,11 +91,11 @@ describe('recent actions', () => {
   });
 
   it(RecentActionTypes.RemoveItem, () => {
-    recentActions.REMOVE_ITEM(actionContext, 2);
+    recentActions.REMOVE_ITEM(actionContext, '2');
 
     expect(actionContext.commit).toBeCalledWith(
       RecentMutationType.RemoveItem,
-      2,
+      '2',
     );
   });
 

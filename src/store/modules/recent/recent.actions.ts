@@ -39,7 +39,7 @@ export type RecentActions = {
   ): void;
   [RecentActionTypes.RemoveItem](
     action: RecentActionAugments,
-    index: number,
+    id: string,
   ): void;
   [RecentActionTypes.ClearItems](action: RecentActionAugments): void;
 };
@@ -81,8 +81,8 @@ export const recentActions: ActionTree<RecentState, State> & RecentActions = {
     // add new item
     commit(RecentMutationType.SetItems, newItems);
   },
-  [RecentActionTypes.RemoveItem]({ commit }, index) {
-    commit(RecentMutationType.RemoveItem, index);
+  [RecentActionTypes.RemoveItem]({ commit }, id) {
+    commit(RecentMutationType.RemoveItem, id);
   },
   [RecentActionTypes.ClearItems]({ commit }) {
     commit(RecentMutationType.ClearItems, undefined);

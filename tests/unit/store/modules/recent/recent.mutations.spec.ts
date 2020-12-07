@@ -22,7 +22,7 @@ describe('recent mutations', () => {
       { id: '4', count: 1, number1: 1, divisors: [1] },
     ] as RecentItem[];
 
-    recentMutations.REMOVE_ITEM(recentState, 2);
+    recentMutations.REMOVE_ITEM(recentState, '3');
 
     expect(recentState.items).toStrictEqual([
       { id: '1', count: 1, number1: 1, divisors: [1] },
