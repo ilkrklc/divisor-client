@@ -47,7 +47,7 @@ describe('recent actions', () => {
 
     recentActions.ADD_ITEM(actionContext, item);
 
-    expect(actionContext.commit).toBeCalledWith(RecentMutationType.AddItem, [
+    expect(actionContext.commit).toBeCalledWith(RecentMutationType.SetItems, [
       ...[item],
       ...items,
     ]);
