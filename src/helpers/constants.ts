@@ -1,17 +1,17 @@
 /**
  * Base prefix for html title
  */
-export const TitleBase = 'Divisor';
+export const TITLE_BASE = 'Divisor';
 
 /**
  * Separator for base title prefix and page based title parts
  */
-export const TitleSeparator = '|';
+export const TITLE_SEPARATOR = '|';
 
 /**
  * Default app locale to be used when navigator languages empty
  */
-export const DefaultLocale = 'en-US';
+export const DEFAULT_LOCALE = 'en-US';
 
 /**
  * Scroll offset for infinite scroll effect
