@@ -5,7 +5,7 @@ import {
 import { commonDivisorsState } from '@/store/modules/common-divisors/common-divisors.state';
 import { SortOptions } from '@/typings/enums';
 
-describe('commonDivisors mutations', () => {
+describe('common divisors mutations', () => {
   it(CommonDivisorsMutationType.SetCommonDivisorNumber1, () => {
     commonDivisorsMutations.SET_COMMON_DIVISOR_NUMBER_ONE(
       commonDivisorsState,
