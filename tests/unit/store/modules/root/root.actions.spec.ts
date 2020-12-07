@@ -4,7 +4,7 @@ import {
   RootActionTypes,
   rootActions,
 } from '@/store/modules/root/root.actions';
-import { RootState } from '@/store/modules/root/root.state';
+import { RootState, rootState } from '@/store/modules/root/root.state';
 import { state, State } from '@/store/state';
 import { RootMutationType } from '@/store/modules/root/root.mutations';
 
@@ -12,7 +12,7 @@ import { RootMutationType } from '@/store/modules/root/root.mutations';
 const actionContext: ActionContext<RootState, State> = {
   dispatch: jest.fn(),
   commit: jest.fn(),
-  state: state,
+  state: rootState,
   getters: {},
   rootState: state,
   rootGetters: {},
