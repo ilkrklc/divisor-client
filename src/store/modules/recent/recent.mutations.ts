@@ -5,23 +5,18 @@ import { RecentState } from '@/store/modules/recent/recent.state';
 
 export enum RecentMutationType {
   SetItems = 'SET_ITEMS',
-  AddItem = 'ADD_ITEM',
   RemoveItem = 'REMOVE_ITEM',
   ClearItems = 'CLEAR_ITEMS',
 }
 
 export type RecentMutations = {
   [RecentMutationType.SetItems](state: RecentState, items: RecentItem[]): void;
-  [RecentMutationType.AddItem](state: RecentState, items: RecentItem[]): void;
   [RecentMutationType.RemoveItem](state: RecentState, index: number): void;
   [RecentMutationType.ClearItems](state: RecentState): void;
 };
 
 export const recentMutations: MutationTree<RecentState> & RecentMutations = {
   [RecentMutationType.SetItems](state, items) {
-    state.items = items;
-  },
-  [RecentMutationType.AddItem](state, items) {
     state.items = items;
   },
   [RecentMutationType.RemoveItem](state, index) {

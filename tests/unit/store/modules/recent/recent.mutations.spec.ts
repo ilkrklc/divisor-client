@@ -14,14 +14,6 @@ describe('recent mutations', () => {
     expect(recentState.items).toStrictEqual([item]);
   });
 
-  it(RecentMutationType.AddItem, () => {
-    const item = { id: '1', count: 1, number1: 1, divisors: [1] } as RecentItem;
-
-    recentMutations.ADD_ITEM(recentState, [item]);
-
-    expect(recentState.items).toStrictEqual([item]);
-  });
-
   it(RecentMutationType.RemoveItem, () => {
     recentState.items = [
       { id: '1', count: 1, number1: 1, divisors: [1] },
