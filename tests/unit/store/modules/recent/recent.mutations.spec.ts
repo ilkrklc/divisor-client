@@ -25,7 +25,9 @@ describe('recent mutations', () => {
     recentMutations.REMOVE_ITEM(recentState, 2);
 
     expect(recentState.items).toStrictEqual([
-      { id: '3', count: 1, number1: 1, divisors: [1] },
+      { id: '1', count: 1, number1: 1, divisors: [1] },
+      { id: '2', count: 1, number1: 1, divisors: [1] },
+      { id: '4', count: 1, number1: 1, divisors: [1] },
     ] as RecentItem[]);
   });
 

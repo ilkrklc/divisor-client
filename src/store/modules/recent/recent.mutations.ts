@@ -20,7 +20,10 @@ export const recentMutations: MutationTree<RecentState> & RecentMutations = {
     state.items = items;
   },
   [RecentMutationType.RemoveItem](state, index) {
-    state.items = state.items.splice(index, 1);
+    const newItems = state.items;
+    newItems.splice(index, 1);
+
+    state.items = newItems;
   },
   [RecentMutationType.ClearItems](state) {
     state.items = [];
