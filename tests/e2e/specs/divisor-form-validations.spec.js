@@ -1,16 +1,15 @@
 describe('Divisor form validations', () => {
-  it('Should load form errorless', () => {
+  beforeEach(() => {
     // visit home
     cy.visit('/');
+  });
 
+  it('Should load form errorless', () => {
     // try to find form elements with error
-    cy.get('form#divisors-form form-label.error').should('not.exist');
+    cy.get('form#divisors-form .form-label.error').should('not.exist');
   });
 
   it('Should display error when non number input value typed', () => {
-    // visit home
-    cy.visit('/');
-
     // type non number input
     cy.get('input#number').type('non_number');
 
@@ -19,9 +18,6 @@ describe('Divisor form validations', () => {
   });
 
   it('Should display error when number input empty', () => {
-    // visit home
-    cy.visit('/');
-
     const numberInput = cy.get('input#number');
 
     // type number input
@@ -35,9 +31,6 @@ describe('Divisor form validations', () => {
   });
 
   it('Should prevent value change when non numbers typed into number input', () => {
-    // visit home
-    cy.visit('/');
-
     const numberInput = cy.get('input#number');
 
     // type number input
@@ -50,9 +43,6 @@ describe('Divisor form validations', () => {
   });
 
   it('Should prevent form submit when inputs untouched', () => {
-    // visit home
-    cy.visit('/');
-
     // submit form
     cy.get('#divisors-form button[type="submit"]').click();
 
