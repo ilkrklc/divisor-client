@@ -2,6 +2,7 @@ import { shallowMount } from '@vue/test-utils';
 
 import { CalculationType, SortOptions } from '@/typings/enums';
 import RecentItemModel from '@/models/recent-item.model';
+import { store } from '@/store';
 
 import RecentItem from '@/components/RecentItem.vue';
 
@@ -37,6 +38,7 @@ describe('name rendering', () => {
       props: {
         item,
       },
+      global: { plugins: [store] },
     });
 
     expect(
@@ -56,6 +58,7 @@ describe('name rendering', () => {
       props: {
         item,
       },
+      global: { plugins: [store] },
     });
 
     expect(
@@ -79,6 +82,7 @@ describe('badge rendering', () => {
       props: {
         item,
       },
+      global: { plugins: [store] },
     });
 
     expect(wrapper.vm.recentItem.sort).toBe(SortOptions.NotDefined);
@@ -98,6 +102,7 @@ describe('badge rendering', () => {
       props: {
         item,
       },
+      global: { plugins: [store] },
     });
 
     expect(wrapper.vm.recentItem.sort).toBe(SortOptions.Asc);
@@ -120,6 +125,7 @@ describe('badge rendering', () => {
       props: {
         item,
       },
+      global: { plugins: [store] },
     });
 
     expect(wrapper.vm.recentItem.onlyProperDivisors).toBe(true);
@@ -146,6 +152,7 @@ describe('divisors rendering', () => {
       props: {
         item,
       },
+      global: { plugins: [store] },
     });
 
     expect(wrapper.vm.recentItem.count).toBe(0);
