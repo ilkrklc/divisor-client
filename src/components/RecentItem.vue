@@ -120,7 +120,7 @@
     </div>
     <button
       type="button"
-      class="recent-item-close-button"
+      class="recent-item-remove-button"
       @click="handleDelete(recentItem.id)"
     >
       <span>x</span>
@@ -229,7 +229,7 @@ export default defineComponent({
     margin-bottom: 1rem;
   }
 
-  &:hover &-close-button {
+  &:hover &-remove-button {
     top: -1.6rem;
     right: -2rem;
     z-index: 12;
@@ -239,11 +239,11 @@ export default defineComponent({
     z-index: 17;
   }
 
-  &:hover &-close-button:hover {
+  &:hover &-remove-button:hover {
     z-index: 20;
   }
 
-  &-close-button {
+  &-remove-button {
     @include flex(row, center, center);
     @include font-style(1.75rem, 800, 1, $color-white);
 
