@@ -99,4 +99,12 @@ describe('Recent list', () => {
       '.recent .recent-item:nth-child(2) .recent-item-remove-button',
     ).should('be.visible');
   });
+
+  it('Should remove all recent items when clear items button clicked', () => {
+    // get remove button and trigger click
+    cy.get('button.recent-action.danger').click({ force: true });
+
+    // recent item element should not be found
+    cy.get('.recent-item').should('not.exist');
+  });
 });
