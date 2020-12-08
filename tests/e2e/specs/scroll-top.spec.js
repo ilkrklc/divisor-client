@@ -31,6 +31,9 @@ describe('Scroll top', () => {
 
     // scroll top button should be displayed
     cy.get('button.scroll-top');
+
+    // scroll top button should be visible
+    cy.get('button.scroll-top').should('be.visible');
   });
 
   it('Should scroll to top when scroll top element clicked', () => {
