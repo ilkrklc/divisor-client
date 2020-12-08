@@ -148,15 +148,22 @@ export default defineComponent({
     max-width: 750px;
     width: 750px;
 
-    .recent-list-enter-active,
-    .recent-list-leave-active {
+    .recent-list-enter-active {
       transition: all 0.9s ease;
     }
 
-    .recent-list-enter-from,
-    .recent-list-leave-to {
+    .recent-list-leave-active {
+      transition: all 0.5s ease;
+    }
+
+    .recent-list-enter-from {
       opacity: 0;
       transform: translateY(-100px);
+    }
+
+    .recent-list-leave-to {
+      opacity: 0;
+      transform: translateX(-300px);
     }
 
     .recent-list-move {

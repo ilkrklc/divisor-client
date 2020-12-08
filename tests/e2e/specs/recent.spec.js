@@ -77,4 +77,26 @@ describe('Recent list', () => {
       .find('.recent-item')
       .should('have.length', 8);
   });
+
+  it('Should remove item when remove item button clicked', () => {
+    // get remove button and trigger click
+    cy.get(
+      '.recent .recent-item:nth-child(2) .recent-item-remove-button',
+    ).click({ force: true });
+
+    // recent item length should be minus one from previous test
+    cy.get('.recent')
+      .find('.recent-item')
+      .should('have.length', 7);
+  });
+
+  it('Should make remove button visible when recent item hovered', () => {
+    const item = cy.get('.recent .recent-item:nth-child(2)');
+
+    item.trigger('mouseenter');
+
+    cy.get(
+      '.recent .recent-item:nth-child(2) .recent-item-remove-button',
+    ).should('be.visible');
+  });
 });

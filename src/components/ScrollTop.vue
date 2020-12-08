@@ -86,6 +86,7 @@ export default defineComponent({
   bottom: 3rem;
   height: 4.5rem;
   width: 4.5rem;
+  z-index: 100;
 
   img {
     width: 100%;
