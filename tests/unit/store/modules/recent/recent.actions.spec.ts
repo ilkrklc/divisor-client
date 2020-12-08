@@ -135,6 +135,11 @@ describe('recent actions', () => {
   it(RecentActionTypes.ClearItems, () => {
     recentActions.CLEAR_ITEMS(actionContext);
 
+    expect(setPersistedValueSpy).toBeCalledWith(
+      PersistStateKey.RecentItems,
+      JSON.stringify([]),
+    );
+
     expect(actionContext.commit).toBeCalledWith(
       RecentMutationType.ClearItems,
       undefined,
