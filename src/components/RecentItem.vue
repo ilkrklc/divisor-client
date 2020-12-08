@@ -193,6 +193,9 @@ export default defineComponent({
       return result;
     });
 
+    /**
+     * Handles item delete action - recent item remove button click event
+     */
     function handleDelete(id: string): void {
       if (!id) return;
 
