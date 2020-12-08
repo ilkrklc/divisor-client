@@ -3,6 +3,7 @@ import { shallowMount } from '@vue/test-utils';
 import { CalculationType, SortOptions } from '@/typings/enums';
 import RecentItemModel from '@/models/recent-item.model';
 import { store } from '@/store';
+import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
 
 import RecentItem from '@/components/RecentItem.vue';
 
@@ -157,5 +158,30 @@ describe('divisors rendering', () => {
 
     expect(wrapper.vm.recentItem.count).toBe(0);
     expect(wrapper.find('span.no-result').exists()).toBe(true);
+  });
+});
+
+describe('divisor removal', () => {
+  it('should dispatch recent item remove action when remove event called', () => {
+    const item = new RecentItemModel({
+      ...sharedParams,
+      sort: SortOptions.Asc,
+    }).deserialize({
+      ...baseSerializedModel,
+      calculationType: CalculationType.Divisors,
+    });
+
+    const wrapper = shallowMount(RecentItem, {
+      props: {
+        item,
+      },
+      global: { plugins: [store] },
+    });
+
+    const dispatchSpy = jest.spyOn(store, 'dispatch');
+
+    wrapper.find('button.recent-item-remove-button').trigger('click');
+
+    expect(dispatchSpy).toBeCalledWith(RecentActionTypes.RemoveItem, '1');
   });
 });
