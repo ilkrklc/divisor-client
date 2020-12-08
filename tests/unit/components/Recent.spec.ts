@@ -43,7 +43,7 @@ describe('render with items', () => {
     expect(wrapper.vm.items.length).toEqual(wrapper.vm.pagedRecentItems.length);
   });
 
-  it('should not paginate items when items length is below threshold', async () => {
+  it('should paginate more items when scrolled to the bottom of the page', async () => {
     const items = [
       { id: '1', number1: 1, count: 1, divisors: [1] },
       { id: '2', number1: 1, count: 1, divisors: [1] },
