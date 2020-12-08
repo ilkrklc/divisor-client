@@ -10,6 +10,7 @@ import { RecentMutationType } from '@/store/modules/recent/recent.mutations';
 import RecentItem from '@/models/recent-item.model';
 import { CalculationType, PersistStateKey } from '@/typings/enums';
 import { getFormattedDateString } from '@/helpers/date-time.helpers';
+import * as persistHelpers from '@/helpers/persist.helpers';
 
 describe('recent actions', () => {
   const actionContext: ActionContext<RecentState, State> = {
@@ -21,10 +22,15 @@ describe('recent actions', () => {
     rootGetters: {},
   };
 
+  const getPersistedValueSpy = jest.spyOn(persistHelpers, 'getPersistedValue');
+  const setPersistedValueSpy = jest.spyOn(persistHelpers, 'setPersistedValue');
+
   beforeEach(() => {
     actionContext.state.items = [];
     actionContext.commit = jest.fn();
     localStorage.setItem(PersistStateKey.RecentItems, '');
+    getPersistedValueSpy.mockClear();
+    setPersistedValueSpy.mockClear();
   });
 
   it(RecentActionTypes.AddItem, () => {
@@ -47,10 +53,17 @@ describe('recent actions', () => {
 
     recentActions.ADD_ITEM(actionContext, item);
 
-    expect(actionContext.commit).toBeCalledWith(RecentMutationType.SetItems, [
-      ...[item],
-      ...items,
-    ]);
+    const newItems = [...[item], ...items];
+
+    expect(setPersistedValueSpy).toBeCalledWith(
+      PersistStateKey.RecentItems,
+      JSON.stringify(newItems),
+    );
+
+    expect(actionContext.commit).toBeCalledWith(
+      RecentMutationType.SetItems,
+      newItems,
+    );
   });
 
   it(RecentActionTypes.GetItems, () => {
@@ -84,6 +97,8 @@ describe('recent actions', () => {
 
     recentActions.GET_ITEMS(actionContext);
 
+    expect(getPersistedValueSpy).toBeCalledWith(PersistStateKey.RecentItems);
+
     expect(actionContext.commit).toBeCalledWith(
       RecentMutationType.SetItems,
       items,
@@ -100,15 +115,30 @@ describe('recent actions', () => {
 
     recentActions.REMOVE_ITEM(actionContext, '2');
 
-    expect(actionContext.commit).toBeCalledWith(RecentMutationType.SetItems, [
+    const newItems = [
       { id: '1', count: 1, number1: 1, divisors: [1] },
       { id: '3', count: 1, number1: 1, divisors: [1] },
       { id: '4', count: 1, number1: 1, divisors: [1] },
-    ]);
+    ];
+
+    expect(setPersistedValueSpy).toBeCalledWith(
+      PersistStateKey.RecentItems,
+      JSON.stringify(newItems),
+    );
+
+    expect(actionContext.commit).toBeCalledWith(
+      RecentMutationType.SetItems,
+      newItems,
+    );
   });
 
   it(RecentActionTypes.ClearItems, () => {
     recentActions.CLEAR_ITEMS(actionContext);
+
+    expect(setPersistedValueSpy).toBeCalledWith(
+      PersistStateKey.RecentItems,
+      JSON.stringify([]),
+    );
 
     expect(actionContext.commit).toBeCalledWith(
       RecentMutationType.ClearItems,

@@ -2,15 +2,26 @@
   <div class="recent">
     <div class="recent-header">Recent Calculations</div>
     <div v-if="hasRecentCalculations === false" class="no-results">
-      Your recent calculation results will be listed here.
+      <span>Your recent calculation results will be listed here.</span>
     </div>
-    <transition-group v-else name="recent-list" tag="ul" class="results">
-      <recent-item
-        :key="calculation.id"
-        :item="calculation"
-        v-for="calculation in pagedRecentItems"
-      />
-    </transition-group>
+    <div v-else class="recent-content">
+      <div class="recent-actions">
+        <button
+          type="button"
+          class="recent-action danger"
+          @click="handleClearItems"
+        >
+          Clear All
+        </button>
+      </div>
+      <transition-group name="recent-list" tag="ul" class="results">
+        <recent-item
+          :key="calculation.id"
+          :item="calculation"
+          v-for="calculation in pagedRecentItems"
+        />
+      </transition-group>
+    </div>
   </div>
 </template>
 
@@ -109,6 +120,13 @@ export default defineComponent({
       infiniteScrollPageIndex.value++;
     }
 
+    /**
+     * Handles clear items action - recent actions clear items button click event
+     */
+    function handleClearItems() {
+      store.dispatch(RecentActionTypes.ClearItems);
+    }
+
     onBeforeMount(() => store.dispatch(RecentActionTypes.GetItems));
 
     onMounted(() => {
@@ -123,6 +141,7 @@ export default defineComponent({
       items,
       hasRecentCalculations,
       pagedRecentItems,
+      handleClearItems,
     };
   },
 });
@@ -138,6 +157,46 @@ export default defineComponent({
 
   flex-grow: 1;
   width: 90%;
+
+  &-content {
+    @include flex(column, flex-start, stretch);
+  }
+
+  &-actions {
+    @include flex(row, flex-end, center);
+    @include margin-y(1rem);
+    @include margin-x(auto);
+
+    max-width: 750px;
+    width: 750px;
+
+    .recent-action {
+      @include padding-y(0.4rem);
+      @include padding-x(0.75rem);
+      @include font-style(0.8rem, 700);
+
+      border-radius: 10px;
+
+      &.danger {
+        color: $color-white;
+        background-color: rgba($color: $color-danger, $alpha: 0.875);
+
+        &:hover {
+          background-color: rgba($color: $color-danger, $alpha: 0.95);
+        }
+
+        &:active {
+          background-color: $color-danger;
+        }
+      }
+    }
+  }
+
+  .no-results {
+    @include flex(row, center, center);
+
+    flex-grow: 1;
+  }
 
   .results {
     @include flex(column, flex-start, stretch);
@@ -174,8 +233,6 @@ export default defineComponent({
 
 .recent-header {
   @include font-style(1.25rem, 700);
-
-  margin-bottom: 2.5rem;
 
   &::before {
     content: '';

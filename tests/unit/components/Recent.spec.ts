@@ -1,10 +1,32 @@
 import { mount } from '@vue/test-utils';
 
 import { store } from '@/store';
-import { PersistStateKey } from '@/typings/enums';
+import { CalculationType, PersistStateKey } from '@/typings/enums';
 import { INFINITE_SCROLL_PAGE_SIZE } from '@/helpers/constants';
+import RecentItem from '@/models/recent-item.model';
 
 import Recent from '@/components/Recent.vue';
+
+function generateItems(limit: number): RecentItem[] {
+  const result: RecentItem[] = [];
+  for (let i = 1; i <= limit; i++)
+    result.push({
+      id: `'${i}'`,
+      number1: 1,
+      number2: 0,
+      count: 1,
+      divisors: [1],
+      calculationType: CalculationType.CommonDivisors,
+      sum: 1,
+      multiplication: 1,
+      createdOn: new Date().toLocaleString(),
+      onlyProperDivisors: false,
+      deserialize: jest.fn(),
+      fromCalculationResult: jest.fn(),
+    });
+
+  return result;
+}
 
 describe('render with no items', () => {
   it('should render no items message when recent items list empty', () => {
@@ -17,11 +39,7 @@ describe('render with no items', () => {
 
 describe('render with items', () => {
   it('should render recent item components when recent items list not empty', () => {
-    const items = [
-      { id: '1', number1: 1, count: 1, divisors: [1] },
-      { id: '2', number1: 1, count: 1, divisors: [1] },
-      { id: '3', number1: 1, count: 1, divisors: [1] },
-    ];
+    const items = generateItems(3);
 
     localStorage.setItem(PersistStateKey.RecentItems, JSON.stringify(items));
     const wrapper = mount(Recent, { global: { plugins: [store] } });
@@ -32,29 +50,15 @@ describe('render with items', () => {
   it('should not paginate items when items length is below threshold', () => {
     localStorage.setItem(
       PersistStateKey.RecentItems,
-      JSON.stringify([
-        { id: '1', number1: 1, count: 1, divisors: [1] },
-        { id: '2', number1: 1, count: 1, divisors: [1] },
-        { id: '3', number1: 1, count: 1, divisors: [1] },
-      ]),
+      JSON.stringify(generateItems(3)),
     );
     const wrapper = mount(Recent, { global: { plugins: [store] } });
 
     expect(wrapper.vm.items.length).toEqual(wrapper.vm.pagedRecentItems.length);
   });
 
-  it('should not paginate items when items length is below threshold', async () => {
-    const items = [
-      { id: '1', number1: 1, count: 1, divisors: [1] },
-      { id: '2', number1: 1, count: 1, divisors: [1] },
-      { id: '3', number1: 1, count: 1, divisors: [1] },
-      { id: '4', number1: 1, count: 1, divisors: [1] },
-      { id: '5', number1: 1, count: 1, divisors: [1] },
-      { id: '6', number1: 1, count: 1, divisors: [1] },
-      { id: '7', number1: 1, count: 1, divisors: [1] },
-      { id: '8', number1: 1, count: 1, divisors: [1] },
-      { id: '9', number1: 1, count: 1, divisors: [1] },
-    ];
+  it('should paginate more items when scrolled to the bottom of the page', async () => {
+    const items = generateItems(9);
 
     localStorage.setItem(PersistStateKey.RecentItems, JSON.stringify(items));
 
@@ -81,5 +85,21 @@ describe('render with items', () => {
     expect(wrapper.vm.pagedRecentItems.length).toBeGreaterThan(
       INFINITE_SCROLL_PAGE_SIZE,
     );
+  });
+
+  it('should remove all items when clear all button clicked', () => {
+    const items = generateItems(3);
+
+    localStorage.setItem(PersistStateKey.RecentItems, JSON.stringify(items));
+
+    const wrapper = mount(Recent, { global: { plugins: [store] } });
+
+    wrapper.find('button.recent-action.danger').trigger('click');
+
+    // wait component react to changes
+    wrapper.vm.$nextTick();
+
+    expect(wrapper.vm.pagedRecentItems.length).toBe(0);
+    expect(wrapper.vm.hasRecentCalculations).toBe(false);
   });
 });
