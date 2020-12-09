@@ -164,9 +164,10 @@ export default defineComponent({
 
   &-actions {
     @include flex(row, flex-end, center);
-    @include margin-y(1rem);
     @include margin-x(auto);
 
+    margin-top: 1rem;
+    margin-bottom: 2rem;
     max-width: 750px;
     width: 750px;
 
