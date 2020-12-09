@@ -24,9 +24,10 @@
         class="recent-divisors"
         :class="{ 'long-number': commaSeparatedDivisors.length > 50 }"
       >
-        <span :class="{ 'no-result': recentItem.count === 0 }">{{
-          divisorsHeader
-        }}</span>
+        <div
+          v-html="divsorsHeaderHtml"
+          :class="{ 'no-result': recentItem.count === 0 }"
+        />
         <div
           v-if="recentItem.count > 0"
           :class="{
@@ -76,7 +77,11 @@
           </div>
         </div>
         <div v-if="recentItem.greatest !== undefined" class="gcd">
-          <span>GCD</span>
+          <span>
+            <router-link class="highlight-link" to="/about?h=gcd"
+              >GCD
+            </router-link>
+          </span>
           <div>
             <span
               :class="{
@@ -100,7 +105,11 @@
           </div>
         </div>
         <div v-if="recentItem.leastCommonMultiple !== undefined" class="lcm">
-          <span>LCM</span>
+          <span>
+            <router-link class="highlight-link" to="/about?h=lcm"
+              >LCM
+            </router-link>
+          </span>
           <div>
             <span
               :class="{
@@ -175,7 +184,7 @@ export default defineComponent({
     /**
      * Calculated divisor seciton header ready for display
      */
-    const divisorsHeader = computed(() => {
+    const divsorsHeaderHtml = computed(() => {
       // initialize header
       let result = '';
 
@@ -187,8 +196,10 @@ export default defineComponent({
 
       // check for applied proper divisors filter
       result += `${props.item.count}${
-        props.item.onlyProperDivisors ? ' proper ' : ' '
-      }${calculationTypeDisplayName}:`;
+        props.item.onlyProperDivisors ? ' proper' : ''
+      } <a href="/about?h=${
+        props.item.calculationType
+      }" class="highlight-link">${calculationTypeDisplayName}</a>`;
 
       return result;
     });
@@ -208,9 +219,9 @@ export default defineComponent({
       calculationTypeDisplayName,
       CalculationType,
       commaSeparatedDivisors,
-      divisorsHeader,
       handleDelete,
       SortOptions,
+      divsorsHeaderHtml,
     };
   },
 });
@@ -306,8 +317,7 @@ export default defineComponent({
     margin-bottom: 2rem;
   }
 
-  > span {
-    @include flex(row, center, center);
+  > div:first-child {
     @include font-style(1.1rem, 400);
 
     margin-bottom: 1.25rem;
@@ -315,10 +325,11 @@ export default defineComponent({
 
     &.no-result {
       font-size: 1.25rem;
+      line-height: 120px;
     }
   }
 
-  > div {
+  > div:last-child:not(.no-result) {
     align-self: center;
     position: relative;
     max-width: 85%;
