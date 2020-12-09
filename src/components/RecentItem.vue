@@ -406,8 +406,9 @@ export default defineComponent({
 
 .recent-other {
   @include flex(row, space-evenly, flex-end);
-  @include margin-y(0.25rem);
 
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
   flex-grow: 4;
   width: 100%;
 
