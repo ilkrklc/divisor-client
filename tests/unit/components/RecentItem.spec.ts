@@ -25,7 +25,6 @@ const baseSerializedModel = {
   sum: 1,
   multiplication: 1,
   greatest: 1,
-  smallest: 1,
   number1: 1,
 };
 

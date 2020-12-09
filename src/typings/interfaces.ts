@@ -8,7 +8,6 @@ import { CalculationType, SortOptions } from '@/typings/enums';
  * @property {number|undefined} sum Sum of divisors
  * @property {number|undefined} multiplication Multiplication of divisors
  * @property {number|undefined} greatest Greatest common divisor - gcd
- * @property {number|undefined} smallest Smallest common divisor
  * @property {number|undefined} leastCommonMultiple Least common multiple - lcm
  */
 export interface BaseResult {
@@ -18,7 +17,6 @@ export interface BaseResult {
   sum?: number;
   multiplication?: number;
   greatest?: number;
-  smallest?: number;
   leastCommonMultiple?: number;
 }
 

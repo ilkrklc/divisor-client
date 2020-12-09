@@ -92,18 +92,6 @@
             >
           </div>
         </div>
-        <div v-if="recentItem.smallest !== undefined" class="smallest">
-          <span>Smallest</span>
-          <div>
-            <span
-              :class="{
-                'long-number': recentItem.smallest.toString().length > 7,
-                'very-long-number': recentItem.smallest.toString().length > 15,
-              }"
-              >{{ recentItem.smallest }}</span
-            >
-          </div>
-        </div>
         <div v-if="recentItem.leastCommonMultiple !== undefined" class="lcm">
           <span>
             <router-link class="highlight-link" to="/about?h=lcm"
@@ -449,7 +437,6 @@ export default defineComponent({
       background-color: rgba($color: $color-danger, $alpha: 0.75);
     }
 
-    &.smallest,
     &.lcm {
       background-color: rgba($color: $color-medium, $alpha: 0.25);
     }

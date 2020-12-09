@@ -87,7 +87,6 @@ describe('recent actions', () => {
         multiplication: undefined,
         number2: 0,
         onlyProperDivisors: false,
-        smallest: undefined,
         sort: undefined,
         sum: undefined,
       },
