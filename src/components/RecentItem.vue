@@ -146,11 +146,14 @@ export default defineComponent({
   },
   setup(props: { item: RecentItem }) {
     /**
+<<<<<<< HEAD
      * Vuex store
      */
     const store = useStore();
 
     /**
+=======
+>>>>>>> main
      * Applied sort option display name
      */
     const sortDisplayName = getSortOptionDisplayName(
@@ -172,7 +175,11 @@ export default defineComponent({
     /**
      * Calculated divisor seciton header ready for display
      */
+<<<<<<< HEAD
     const divsorsHeaderHtml = computed(() => {
+=======
+    const divisorsHeader = computed(() => {
+>>>>>>> main
       // initialize header
       let result = '';
 
@@ -305,7 +312,12 @@ export default defineComponent({
     margin-bottom: 2rem;
   }
 
+<<<<<<< HEAD
   > div:first-child {
+=======
+  > span {
+    @include flex(row, center, center);
+>>>>>>> main
     @include font-style(1.1rem, 400);
 
     margin-bottom: 1.25rem;

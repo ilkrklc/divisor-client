@@ -1,6 +1,10 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
+<<<<<<< HEAD
 import { prepareTitle } from '@/helpers/seo.helpers';
+=======
+import { prepareTitle } from '@/helpers/seo-helpers';
+>>>>>>> main
 
 import Home from '@/views/Home.vue';
 
