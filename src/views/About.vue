@@ -5,7 +5,7 @@
       natural numbers and <em>common divisors</em> of two natural numbers.
     </p>
     <div class="about-section">
-      <h3>
+      <h3 :class="{ flash: highlightedSection === 'divisors' }">
         the term <strong><em>"divisor"</em></strong>
       </h3>
       <span class="about-section-quick-info">
@@ -23,16 +23,27 @@
         divisor of <em><strong>a</strong></em> ( <em><strong>a</strong></em> is
         divisible by <em><strong>b</strong></em> ).
       </p>
+      <h4 :class="{ flash: highlightedSection === 'proper' }">
+        <strong>> "proper divisor"</strong>
+      </h4>
+      <p>
+        A positive proper divisor is a positive divisor of a number
+        <em><strong>n</strong></em
+        >, excluding <em><strong>n</strong></em> itself. For example, 1, 2, and
+        3 are positive proper divisors of 6, but 6 itself is not.
+      </p>
     </div>
     <div class="about-section">
-      <h3>
+      <h3 :class="{ flash: highlightedSection === 'common_divisors' }">
         the term <strong><em>"common divisor"</em></strong>
       </h3>
       <span class="about-section-quick-info">
         An integer that is a submultiple of all the integers of a given set.
         Also knowns as <strong><em>"common factors"</em></strong>
       </span>
-      <h4><strong>> "greatest common divisor (gcd)"</strong></h4>
+      <h4 :class="{ flash: highlightedSection === 'gcd' }">
+        <strong>> "greatest common divisor (gcd)"</strong>
+      </h4>
       <p>
         The greatest common divisor (GCD), also called the greatest common
         factor, of two numbers is the largest number that divides them both. For
@@ -41,7 +52,9 @@
         easily extended to sets of more than two numbers: the GCD of a set of
         numbers is the largest number dividing each of them.
       </p>
-      <h4><strong>> "lowest common multiple (lcm)"</strong></h4>
+      <h4 :class="{ flash: highlightedSection === 'lcm' }">
+        <strong>> "lowest common multiple (lcm)"</strong>
+      </h4>
       <p>
         The lowest common multiple (LCM) of a finite set of non-zero integers is
         the smallest positive number that is a multiple of each integer in the
@@ -50,6 +63,31 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent, computed } from 'vue';
+import { useRoute } from 'vue-router';
+
+export default defineComponent({
+  setup() {
+    /**
+     * Represents route instance
+     */
+    const route = useRoute();
+
+    /**
+     * Represents highlighted section key
+     */
+    const highlightedSection = computed(() => {
+      return route.query.h || '';
+    });
+
+    return {
+      highlightedSection,
+    };
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 @use '@/styles/_variables.scss' as *;
@@ -63,8 +101,6 @@
   > p {
     @include font-style(1.25rem, 500);
     @include margin-y(3rem);
-
-    // text-align: left;
 
     strong {
       color: $color-danger;
@@ -106,6 +142,14 @@
   }
 }
 
+.flash {
+  -webkit-animation-name: flash-animation;
+  -webkit-animation-duration: 1.25s;
+
+  animation-name: flash-animation;
+  animation-duration: 1.25s;
+}
+
 @media (max-width: $breakpoint-desktop) {
   .about {
     @include margin-x(5rem);
@@ -121,6 +165,24 @@
 @media (max-width: $breakpoint-mobile) {
   .about {
     @include margin-x(0.75rem);
+  }
+}
+
+@-webkit-keyframes flash-animation {
+  from {
+    background: rgba($color: $color-danger, $alpha: 0.5);
+  }
+  to {
+    background: default;
+  }
+}
+
+@keyframes flash-animation {
+  from {
+    background: rgba($color: $color-danger, $alpha: 0.5);
+  }
+  to {
+    background: default;
   }
 }
 </style>
