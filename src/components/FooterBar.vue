@@ -40,6 +40,7 @@ footer {
 
   height: 3rem;
   max-height: 3rem;
+  margin-top: 2rem;
 
   span {
     @include font-style(0.75rem, 500, 0.9);

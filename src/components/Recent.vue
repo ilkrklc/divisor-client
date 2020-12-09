@@ -2,15 +2,26 @@
   <div class="recent">
     <div class="recent-header">Recent Calculations</div>
     <div v-if="hasRecentCalculations === false" class="no-results">
-      Your recent calculation results will be listed here.
+      <span>Your recent calculation results will be listed here.</span>
     </div>
-    <transition-group v-else name="recent-list" tag="ul" class="results">
-      <recent-item
-        :key="calculation.id"
-        :item="calculation"
-        v-for="calculation in pagedRecentItems"
-      />
-    </transition-group>
+    <div v-else class="recent-content">
+      <div class="recent-actions">
+        <button
+          type="button"
+          class="recent-action danger"
+          @click="handleClearItems"
+        >
+          Clear All
+        </button>
+      </div>
+      <transition-group name="recent-list" tag="ul" class="results">
+        <recent-item
+          :key="calculation.id"
+          :item="calculation"
+          v-for="calculation in pagedRecentItems"
+        />
+      </transition-group>
+    </div>
   </div>
 </template>
 
@@ -28,6 +39,10 @@ import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { useStore } from '@/hooks/useStore';
 import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
 import RecentItemModel from '@/models/recent-item.model';
+import {
+  INFINITE_SCROLL_OFFSET,
+  INFINITE_SCROLL_PAGE_SIZE,
+} from '@/helpers/constants';
 
 import RecentItem from '@/components/RecentItem.vue';
 
@@ -36,18 +51,6 @@ export default defineComponent({
     RecentItem,
   },
   setup() {
-    /**
-     * Scroll offset for infinite scroll effect
-     * @summary Offset from page bottom in pixels to trigger loading new items
-     */
-    const INFINITE_SCROLL_OFFSET = 300;
-
-    /**
-     * Item count to load on every load event trigger
-     * @summary Indicates least items can be shown as paged
-     */
-    const INFINITE_SCROLL_PAGE_SIZE = 5;
-
     /**
      * Current infinite scroll trigger count. Used to calculate displayed item count
      */
@@ -117,6 +120,13 @@ export default defineComponent({
       infiniteScrollPageIndex.value++;
     }
 
+    /**
+     * Handles clear items action - recent actions clear items button click event
+     */
+    function handleClearItems() {
+      store.dispatch(RecentActionTypes.ClearItems);
+    }
+
     onBeforeMount(() => store.dispatch(RecentActionTypes.GetItems));
 
     onMounted(() => {
@@ -131,6 +141,7 @@ export default defineComponent({
       items,
       hasRecentCalculations,
       pagedRecentItems,
+      handleClearItems,
     };
   },
 });
@@ -147,6 +158,48 @@ export default defineComponent({
   flex-grow: 1;
   width: 90%;
 
+  &-content {
+    @include flex(column, flex-start, stretch);
+  }
+
+  &-actions {
+    @include flex(row, flex-end, center);
+    @include margin-x(auto);
+
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    max-width: 750px;
+    width: 750px;
+
+    .recent-action {
+      @include padding-y(0.4rem);
+      @include padding-x(0.75rem);
+      @include font-style(0.8rem, 700);
+
+      border-radius: 10px;
+
+      &.danger {
+        color: $color-white;
+        background-color: rgba($color: $color-danger, $alpha: 0.875);
+
+        &:hover {
+          background-color: rgba($color: $color-danger, $alpha: 0.95);
+        }
+
+        &:active {
+          background-color: $color-danger;
+        }
+      }
+    }
+  }
+
+  .no-results {
+    @include flex(row, center, center);
+
+    flex-grow: 1;
+    min-height: 15rem;
+  }
+
   .results {
     @include flex(column, flex-start, stretch);
     @include margin-y(0);
@@ -156,15 +209,22 @@ export default defineComponent({
     max-width: 750px;
     width: 750px;
 
-    .recent-list-enter-active,
-    .recent-list-leave-active {
+    .recent-list-enter-active {
       transition: all 0.9s ease;
     }
 
-    .recent-list-enter-from,
-    .recent-list-leave-to {
+    .recent-list-leave-active {
+      transition: all 0.5s ease;
+    }
+
+    .recent-list-enter-from {
       opacity: 0;
       transform: translateY(-100px);
+    }
+
+    .recent-list-leave-to {
+      opacity: 0;
+      transform: translateX(-300px);
     }
 
     .recent-list-move {
@@ -175,8 +235,6 @@ export default defineComponent({
 
 .recent-header {
   @include font-style(1.25rem, 700);
-
-  margin-bottom: 2.5rem;
 
   &::before {
     content: '';

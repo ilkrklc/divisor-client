@@ -62,7 +62,7 @@ export default defineComponent({
   height: 5rem;
   max-height: 5rem;
 
-  #navbar-name {
+  &-name {
     @include flex(row, center, center);
     @include font-style(1.6rem, 700, 1, $color-medium);
 
@@ -151,7 +151,7 @@ export default defineComponent({
 
 @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
   #navbar {
-    #navbar-name {
+    &-name {
       width: 12.5rem;
     }
   }
@@ -159,7 +159,7 @@ export default defineComponent({
 
 @media (max-width: $breakpoint-tablet) {
   #navbar {
-    #navbar-name {
+    &-name {
       width: 12.5rem;
       margin-right: 1.5rem;
       font-size: 1.5rem;
@@ -183,7 +183,7 @@ export default defineComponent({
 
 @media (max-width: $breakpoint-mobile) {
   #navbar {
-    #navbar-name {
+    &-name {
       margin-right: 1rem;
     }
   }

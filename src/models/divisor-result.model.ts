@@ -4,7 +4,6 @@ import {
   multiplyDivisors,
   countDivisors,
   greatestProperDivisor,
-  smallestProperDivisor,
 } from 'divisor';
 
 import { BaseResult } from '@/typings/interfaces';
@@ -19,7 +18,6 @@ import { CalculationType, SortOptions } from '@/typings/enums';
  * @property {number|undefined} sum Sum of divisors
  * @property {number|undefined} multiplication Multiplication of divisors
  * @property {number|undefined} greatest Greatest common divisor - gcd
- * @property {number|undefined} smallest Smallest common divisor
  */
 export default class DivisorResult implements BaseResult {
   calculationType?: CalculationType;
@@ -28,7 +26,6 @@ export default class DivisorResult implements BaseResult {
   sum?: number;
   multiplication?: number;
   greatest?: number;
-  smallest?: number;
 
   constructor({
     number,
@@ -48,6 +45,5 @@ export default class DivisorResult implements BaseResult {
     this.sum = sumDivisors(number, onlyProperDivisors);
     this.multiplication = multiplyDivisors(number, onlyProperDivisors);
     this.greatest = greatestProperDivisor(number) || undefined;
-    this.smallest = smallestProperDivisor(number) || undefined;
   }
 }

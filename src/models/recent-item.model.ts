@@ -13,7 +13,6 @@ import { getFormattedDateString } from '@/helpers/date-time.helpers';
  * @property {number|undefined} sum Sum of divisors
  * @property {number|undefined} multiplication Multiplication of divisors
  * @property {number|undefined} greatest Greatest common divisor - gcd
- * @property {number|undefined} smallest Smallest common divisor
  * @property {number|undefined} leastCommonMultiple Least common multiple - lcm
  * @property {string|undefined} createdOn Creation date
  * @property {number} number1 Calculation number one input
@@ -29,7 +28,6 @@ export default class RecentItem implements BaseResult {
   sum?: number;
   multiplication?: number;
   greatest?: number;
-  smallest?: number;
   leastCommonMultiple?: number;
   createdOn?: string;
 
@@ -76,7 +74,6 @@ export default class RecentItem implements BaseResult {
     this.sum = (item.sum as number) || undefined;
     this.multiplication = (item.multiplication as number) || undefined;
     this.greatest = (item.greatest as number) || undefined;
-    this.smallest = (item.smallest as number) || undefined;
     this.leastCommonMultiple =
       (item.leastCommonMultiple as number) || undefined;
 
@@ -95,7 +92,6 @@ export default class RecentItem implements BaseResult {
     this.sum = result.sum || this.sum;
     this.multiplication = result.multiplication || this.multiplication;
     this.greatest = result.greatest || this.greatest;
-    this.smallest = result.smallest || this.smallest;
     this.leastCommonMultiple =
       result.leastCommonMultiple || this.leastCommonMultiple;
 

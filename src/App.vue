@@ -84,6 +84,39 @@ ul {
   list-style: none;
 }
 
+.highlight-link {
+  @include font-style(1.05rem, 600, 1, $color-dark);
+
+  position: relative;
+  text-decoration-style: dotted;
+  text-decoration-skip-ink: none;
+  font-style: italic;
+
+  &.proper {
+    font-size: 1rem;
+
+    &::after {
+      right: -8px;
+      top: -8px;
+    }
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    background-image: url('/info.png');
+    background-size: contain;
+    background-position: center;
+    width: 15px;
+    height: 15px;
+    right: -12.5px;
+    top: -7px;
+    transform: rotate(15deg);
+    opacity: 0.9;
+  }
+}
+
 @media (max-width: $breakpoint-desktop) {
   main {
     width: 100%;

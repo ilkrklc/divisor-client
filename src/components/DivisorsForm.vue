@@ -42,7 +42,13 @@
         v-model="state.onlyProperDivisors"
         @change="setProperIndicator($event.target.checked)"
       />
-      <span>Calculate only<strong> proper </strong>divisors?</span>
+      <span
+        >Calculate only
+        <router-link class="highlight-link proper" to="/about?h=proper"
+          ><strong>proper</strong>
+        </router-link>
+        divisors?</span
+      >
     </label>
     <button type="submit">
       Calculate
@@ -202,6 +208,7 @@ export default defineComponent({
 
     return {
       state,
+      isNumberInputDirty,
       sortOptions,
       setNumber,
       setSort,

@@ -19,7 +19,6 @@ import { CalculationType, SortOptions } from '@/typings/enums';
  * @property {number|undefined} sum Sum of divisors
  * @property {number|undefined} multiplication Multiplication of divisors
  * @property {number|undefined} greatest Greatest common divisor - gcd
- * @property {number|undefined} smallest Smallest common divisor
  * @property {number|undefined} leastCommonMultiple Least common multiple - lcm
  */
 export default class CommonDivisorResult implements BaseResult {
@@ -29,7 +28,6 @@ export default class CommonDivisorResult implements BaseResult {
   sum?: number;
   multiplication?: number;
   greatest?: number;
-  smallest?: number;
   leastCommonMultiple?: number;
 
   constructor({
@@ -51,7 +49,6 @@ export default class CommonDivisorResult implements BaseResult {
     this.sum = sumCommonDivisors(number1, number2);
     this.multiplication = multiplyCommonDivisors(number1, number2);
     this.greatest = greatestCommonDivisor(number1, number2) || undefined;
-    this.smallest = undefined;
     this.leastCommonMultiple =
       leastCommonMultiple(number1, number2) || undefined;
   }
