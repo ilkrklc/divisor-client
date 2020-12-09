@@ -1,19 +1,11 @@
 {
   "name": "divisor-client",
-<<<<<<< HEAD
   "version": "1.0.1",
-=======
-  "version": "1.0.0",
->>>>>>> main
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-<<<<<<< HEAD
     "test:unit": "vue-cli-service test:unit --verbose",
-=======
-    "test:unit": "vue-cli-service test:unit",
->>>>>>> main
     "test:e2e": "vue-cli-service test:e2e --headless",
     "test:e2e-gui": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",

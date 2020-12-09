@@ -22,16 +22,6 @@
         />
       </transition-group>
     </div>
-<<<<<<< HEAD
-=======
-    <transition-group v-else name="recent-list" tag="ul" class="results">
-      <recent-item
-        :key="calculation.id"
-        :item="calculation"
-        v-for="calculation in pagedRecentItems"
-      />
-    </transition-group>
->>>>>>> main
   </div>
 </template>
 
@@ -49,13 +39,10 @@ import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { useStore } from '@/hooks/useStore';
 import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
 import RecentItemModel from '@/models/recent-item.model';
-<<<<<<< HEAD
 import {
   INFINITE_SCROLL_OFFSET,
   INFINITE_SCROLL_PAGE_SIZE,
 } from '@/helpers/constants';
-=======
->>>>>>> main
 
 import RecentItem from '@/components/RecentItem.vue';
 
@@ -65,21 +52,6 @@ export default defineComponent({
   },
   setup() {
     /**
-<<<<<<< HEAD
-=======
-     * Scroll offset for infinite scroll effect
-     * @summary Offset from page bottom in pixels to trigger loading new items
-     */
-    const INFINITE_SCROLL_OFFSET = 300;
-
-    /**
-     * Item count to load on every load event trigger
-     * @summary Indicates least items can be shown as paged
-     */
-    const INFINITE_SCROLL_PAGE_SIZE = 5;
-
-    /**
->>>>>>> main
      * Current infinite scroll trigger count. Used to calculate displayed item count
      */
     const infiniteScrollPageIndex = ref<number>(0);
@@ -237,7 +209,6 @@ export default defineComponent({
     max-width: 750px;
     width: 750px;
 
-<<<<<<< HEAD
     .recent-list-enter-active {
       transition: all 0.9s ease;
     }
@@ -254,17 +225,6 @@ export default defineComponent({
     .recent-list-leave-to {
       opacity: 0;
       transform: translateX(-300px);
-=======
-    .recent-list-enter-active,
-    .recent-list-leave-active {
-      transition: all 0.9s ease;
-    }
-
-    .recent-list-enter-from,
-    .recent-list-leave-to {
-      opacity: 0;
-      transform: translateY(-100px);
->>>>>>> main
     }
 
     .recent-list-move {

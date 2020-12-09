@@ -1,16 +1,11 @@
 /**
  * Base prefix for html title
  */
-<<<<<<< HEAD
 export const TITLE_BASE = 'Divisor';
-=======
-export const TitleBase = 'Divisor';
->>>>>>> main
 
 /**
  * Separator for base title prefix and page based title parts
  */
-<<<<<<< HEAD
 export const TITLE_SEPARATOR = '|';
 
 /**
@@ -29,6 +24,3 @@ export const INFINITE_SCROLL_OFFSET = 300;
  * @summary Indicates least items can be shown as paged
  */
 export const INFINITE_SCROLL_PAGE_SIZE = 5;
-=======
-export const TitleSeparator = '|';
->>>>>>> main

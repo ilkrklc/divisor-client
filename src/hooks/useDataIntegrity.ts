@@ -3,13 +3,8 @@ import semver from 'semver';
 
 import { useStore } from '@/hooks/useStore';
 import {
-<<<<<<< HEAD
   getPersistedValue,
   setPersistedValue,
-=======
-  getPersistedJsonValue,
-  setPersistedJsonValue,
->>>>>>> main
 } from '@/helpers/persist.helpers';
 import { PersistStateKey } from '@/typings/enums';
 
@@ -30,20 +25,12 @@ export function useDataIntegrity(): void {
   /**
    * Data version from local storage
    */
-<<<<<<< HEAD
   const dataVersion = getPersistedValue(PersistStateKey.DataVersion);
-=======
-  const dataVersion = getPersistedJsonValue(PersistStateKey.DataVersion);
->>>>>>> main
 
   // app initial run set version number
   // or local storage not supported no harm in trying to set version number tough
   if (dataVersion === null) {
-<<<<<<< HEAD
     setPersistedValue(PersistStateKey.DataVersion, appVersion.value);
-=======
-    setPersistedJsonValue(PersistStateKey.DataVersion, appVersion.value);
->>>>>>> main
 
     return;
   }
@@ -55,15 +42,8 @@ export function useDataIntegrity(): void {
   if (diff !== 'major') return;
 
   // reset local storage data
-<<<<<<< HEAD
   setPersistedValue(PersistStateKey.RecentItems, '');
 
   // set new version number
   setPersistedValue(PersistStateKey.DataVersion, appVersion.value);
-=======
-  setPersistedJsonValue(PersistStateKey.RecentItems, '');
-
-  // set new version number
-  setPersistedJsonValue(PersistStateKey.DataVersion, appVersion.value);
->>>>>>> main
 }
