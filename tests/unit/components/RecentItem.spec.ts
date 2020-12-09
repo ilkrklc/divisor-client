@@ -3,6 +3,7 @@ import { shallowMount } from '@vue/test-utils';
 import { CalculationType, SortOptions } from '@/typings/enums';
 import RecentItemModel from '@/models/recent-item.model';
 import { store } from '@/store';
+import router from '@/router';
 import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
 
 import RecentItem from '@/components/RecentItem.vue';
@@ -29,7 +30,7 @@ const baseSerializedModel = {
 };
 
 describe('name rendering', () => {
-  it('name takes divisors class when provided result is for divisors', () => {
+  it('name takes divisors class when provided result is for divisors', async () => {
     const item = baseModel.deserialize({
       ...baseSerializedModel,
       calculationType: CalculationType.Divisors,
@@ -39,8 +40,10 @@ describe('name rendering', () => {
       props: {
         item,
       },
-      global: { plugins: [store] },
+      global: { plugins: [store, router] },
     });
+
+    await router.isReady();
 
     expect(
       wrapper
@@ -49,7 +52,7 @@ describe('name rendering', () => {
     ).toBe(true);
   });
 
-  it('name takes common divisors class when provided result is for common divisors', () => {
+  it('name takes common divisors class when provided result is for common divisors', async () => {
     const item = baseModel.deserialize({
       ...baseSerializedModel,
       calculationType: CalculationType.CommonDivisors,
@@ -59,8 +62,10 @@ describe('name rendering', () => {
       props: {
         item,
       },
-      global: { plugins: [store] },
+      global: { plugins: [store, router] },
     });
+
+    await router.isReady();
 
     expect(
       wrapper
@@ -73,7 +78,7 @@ describe('name rendering', () => {
 });
 
 describe('badge rendering', () => {
-  it('should not display any badges when recent item has no sort or proper option', () => {
+  it('should not display any badges when recent item has no sort or proper option', async () => {
     const item = baseModel.deserialize({
       ...baseSerializedModel,
       calculationType: CalculationType.Divisors,
@@ -83,14 +88,16 @@ describe('badge rendering', () => {
       props: {
         item,
       },
-      global: { plugins: [store] },
+      global: { plugins: [store, router] },
     });
+
+    await router.isReady();
 
     expect(wrapper.vm.recentItem.sort).toBe(SortOptions.NotDefined);
     expect(wrapper.find('.recent-item-badge').exists()).toBe(false);
   });
 
-  it('should display sort badge when recent item has sort option', () => {
+  it('should display sort badge when recent item has sort option', async () => {
     const item = new RecentItemModel({
       ...sharedParams,
       sort: SortOptions.Asc,
@@ -103,8 +110,10 @@ describe('badge rendering', () => {
       props: {
         item,
       },
-      global: { plugins: [store] },
+      global: { plugins: [store, router] },
     });
+
+    await router.isReady();
 
     expect(wrapper.vm.recentItem.sort).toBe(SortOptions.Asc);
     expect(
@@ -112,7 +121,7 @@ describe('badge rendering', () => {
     ).toBeGreaterThanOrEqual(1);
   });
 
-  it('should display proper badge when recent item has proper option', () => {
+  it('should display proper badge when recent item has proper option', async () => {
     const item = new RecentItemModel({
       ...sharedParams,
       sort: SortOptions.Asc,
@@ -126,8 +135,10 @@ describe('badge rendering', () => {
       props: {
         item,
       },
-      global: { plugins: [store] },
+      global: { plugins: [store, router] },
     });
+
+    await router.isReady();
 
     expect(wrapper.vm.recentItem.onlyProperDivisors).toBe(true);
     expect(
@@ -137,7 +148,7 @@ describe('badge rendering', () => {
 });
 
 describe('divisors rendering', () => {
-  it('should render no result message when recent item has no divisors result', () => {
+  it('should render no result message when recent item has no divisors result', async () => {
     const item = new RecentItemModel({
       ...sharedParams,
       sort: SortOptions.Asc,
@@ -153,16 +164,18 @@ describe('divisors rendering', () => {
       props: {
         item,
       },
-      global: { plugins: [store] },
+      global: { plugins: [store, router] },
     });
 
+    await router.isReady();
+
     expect(wrapper.vm.recentItem.count).toBe(0);
-    expect(wrapper.find('span.no-result').exists()).toBe(true);
+    expect(wrapper.find('div.no-result').exists()).toBe(true);
   });
 });
 
 describe('divisor removal', () => {
-  it('should dispatch recent item remove action when remove event called', () => {
+  it('should dispatch recent item remove action when remove event called', async () => {
     const item = new RecentItemModel({
       ...sharedParams,
       sort: SortOptions.Asc,
@@ -175,8 +188,10 @@ describe('divisor removal', () => {
       props: {
         item,
       },
-      global: { plugins: [store] },
+      global: { plugins: [store, router] },
     });
+
+    await router.isReady();
 
     const dispatchSpy = jest.spyOn(store, 'dispatch');
 

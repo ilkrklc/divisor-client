@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
 
 import { store } from '@/store';
+import router from '@/router';
 import { CalculationType, PersistStateKey } from '@/typings/enums';
 import { INFINITE_SCROLL_PAGE_SIZE } from '@/helpers/constants';
 import RecentItem from '@/models/recent-item.model';
@@ -30,7 +31,7 @@ function generateItems(limit: number): RecentItem[] {
 
 describe('render with no items', () => {
   it('should render no items message when recent items list empty', () => {
-    const wrapper = mount(Recent, { global: { plugins: [store] } });
+    const wrapper = mount(Recent, { global: { plugins: [store, router] } });
 
     expect(wrapper.vm.hasRecentCalculations).toBe(false);
     expect(wrapper.find('.no-results').exists()).toBe(true);
@@ -42,7 +43,7 @@ describe('render with items', () => {
     const items = generateItems(3);
 
     localStorage.setItem(PersistStateKey.RecentItems, JSON.stringify(items));
-    const wrapper = mount(Recent, { global: { plugins: [store] } });
+    const wrapper = mount(Recent, { global: { plugins: [store, router] } });
 
     expect(wrapper.findAll('.recent-item').length).toBe(items.length);
   });
@@ -52,7 +53,7 @@ describe('render with items', () => {
       PersistStateKey.RecentItems,
       JSON.stringify(generateItems(3)),
     );
-    const wrapper = mount(Recent, { global: { plugins: [store] } });
+    const wrapper = mount(Recent, { global: { plugins: [store, router] } });
 
     expect(wrapper.vm.items.length).toEqual(wrapper.vm.pagedRecentItems.length);
   });
@@ -62,7 +63,7 @@ describe('render with items', () => {
 
     localStorage.setItem(PersistStateKey.RecentItems, JSON.stringify(items));
 
-    const wrapper = mount(Recent, { global: { plugins: [store] } });
+    const wrapper = mount(Recent, { global: { plugins: [store, router] } });
 
     // all items length and paged items length should not be equal
     expect(wrapper.vm.items.length).not.toEqual(
@@ -92,7 +93,7 @@ describe('render with items', () => {
 
     localStorage.setItem(PersistStateKey.RecentItems, JSON.stringify(items));
 
-    const wrapper = mount(Recent, { global: { plugins: [store] } });
+    const wrapper = mount(Recent, { global: { plugins: [store, router] } });
 
     wrapper.find('button.recent-action.danger').trigger('click');
 

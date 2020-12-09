@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
 
+import router from '@/router';
 import { store } from '@/store';
 import { DivisorsActionTypes } from '@/store/modules/divisors/divisors.actions';
 import * as helpers from '@/helpers/validation.helpers';
@@ -9,7 +10,7 @@ import DivisorsForm from '@/components/DivisorsForm.vue';
 
 const wrapper = mount(DivisorsForm, {
   global: {
-    plugins: [store],
+    plugins: [store, router],
   },
 });
 

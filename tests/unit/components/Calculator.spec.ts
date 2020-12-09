@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
 
+import router from '@/router';
 import { store } from '@/store';
 import { GreetingActionTypes } from '@/store/modules/greeting/greeting.actions';
 
@@ -8,7 +9,7 @@ import Calculator from '@/components/Calculator.vue';
 describe('rendering', () => {
   const wrapper = mount(Calculator, {
     global: {
-      plugins: [store],
+      plugins: [store, router],
     },
   });
 
