@@ -196,6 +196,7 @@ export default defineComponent({
     @include flex(row, center, center);
 
     flex-grow: 1;
+    min-height: 15rem;
   }
 
   .results {
