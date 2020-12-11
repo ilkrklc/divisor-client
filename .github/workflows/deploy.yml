@@ -16,6 +16,12 @@ jobs:
           npm install
           npm run build
 
+      - name: 404 page fix for vue router history mode usage with gh-pages 💩
+        run: |
+          cd dist
+          cp index.html 404.html
+          cd ..
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
