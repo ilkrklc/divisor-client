@@ -105,7 +105,7 @@ ul {
     content: '';
     position: absolute;
     display: block;
-    background-image: url('/info.png');
+    background-image: url('/img/info.png');
     background-size: contain;
     background-position: center;
     width: 15px;
