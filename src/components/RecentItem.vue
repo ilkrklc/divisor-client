@@ -257,7 +257,7 @@ export default defineComponent({
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
-    font-family: $font-raleway;
+    font-family: $font-raj;
     background-color: $color-danger;
     z-index: 5;
     transition: top 0.25s, right 0.25s;

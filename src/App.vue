@@ -61,12 +61,12 @@ html {
 #app {
   @include flex(column, flex-start, stretch);
 
-  font-family: $font-raleway;
+  font-family: $font-raj;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   min-height: 100vh;
-  background-color: $color-lighter;
+  background-color: $color-white;
   color: $color-text;
 }
 
