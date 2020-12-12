@@ -31,7 +31,7 @@ describe('Navigation', () => {
 
     // navigate into home
     cy.get('a')
-      .contains('Divisor')
+      .contains('divisor')
       .click();
 
     // try to find home page wrapper class
