@@ -96,7 +96,7 @@ export default defineComponent({
   .calculator-navigation {
     @include flex(row);
 
-    height: 3.51rem;
+    height: 3.5rem;
 
     .calculator-tab-item {
       @include font-style(1rem, 600, 0.5, $color-medium);
