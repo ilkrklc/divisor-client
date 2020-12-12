@@ -1,6 +1,6 @@
 <template>
   <div id="navbar">
-    <router-link id="navbar-name" to="/">Divisor</router-link>
+    <router-link id="navbar-name" to="/">divisor</router-link>
     <div class="navbar-links">
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
@@ -16,11 +16,11 @@
         target="_blank"
         rel="noreferrer noopener"
       >
-        <img src="../assets/images/git-logo.png" alt="github project link" />
+        <img
+          src="../assets/images/git-logo-white.png"
+          alt="github project link"
+        />
       </a>
-      <span class="navbar-github-description">
-        Visit project repository...
-      </span>
     </div>
   </div>
 </template>
@@ -57,16 +57,17 @@ export default defineComponent({
 
 #navbar {
   @include flex(row, space-between);
-  font-family: $font-lato;
+  font-family: $font-raj;
 
   height: 5rem;
   max-height: 5rem;
+  border-bottom: 1px solid #eaeaea;
 
   &-name {
     @include flex(row, center, center);
-    @include font-style(1.6rem, 700, 1, $color-medium);
+    @include font-style(2.5rem, 700, 1, $color-green);
 
-    width: 15rem;
+    width: 10rem;
     margin-right: 2rem;
     text-decoration: none;
   }
@@ -78,10 +79,10 @@ export default defineComponent({
 
     a {
       @include flex(row, center, center);
-      @include font-style(1.075rem, 400, 0.75, $color-text);
+      @include font-style(1.3, 500, 1, $color-text);
 
       text-decoration: none;
-      border-bottom-width: 0.75px;
+      border-bottom-width: 3px;
       border-bottom-style: solid;
       border-bottom-color: transparent;
       width: 6rem;
@@ -95,8 +96,9 @@ export default defineComponent({
 
       &.router-link-exact-active {
         font-size: 1.15rem;
-        color: $color-medium;
-        border-bottom-color: rgba($color: $color-medium, $alpha: 0.5);
+        color: $color-text;
+        font-weight: 700;
+        border-bottom-color: $color-green;
       }
     }
   }
@@ -104,47 +106,21 @@ export default defineComponent({
   #navbar-github {
     @include flex(row, flex-end, center);
 
-    position: relative;
-    width: 15rem;
-    margin-right: 1.5rem;
-    overflow: hidden;
-
-    &.hovered {
-      .navbar-github-description {
-        right: 45px;
-      }
-
-      a img {
-        opacity: 1;
-      }
-    }
-
     a {
       @include flex(row, center, center);
 
       height: 100%;
+      width: 5rem;
+      background-color: $color-green;
+      z-index: 2;
 
       img {
         width: 38px;
         height: 38px;
         z-index: 20;
-        background-color: $color-lighter;
-        opacity: 0.75;
+        background-color: $color-green;
         transition: opacity 0.1s ease-in-out;
       }
-    }
-
-    .navbar-github-description {
-      @include flex(row, center, center);
-      @include font-style(0.8rem, 400);
-
-      position: absolute;
-      right: -10rem;
-      top: 0;
-      height: 100%;
-      width: 10rem;
-      transition: right 0.25s ease-in-out;
-      z-index: 1;
     }
   }
 }
