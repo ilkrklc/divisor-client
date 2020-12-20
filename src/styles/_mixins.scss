@@ -18,25 +18,16 @@
   box-shadow: 0px 0px $spread 0px rgba($color: $color, $alpha: $alpha);
 }
 
-@mixin shadow-inset(
-  $xOffset: 0px,
-  $yOffset: 0px,
-  $spread: 0px,
-  $alpha: 1,
-  $color: #000000
-) {
-  -webkit-box-shadow: inset $xOffset $yOffset $spread 0px
-    rgba($color: $color, $alpha: $alpha);
-  box-shadow: inset $xOffset $yOffset $spread 0px
-    rgba($color: $color, $alpha: $alpha);
-}
-
 @mixin margin-x($size) {
   margin-left: $size;
   margin-right: $size;
 }
 
 @mixin margin-y($size) {
+  margin-top: $size;
+  margin-bottom: $size;
+}
+@mixin margin-t($size) {
   margin-top: $size;
   margin-bottom: $size;
 }
