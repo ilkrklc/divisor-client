@@ -53,7 +53,6 @@ export default defineComponent({
   }
   input[type='text']:focus,
   select:focus {
-    box-shadow: 0 0 3px $color-green;
     outline-color: $color-green;
   }
   select {
