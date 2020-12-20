@@ -45,7 +45,7 @@ export default defineComponent({
     @include padding-x(0.75rem);
     @include padding-y(0.5rem);
 
-    font-family: $font-lato;
+    font-family: $font-raj;
     height: 2.5rem;
     border: 1px solid rgba(0, 0, 0, 0.6);
   }
@@ -63,7 +63,7 @@ export default defineComponent({
     @include padding-x(0.75rem);
     @include padding-y(0.25rem);
 
-    font-family: $font-lato;
+    font-family: $font-raj;
     flex-grow: 1;
     height: 2.5rem;
   }
