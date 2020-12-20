@@ -86,7 +86,7 @@ export default defineComponent({
   @include shadow-centered(5px, 0.25);
   @include margin-x(auto);
 
-  border: 1px solid #eaeaea;
+  border: 1px solid $color-border;
   margin-top: 2rem;
   margin-bottom: 4rem;
   height: 450px;
@@ -117,15 +117,15 @@ export default defineComponent({
       &:first-child:not(.active) {
         font-weight: 400;
         background-color: #f7f7f7;
-        border-right: 1px solid #eaeaea;
-        border-bottom: 1px solid #eaeaea;
+        border-right: 1px solid $color-border;
+        border-bottom: 1px solid $color-border;
       }
 
       &:last-child:not(.active) {
         font-weight: 400;
         background-color: #f7f7f7;
-        border-left: 1px solid #eaeaea;
-        border-bottom: 1px solid #eaeaea;
+        border-left: 1px solid $color-border;
+        border-bottom: 1px solid $color-border;
       }
     }
   }
