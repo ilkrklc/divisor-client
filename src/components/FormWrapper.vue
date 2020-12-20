@@ -72,9 +72,19 @@ export default defineComponent({
     @include font-style(1.2rem, 600, 1, $color-text);
     @include padding-x(4rem);
     @include padding-y(0.75rem);
+    @include margin-x(auto);
 
-    background: transparent;
-    border: 1px solid $color-text;
+    width: 70%;
+    background-color: $color-green;
+    border: 2px solid $color-green;
+    color: $color-white;
+    transition: all ease-in-out 0.2s;
+    border-radius: 7px;
+  }
+  button[type='submit']:hover {
+    background-color: transparent;
+    border: 2px solid $color-green;
+    color: $color-green;
   }
 
   .form-label {
