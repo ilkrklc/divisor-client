@@ -45,7 +45,7 @@
       <span
         >Calculate only
         <router-link class="highlight-link proper" to="/about?h=proper"
-          ><strong>proper</strong>
+          ><b>proper</b>
         </router-link>
         divisors?</span
       >
