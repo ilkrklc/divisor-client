@@ -83,11 +83,13 @@ export default defineComponent({
 
 .calculator-wrapper {
   @include flex(column, flex-start, stretch);
-  @include shadow-centered(20px, 0.35);
+  @include shadow-centered(5px, 0.25);
   @include margin-x(auto);
-  @include margin-y(4rem);
 
-  height: 400px;
+  border: 1px solid $color-border;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  height: 450px;
   min-width: 600px;
   max-width: 600px;
   border-radius: 0.375rem;
@@ -99,24 +101,31 @@ export default defineComponent({
     height: 3.5rem;
 
     .calculator-tab-item {
-      @include font-style(1rem, 600, 0.5, $color-medium);
-
+      @include font-style(1.2rem, 700, 1, $color-text);
+      width: 50%;
       flex-grow: 1;
       background: transparent;
       border: none;
       transition: color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
       cursor: pointer;
+      border-bottom: 2.5px solid #4ad295;
 
       &.active {
-        color: $color-dark;
+        color: $color-text;
       }
 
       &:first-child:not(.active) {
-        @include shadow-inset(-6px, 0px, 11px, 0.29);
+        font-weight: 400;
+        background-color: #f7f7f7;
+        border-right: 1px solid $color-border;
+        border-bottom: 1px solid $color-border;
       }
 
       &:last-child:not(.active) {
-        @include shadow-inset(6px, 0px, 11px, 0.29);
+        font-weight: 400;
+        background-color: #f7f7f7;
+        border-left: 1px solid $color-border;
+        border-bottom: 1px solid $color-border;
       }
     }
   }

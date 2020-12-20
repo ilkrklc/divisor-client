@@ -44,28 +44,46 @@ export default defineComponent({
   input[type='text'] {
     @include padding-x(0.75rem);
     @include padding-y(0.5rem);
+    @include font-style(1.1rem, 400, 1, $color-text);
+    @include shadow-centered(2px, 0.25);
 
-    font-family: $font-lato;
+    font-family: $font-raj;
     height: 2.5rem;
-    border: 1px solid rgba(0, 0, 0, 0.6);
+    border: 1px solid $color-border;
   }
-
-  button[type='submit'] {
-    @include font-style(1.2rem, 600, 1, $color-dark);
-    @include padding-x(4rem);
-    @include padding-y(0.75rem);
-
-    background: transparent;
-    border: 1px solid $color-dark;
+  input[type='text']:focus,
+  select:focus {
+    outline-color: $color-green;
   }
-
   select {
     @include padding-x(0.75rem);
     @include padding-y(0.25rem);
+    @include font-style(1.1rem, 400, 1, $color-text);
+    @include shadow-centered(2px, 0.25);
 
-    font-family: $font-lato;
+    font-family: $font-raj;
     flex-grow: 1;
     height: 2.5rem;
+    border: 1px solid $color-border;
+  }
+
+  button[type='submit'] {
+    @include font-style(1.2rem, 600, 1, $color-text);
+    @include padding-x(4rem);
+    @include padding-y(0.75rem);
+    @include margin-x(auto);
+
+    width: 70%;
+    background-color: $color-green;
+    border: 2px solid $color-green;
+    color: $color-white;
+    transition: all ease-in-out 0.2s;
+    border-radius: 7px;
+  }
+  button[type='submit']:hover {
+    background-color: transparent;
+    border: 2px solid $color-green;
+    color: $color-green;
   }
 
   .form-label {

@@ -17,39 +17,42 @@
           : ValidationErrors.NumberNotValid
       }}</small>
     </label>
-    <label class="form-label" for="sort">
-      <span>You can sort output ordering</span>
-      <select
-        v-model="state.sort"
-        name="sort"
-        id="sort"
-        @change="setSort($event.target.value)"
-      >
-        <option
-          :key="sortOption.value"
-          v-for="sortOption in sortOptions"
-          :value="sortOption.value"
+    <div>
+      <label class="form-label" for="sort">
+        <span>You can sort output ordering</span>
+        <select
+          v-model="state.sort"
+          name="sort"
+          id="sort"
+          @change="setSort($event.target.value)"
         >
-          {{ sortOption.text }}
-        </option>
-      </select>
-    </label>
-    <label class="form-label checkbox-label" for="proper">
-      <input
-        type="checkbox"
-        name="proper"
-        id="proper"
-        v-model="state.onlyProperDivisors"
-        @change="setProperIndicator($event.target.checked)"
-      />
-      <span
-        >Calculate only
-        <router-link class="highlight-link proper" to="/about?h=proper"
-          ><strong>proper</strong>
-        </router-link>
-        divisors?</span
-      >
-    </label>
+          <option
+            :key="sortOption.value"
+            v-for="sortOption in sortOptions"
+            :value="sortOption.value"
+          >
+            {{ sortOption.text }}
+          </option>
+        </select>
+      </label>
+      <label class="form-label checkbox-label" for="proper">
+        <input
+          type="checkbox"
+          name="proper"
+          id="proper"
+          v-model="state.onlyProperDivisors"
+          @change="setProperIndicator($event.target.checked)"
+        />
+        <span
+          >Calculate only
+          <router-link class="highlight-link proper" to="/about?h=proper"
+            ><b>proper</b>
+          </router-link>
+          divisors?</span
+        >
+      </label>
+    </div>
+
     <button type="submit">
       Calculate
     </button>
