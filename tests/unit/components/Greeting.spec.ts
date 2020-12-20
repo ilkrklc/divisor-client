@@ -12,7 +12,7 @@ describe('rendering', () => {
     });
 
     expect(['divisors', 'common divisors']).toContain(
-      wrapper.find('em').text(),
+      wrapper.find('b').text(),
     );
   });
 });
