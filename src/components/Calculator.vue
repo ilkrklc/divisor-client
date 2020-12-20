@@ -89,7 +89,7 @@ export default defineComponent({
   border: 1px solid #eaeaea;
   margin-top: 2rem;
   margin-bottom: 4rem;
-  height: 400px;
+  height: 450px;
   min-width: 600px;
   max-width: 600px;
   border-radius: 0.375rem;
