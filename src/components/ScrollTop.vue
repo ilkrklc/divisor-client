@@ -12,9 +12,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref } from 'vue';
-
 import { useScrollPosition } from '@/hooks/useScrollPosition';
+import { defineComponent, onMounted, onUnmounted, ref } from 'vue';
 
 export default defineComponent({
   setup() {

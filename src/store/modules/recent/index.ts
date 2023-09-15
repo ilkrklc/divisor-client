@@ -1,24 +1,23 @@
 import {
-  Module,
-  Store as VuexStore,
-  CommitOptions,
-  DispatchOptions,
-} from 'vuex';
-
-import { State } from '@/store/state';
-import { RecentState, recentState } from '@/store/modules/recent/recent.state';
-import {
-  recentMutations,
-  RecentMutations,
-} from '@/store/modules/recent/recent.mutations';
-import {
-  recentActions,
   RecentActions,
+  recentActions,
 } from '@/store/modules/recent/recent.actions';
 import {
-  recentGetters,
   RecentGetters,
+  recentGetters,
 } from '@/store/modules/recent/recent.getters';
+import {
+  RecentMutations,
+  recentMutations,
+} from '@/store/modules/recent/recent.mutations';
+import { RecentState, recentState } from '@/store/modules/recent/recent.state';
+import { State } from '@/store/state';
+import {
+  CommitOptions,
+  DispatchOptions,
+  Module,
+  Store as VuexStore,
+} from 'vuex';
 
 export const recentModule: Module<RecentState, State> = {
   state: recentState,
@@ -33,7 +32,7 @@ export type RecentModule<S = RecentState> = Omit<
 > & {
   commit<
     K extends keyof RecentMutations,
-    P extends Parameters<RecentMutations[K]>[1]
+    P extends Parameters<RecentMutations[K]>[1],
   >(
     key: K,
     payload?: P,

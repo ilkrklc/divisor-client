@@ -1,5 +1,5 @@
-import { SortOptions } from '@/typings/enums';
 import { parseNumber } from '@/helpers/number.helpers';
+import { SortOptions } from '@/typings/enums';
 
 /**
  * Validates sort expression select list value

@@ -1,11 +1,10 @@
-import { ActionContext, ActionTree } from 'vuex';
-
-import { State } from '@/store/state';
-import { RootState } from '@/store/modules/root/root.state';
 import {
   RootMutationType,
   RootMutations,
 } from '@/store/modules/root/root.mutations';
+import { RootState } from '@/store/modules/root/root.state';
+import { State } from '@/store/state';
+import { ActionContext, ActionTree } from 'vuex';
 
 export enum RootActionTypes {
   ChangeVersion = 'CHANGE_VERSION',

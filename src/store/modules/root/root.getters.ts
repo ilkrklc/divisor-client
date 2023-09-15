@@ -1,7 +1,6 @@
-import { GetterTree } from 'vuex';
-
-import { State } from '@/store/state';
 import { RootState } from '@/store/modules/root/root.state';
+import { State } from '@/store/state';
+import { GetterTree } from 'vuex';
 
 export type RootGetters = {
   getVersion(state: RootState): string;

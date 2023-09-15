@@ -26,25 +26,23 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  ref,
-  computed,
-  onBeforeMount,
-  onMounted,
-  onUnmounted,
-} from 'vue';
-
-import { useScrollPosition } from '@/hooks/useScrollPosition';
-import { useStore } from '@/hooks/useStore';
-import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
-import RecentItemModel from '@/models/recent-item.model';
+import RecentItem from '@/components/RecentItem.vue';
 import {
   INFINITE_SCROLL_OFFSET,
   INFINITE_SCROLL_PAGE_SIZE,
 } from '@/helpers/constants';
-
-import RecentItem from '@/components/RecentItem.vue';
+import { useScrollPosition } from '@/hooks/useScrollPosition';
+import { useStore } from '@/hooks/useStore';
+import RecentItemModel from '@/models/recent-item.model';
+import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
+import {
+  computed,
+  defineComponent,
+  onBeforeMount,
+  onMounted,
+  onUnmounted,
+  ref,
+} from 'vue';
 
 export default defineComponent({
   components: {
@@ -104,6 +102,7 @@ export default defineComponent({
 
       // check for any items left mark loaded indicator if not
       if (toBeLoadedItemsCount > items.value.length)
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         allItemsLoaded.value = true;
 
       return pagedItems;

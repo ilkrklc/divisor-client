@@ -1,6 +1,6 @@
-import { SelectListItem } from '@/typings/interfaces';
-import { SortOptions } from '@/typings/enums';
 import { getEnumValues } from '@/helpers/enum.helpers';
+import { SortOptions } from '@/typings/enums';
+import { SelectListItem } from '@/typings/interfaces';
 
 /**
  * Gets sort options as select list item array
@@ -10,7 +10,7 @@ export function useSortOptions(): SelectListItem[] {
   const sortValues = getEnumValues<SortOptions, string>(SortOptions as never);
 
   // map values to select list item
-  return sortValues.map(sortValue => {
+  return sortValues.map((sortValue) => {
     let text = 'Please select...';
     switch (sortValue) {
       case SortOptions.Asc:

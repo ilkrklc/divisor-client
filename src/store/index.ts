@@ -1,13 +1,11 @@
-import { createStore, createLogger } from 'vuex';
-
-import { State } from '@/store/state';
-import { modules, Modules } from '@/store/modules';
-
-import { RecentModule } from '@/store/modules/recent';
-import { GreetingModule } from '@/store/modules/greeting';
-import { DivisorsModule } from '@/store/modules/divisors';
+import { Modules, modules } from '@/store/modules';
 import { CommonDivisorsModule } from '@/store/modules/common-divisors';
+import { DivisorsModule } from '@/store/modules/divisors';
+import { GreetingModule } from '@/store/modules/greeting';
+import { RecentModule } from '@/store/modules/recent';
 import { RootModule } from '@/store/modules/root';
+import { State } from '@/store/state';
+import { createLogger, createStore } from 'vuex';
 
 export const store = createStore<State>({
   plugins: process.env.NODE_ENV === 'development' ? [createLogger()] : [],

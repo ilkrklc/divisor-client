@@ -9,8 +9,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import Greeting from '@/components/Greeting.vue';
 import Calculator from '@/components/Calculator.vue';
+import Greeting from '@/components/Greeting.vue';
 import Recent from '@/components/Recent.vue';
 
 export default defineComponent({

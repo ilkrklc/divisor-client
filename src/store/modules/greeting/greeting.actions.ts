@@ -1,12 +1,11 @@
-import { ActionContext, ActionTree } from 'vuex';
-
-import { CalculationType } from '@/typings/enums';
-import { State } from '@/store/state';
-import { GreetingState } from '@/store/modules/greeting/greeting.state';
 import {
   GreetingMutationType,
   GreetingMutations,
 } from '@/store/modules/greeting/greeting.mutations';
+import { GreetingState } from '@/store/modules/greeting/greeting.state';
+import { State } from '@/store/state';
+import { CalculationType } from '@/typings/enums';
+import { ActionContext, ActionTree } from 'vuex';
 
 export enum GreetingActionTypes {
   SetCalculationTypeName = 'SET_CALCULATION_TYPE_NAME',

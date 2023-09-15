@@ -9,13 +9,10 @@
 
 <script>
 import { defineComponent } from 'vue';
-
 import { useDataIntegrity } from '@/hooks/useDataIntegrity';
-
 import Navbar from '@/components/Navbar.vue';
 import FooterBar from '@/components/FooterBar.vue';
 import ScrollTop from './components/ScrollTop.vue';
-
 import 'normalize.css';
 
 export default defineComponent({
@@ -61,12 +58,12 @@ html {
 #app {
   @include flex(column, flex-start, stretch);
 
-  font-family: $font-raleway;
+  font-family: $font-raj;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   min-height: 100vh;
-  background-color: $color-lighter;
+  background-color: $color-white;
   color: $color-text;
 }
 
@@ -85,35 +82,14 @@ ul {
 }
 
 .highlight-link {
-  @include font-style(1.05rem, 600, 1, $color-dark);
+  @include font-style(1.05rem, 600, 1, $color-text);
 
   position: relative;
-  text-decoration-style: dotted;
+  text-decoration: underline;
   text-decoration-skip-ink: none;
-  font-style: italic;
 
   &.proper {
     font-size: 1rem;
-
-    &::after {
-      right: -8px;
-      top: -8px;
-    }
-  }
-
-  &:after {
-    content: '';
-    position: absolute;
-    display: block;
-    background-image: url('/img/info.png');
-    background-size: contain;
-    background-position: center;
-    width: 15px;
-    height: 15px;
-    right: -12.5px;
-    top: -7px;
-    transform: rotate(15deg);
-    opacity: 0.9;
   }
 }
 

@@ -1,8 +1,6 @@
-import { MutationTree } from 'vuex';
-
 import { GreetingState } from '@/store/modules/greeting/greeting.state';
-
 import { CalculationType } from '@/typings/enums';
+import { MutationTree } from 'vuex';
 
 export enum GreetingMutationType {
   SetCalculationTypeName = 'SET_CALCULATION_TYPE_NAME',

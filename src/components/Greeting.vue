@@ -1,16 +1,15 @@
 <template>
   <div id="greeting">
-    <div>Welcome to <strong> divisor</strong>.</div>
+    <div>Welcome to divisor.</div>
     <div>
-      Here you can calculate <em>{{ calculationName }}</em> of natural numbers.
+      Here you can calculate <b>{{ calculationName }}</b> of natural numbers.
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-
 import { useStore } from '@/hooks/useStore';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   setup() {
@@ -38,12 +37,14 @@ export default defineComponent({
 @use '@/styles/_mixins.scss' as *;
 
 #greeting {
-  @include font-style(1.2rem, 400, 0.9);
+  @include font-style(1.4rem, 400, 0.9);
 
-  margin-top: 5rem;
+  margin-top: 6rem;
 
-  strong {
-    color: $color-dark;
+  div:first-child {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
   }
 }
 </style>

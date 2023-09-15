@@ -1,18 +1,17 @@
-import { ActionContext, ActionTree } from 'vuex';
-
 import {
   getPersistedValue,
   setPersistedValue,
 } from '@/helpers/persist.helpers';
-import { PersistStateKey, SortOptions } from '@/typings/enums';
 import RecentItem from '@/models/recent-item.model';
+import { PersistStateKey, SortOptions } from '@/typings/enums';
+import { ActionContext, ActionTree } from 'vuex';
 
-import { State } from '@/store/state';
-import { RecentState } from '@/store/modules/recent/recent.state';
 import {
   RecentMutationType,
   RecentMutations,
 } from '@/store/modules/recent/recent.mutations';
+import { RecentState } from '@/store/modules/recent/recent.state';
+import { State } from '@/store/state';
 
 export enum RecentActionTypes {
   GetItems = 'GET_ITEMS',
@@ -52,12 +51,11 @@ export const recentActions: ActionTree<RecentState, State> & RecentActions = {
     // try to persist recent items from locale storage
     const persistedItemsJson = getPersistedValue(PersistStateKey.RecentItems);
     if (persistedItemsJson) {
-      const persistedItems: Record<string, unknown> = JSON.parse(
-        persistedItemsJson,
-      );
+      const persistedItems: Record<string, unknown> =
+        JSON.parse(persistedItemsJson);
 
       if (Array.isArray(persistedItems) && persistedItems.length > 0)
-        items = persistedItems.map(item =>
+        items = persistedItems.map((item) =>
           new RecentItem({
             number1: item.number1 as number,
             number2: item.number2 as number,
@@ -82,7 +80,7 @@ export const recentActions: ActionTree<RecentState, State> & RecentActions = {
     commit(RecentMutationType.SetItems, newItems);
   },
   [RecentActionTypes.RemoveItem]({ commit, state }, id) {
-    const newItems = state.items.filter(item => item.id !== id);
+    const newItems = state.items.filter((item) => item.id !== id);
 
     // update locale storage
     setPersistedValue(PersistStateKey.RecentItems, JSON.stringify(newItems));

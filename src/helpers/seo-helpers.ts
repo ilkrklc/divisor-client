@@ -1,4 +1,4 @@
-import { TitleBase, TitleSeparator } from '@/helpers/constants';
+import { TITLE_BASE, TITLE_SEPARATOR } from './constants';
 
 /**
  * Prepares page title
@@ -7,7 +7,7 @@ import { TitleBase, TitleSeparator } from '@/helpers/constants';
  */
 export function prepareTitle(pageTitle: string): string {
   // if no page specific title provided return default title
-  if (!pageTitle) return TitleBase;
+  if (!pageTitle) return TITLE_BASE;
 
-  return `${TitleBase} ${TitleSeparator} ${pageTitle}`;
+  return `${TITLE_BASE} ${TITLE_SEPARATOR} ${pageTitle}`;
 }

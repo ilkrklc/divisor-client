@@ -22,7 +22,10 @@
       </div>
       <div
         class="recent-divisors"
-        :class="{ 'long-number': commaSeparatedDivisors.length > 50 }"
+        :class="{
+          'long-number':
+            commaSeparatedDivisors && commaSeparatedDivisors.length > 50,
+        }"
       >
         <div
           v-html="divsorsHeaderHtml"
@@ -31,8 +34,10 @@
         <div
           v-if="recentItem.count > 0"
           :class="{
-            'long-number': commaSeparatedDivisors.length > 50,
-            'very-long-number': commaSeparatedDivisors.length > 200,
+            'long-number':
+              commaSeparatedDivisors && commaSeparatedDivisors.length > 50,
+            'very-long-number':
+              commaSeparatedDivisors && commaSeparatedDivisors.length > 200,
           }"
         >
           <span>{{ commaSeparatedDivisors }}</span>
@@ -118,7 +123,7 @@
     <button
       type="button"
       class="recent-item-remove-button"
-      @click="handleDelete(recentItem.id)"
+      @click="handleDelete(recentItem.id as string)"
     >
       <span>x</span>
     </button>
@@ -126,16 +131,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-
-import RecentItem from '@/models/recent-item.model';
-import { CalculationType, SortOptions } from '@/typings/enums';
 import {
-  getSortOptionDisplayName,
   getCalculationTypeDisplayName,
+  getSortOptionDisplayName,
 } from '@/helpers/enum.helpers';
 import { useStore } from '@/hooks/useStore';
+import RecentItem from '@/models/recent-item.model';
 import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
+import { CalculationType, SortOptions } from '@/typings/enums';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   props: {
@@ -257,10 +261,12 @@ export default defineComponent({
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
-    font-family: $font-raleway;
+    font-family: $font-raj;
     background-color: $color-danger;
     z-index: 5;
-    transition: top 0.25s, right 0.25s;
+    transition:
+      top 0.25s,
+      right 0.25s;
   }
 
   .recent-content {

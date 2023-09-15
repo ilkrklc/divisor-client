@@ -1,6 +1,5 @@
-import { MutationTree } from 'vuex';
-
 import { RootState } from '@/store/modules/root/root.state';
+import { MutationTree } from 'vuex';
 
 export enum RootMutationType {
   ChangeVersion = 'CHANGE_VERSION',

@@ -1,16 +1,16 @@
-import { RecentState, recentState } from '@/store/modules/recent/recent.state';
 import {
-  GreetingState,
-  greetingState,
-} from '@/store/modules/greeting/greeting.state';
+  CommonDivisorsState,
+  commonDivisorsState,
+} from '@/store/modules/common-divisors/common-divisors.state';
 import {
   DivisorsState,
   divisorsState,
 } from '@/store/modules/divisors/divisors.state';
 import {
-  CommonDivisorsState,
-  commonDivisorsState,
-} from '@/store/modules/common-divisors/common-divisors.state';
+  GreetingState,
+  greetingState,
+} from '@/store/modules/greeting/greeting.state';
+import { RecentState, recentState } from '@/store/modules/recent/recent.state';
 import { RootState, rootState } from '@/store/modules/root/root.state';
 
 export type State = {

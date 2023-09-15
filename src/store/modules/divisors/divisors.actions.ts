@@ -1,12 +1,11 @@
-import { ActionContext, ActionTree } from 'vuex';
-
-import { State } from '@/store/state';
-import { DivisorsState } from '@/store/modules/divisors/divisors.state';
 import {
   DivisorsMutationType,
   DivisorsMutations,
 } from '@/store/modules/divisors/divisors.mutations';
+import { DivisorsState } from '@/store/modules/divisors/divisors.state';
+import { State } from '@/store/state';
 import { SortOptions } from '@/typings/enums';
+import { ActionContext, ActionTree } from 'vuex';
 
 export enum DivisorsActionTypes {
   SetDivisorsNumber = 'SET_DIVISORS_NUMBER',

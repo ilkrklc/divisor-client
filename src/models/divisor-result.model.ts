@@ -1,13 +1,12 @@
-import {
-  getDivisors,
-  sumDivisors,
-  multiplyDivisors,
-  countDivisors,
-  greatestProperDivisor,
-} from 'divisor';
-
-import { BaseResult } from '@/typings/interfaces';
 import { CalculationType, SortOptions } from '@/typings/enums';
+import { BaseResult } from '@/typings/interfaces';
+import {
+  countDivisors,
+  getDivisors,
+  greatestProperDivisor,
+  multiplyDivisors,
+  sumDivisors,
+} from 'divisor';
 
 /**
  * Divisor result model

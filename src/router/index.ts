@@ -1,8 +1,6 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-
 import { prepareTitle } from '@/helpers/seo.helpers';
-
 import Home from '@/views/Home.vue';
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 /**
  * App routes
@@ -38,9 +36,9 @@ const router = createRouter({
 /**
  * Router navigation guard handles document title
  */
-router.afterEach(to => {
+router.afterEach((to) => {
   // set document title
-  document.title = to.meta.title;
+  document.title = to.meta.title as string;
 });
 
 export default router;

@@ -1,7 +1,6 @@
-import { MutationTree } from 'vuex';
-
 import { CommonDivisorsState } from '@/store/modules/common-divisors/common-divisors.state';
 import { SortOptions } from '@/typings/enums';
+import { MutationTree } from 'vuex';
 
 export enum CommonDivisorsMutationType {
   SetCommonDivisorNumber1 = 'SET_COMMON_DIVISOR_NUMBER_ONE',

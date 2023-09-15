@@ -1,12 +1,11 @@
-import { computed } from 'vue';
-import semver from 'semver';
-
-import { useStore } from '@/hooks/useStore';
 import {
   getPersistedValue,
   setPersistedValue,
 } from '@/helpers/persist.helpers';
+import { useStore } from '@/hooks/useStore';
 import { PersistStateKey } from '@/typings/enums';
+import semver from 'semver';
+import { computed } from 'vue';
 
 /**
  * Checks semantic versioning for data integrity

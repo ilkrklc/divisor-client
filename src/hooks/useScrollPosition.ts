@@ -1,4 +1,4 @@
-import { ref, onMounted, onUnmounted, Ref } from 'vue';
+import { Ref, onMounted, onUnmounted, ref } from 'vue';
 
 /**
  * Gets current scroll position and offset from scroll event

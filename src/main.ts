@@ -1,8 +1,6 @@
+import { createGtm } from '@gtm-support/vue-gtm';
 import { createApp } from 'vue';
-import { createGtm } from 'vue-gtm';
-
 import App from './App.vue';
-
 import router from './router';
 import { store } from './store';
 

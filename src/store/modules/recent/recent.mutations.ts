@@ -1,7 +1,6 @@
-import { MutationTree } from 'vuex';
-
 import RecentItem from '@/models/recent-item.model';
 import { RecentState } from '@/store/modules/recent/recent.state';
+import { MutationTree } from 'vuex';
 
 export enum RecentMutationType {
   SetItems = 'SET_ITEMS',
