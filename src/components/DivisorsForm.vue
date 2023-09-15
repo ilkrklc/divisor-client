@@ -8,7 +8,7 @@
         id="number"
         autocomplete="off"
         v-model="state.number"
-        @input="setNumber($event.target)"
+        @input="setNumber($event.target as HTMLInputElement)"
         placeholder="Ex: 63"
       />
       <small>{{
@@ -24,7 +24,9 @@
           v-model="state.sort"
           name="sort"
           id="sort"
-          @change="setSort($event.target.value)"
+          @change="
+            setSort(($event.target as HTMLInputElement).value as SortOptions)
+          "
         >
           <option
             :key="sortOption.value"
@@ -41,7 +43,9 @@
           name="proper"
           id="proper"
           v-model="state.onlyProperDivisors"
-          @change="setProperIndicator($event.target.checked)"
+          @change="
+            setProperIndicator(($event.target as HTMLInputElement).checked)
+          "
         />
         <span
           >Calculate only
@@ -53,30 +57,26 @@
       </label>
     </div>
 
-    <button type="submit">
-      Calculate
-    </button>
+    <button type="submit">Calculate</button>
   </form-wrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue';
-
-import { useStore } from '@/hooks/useStore';
+import FormWrapper from '@/components/FormWrapper.vue';
+import {
+  toggleFormErrorText,
+  toggleInputErrorText,
+  validateNumberInput,
+  validateSortList,
+} from '@/helpers/validation.helpers';
 import { useSortOptions } from '@/hooks/useSortOptions';
+import { useStore } from '@/hooks/useStore';
+import DivisorResult from '@/models/divisor-result.model';
+import RecentItem from '@/models/recent-item.model';
 import { DivisorsActionTypes } from '@/store/modules/divisors/divisors.actions';
 import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
 import { SortOptions, ValidationErrors } from '@/typings/enums';
-import {
-  validateSortList,
-  validateNumberInput,
-  toggleInputErrorText,
-  toggleFormErrorText,
-} from '@/helpers/validation.helpers';
-import DivisorResult from '@/models/divisor-result.model';
-import RecentItem from '@/models/recent-item.model';
-
-import FormWrapper from '@/components/FormWrapper.vue';
+import { computed, defineComponent, ref } from 'vue';
 
 export default defineComponent({
   components: { FormWrapper },
@@ -202,7 +202,7 @@ export default defineComponent({
         );
         isNumberInputDirty.value = false;
       } catch (error) {
-        console.log(error);
+        console.error(error);
 
         // display common error text if unexpected error encountered
         toggleFormErrorText(false, 'divisors-form');

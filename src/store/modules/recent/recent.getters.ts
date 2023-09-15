@@ -1,8 +1,7 @@
-import { GetterTree } from 'vuex';
-
-import { State } from '@/store/state';
-import { RecentState } from '@/store/modules/recent/recent.state';
 import RecentItem from '@/models/recent-item.model';
+import { RecentState } from '@/store/modules/recent/recent.state';
+import { State } from '@/store/state';
+import { GetterTree } from 'vuex';
 
 export type RecentGetters = {
   totalRecentCount(state: RecentState): number;

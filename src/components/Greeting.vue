@@ -8,9 +8,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-
 import { useStore } from '@/hooks/useStore';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   setup() {

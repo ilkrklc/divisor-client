@@ -8,12 +8,12 @@ import { CalculationType, SortOptions } from '@/typings/enums';
  */
 export function getEnumValues<
   T extends { [key: number]: string | number },
-  R = string | number
+  R = string | number,
 >(Enum: T): R[] {
   const keys = Object.keys(Enum).filter(
-    k => typeof Enum[k as keyof T] === 'string',
+    (k) => typeof Enum[k as keyof T] === 'string',
   );
-  const values = keys.map(k => (Enum[k as keyof T] as unknown) as R);
+  const values = keys.map((k) => Enum[k as keyof T] as unknown as R);
 
   return values;
 }

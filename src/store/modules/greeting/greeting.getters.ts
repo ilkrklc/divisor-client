@@ -1,9 +1,8 @@
-import { GetterTree } from 'vuex';
-
-import { State } from '@/store/state';
-import { GreetingState } from '@/store/modules/greeting/greeting.state';
-import { CalculationType } from '@/typings/enums';
 import { getCalculationTypeDisplayName } from '@/helpers/enum.helpers';
+import { GreetingState } from '@/store/modules/greeting/greeting.state';
+import { State } from '@/store/state';
+import { CalculationType } from '@/typings/enums';
+import { GetterTree } from 'vuex';
 
 export type GreetingGetters = {
   calculationName(state: GreetingState): CalculationType;

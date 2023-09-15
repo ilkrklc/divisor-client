@@ -1,27 +1,26 @@
 import {
-  Module,
-  Store as VuexStore,
-  CommitOptions,
-  DispatchOptions,
-} from 'vuex';
-
-import { State } from '@/store/state';
+  CommonDivisorsActions,
+  commonDivisorsActions,
+} from '@/store/modules/common-divisors/common-divisors.actions';
+import {
+  CommonDivisorsGetters,
+  commonDivisorsGetters,
+} from '@/store/modules/common-divisors/common-divisors.getters';
+import {
+  CommonDivisorsMutations,
+  commonDivisorsMutations,
+} from '@/store/modules/common-divisors/common-divisors.mutations';
 import {
   CommonDivisorsState,
   commonDivisorsState,
 } from '@/store/modules/common-divisors/common-divisors.state';
+import { State } from '@/store/state';
 import {
-  commonDivisorsMutations,
-  CommonDivisorsMutations,
-} from '@/store/modules/common-divisors/common-divisors.mutations';
-import {
-  commonDivisorsActions,
-  CommonDivisorsActions,
-} from '@/store/modules/common-divisors/common-divisors.actions';
-import {
-  commonDivisorsGetters,
-  CommonDivisorsGetters,
-} from '@/store/modules/common-divisors/common-divisors.getters';
+  CommitOptions,
+  DispatchOptions,
+  Module,
+  Store as VuexStore,
+} from 'vuex';
 
 export const commonDivisorsModule: Module<CommonDivisorsState, State> = {
   state: commonDivisorsState,
@@ -36,7 +35,7 @@ export type CommonDivisorsModule<S = CommonDivisorsState> = Omit<
 > & {
   commit<
     K extends keyof CommonDivisorsMutations,
-    P extends Parameters<CommonDivisorsMutations[K]>[1]
+    P extends Parameters<CommonDivisorsMutations[K]>[1],
   >(
     key: K,
     payload?: P,

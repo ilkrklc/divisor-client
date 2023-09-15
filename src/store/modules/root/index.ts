@@ -1,18 +1,17 @@
+import { RootActions, rootActions } from '@/store/modules/root/root.actions';
+import { RootGetters, rootGetters } from '@/store/modules/root/root.getters';
 import {
-  Module,
-  Store as VuexStore,
+  RootMutations,
+  rootMutations,
+} from '@/store/modules/root/root.mutations';
+import { RootState, rootState } from '@/store/modules/root/root.state';
+import { State } from '@/store/state';
+import {
   CommitOptions,
   DispatchOptions,
+  Module,
+  Store as VuexStore,
 } from 'vuex';
-
-import { State } from '@/store/state';
-import { RootState, rootState } from '@/store/modules/root/root.state';
-import {
-  rootMutations,
-  RootMutations,
-} from '@/store/modules/root/root.mutations';
-import { rootActions, RootActions } from '@/store/modules/root/root.actions';
-import { rootGetters, RootGetters } from '@/store/modules/root/root.getters';
 
 export const rootModule: Module<RootState, State> = {
   state: rootState,
@@ -27,7 +26,7 @@ export type RootModule<S = RootState> = Omit<
 > & {
   commit<
     K extends keyof RootMutations,
-    P extends Parameters<RootMutations[K]>[1]
+    P extends Parameters<RootMutations[K]>[1],
   >(
     key: K,
     payload?: P,

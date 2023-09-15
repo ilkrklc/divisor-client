@@ -1,27 +1,26 @@
 import {
-  Module,
-  Store as VuexStore,
-  CommitOptions,
-  DispatchOptions,
-} from 'vuex';
-
-import { State } from '@/store/state';
+  DivisorsActions,
+  divisorsActions,
+} from '@/store/modules/divisors/divisors.actions';
+import {
+  DivisorsGetters,
+  divisorsGetters,
+} from '@/store/modules/divisors/divisors.getters';
+import {
+  DivisorsMutations,
+  divisorsMutations,
+} from '@/store/modules/divisors/divisors.mutations';
 import {
   DivisorsState,
   divisorsState,
 } from '@/store/modules/divisors/divisors.state';
+import { State } from '@/store/state';
 import {
-  divisorsMutations,
-  DivisorsMutations,
-} from '@/store/modules/divisors/divisors.mutations';
-import {
-  divisorsActions,
-  DivisorsActions,
-} from '@/store/modules/divisors/divisors.actions';
-import {
-  divisorsGetters,
-  DivisorsGetters,
-} from '@/store/modules/divisors/divisors.getters';
+  CommitOptions,
+  DispatchOptions,
+  Module,
+  Store as VuexStore,
+} from 'vuex';
 
 export const divisorsModule: Module<DivisorsState, State> = {
   state: divisorsState,
@@ -36,7 +35,7 @@ export type DivisorsModule<S = DivisorsState> = Omit<
 > & {
   commit<
     K extends keyof DivisorsMutations,
-    P extends Parameters<DivisorsMutations[K]>[1]
+    P extends Parameters<DivisorsMutations[K]>[1],
   >(
     key: K,
     payload?: P,

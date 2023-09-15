@@ -1,14 +1,13 @@
+import { CalculationType, SortOptions } from '@/typings/enums';
+import { BaseResult } from '@/typings/interfaces';
 import {
-  getCommonDivisors,
-  sumCommonDivisors,
-  multiplyCommonDivisors,
   countCommonDivisors,
+  getCommonDivisors,
   greatestCommonDivisor,
   leastCommonMultiple,
+  multiplyCommonDivisors,
+  sumCommonDivisors,
 } from 'divisor';
-
-import { BaseResult } from '@/typings/interfaces';
-import { CalculationType, SortOptions } from '@/typings/enums';
 
 /**
  * Common divisor result model

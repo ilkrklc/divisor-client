@@ -9,13 +9,10 @@
 
 <script>
 import { defineComponent } from 'vue';
-
 import { useDataIntegrity } from '@/hooks/useDataIntegrity';
-
 import Navbar from '@/components/Navbar.vue';
 import FooterBar from '@/components/FooterBar.vue';
 import ScrollTop from './components/ScrollTop.vue';
-
 import 'normalize.css';
 
 export default defineComponent({

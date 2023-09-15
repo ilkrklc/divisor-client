@@ -1,12 +1,11 @@
-import { ActionContext, ActionTree } from 'vuex';
-
-import { State } from '@/store/state';
-import { CommonDivisorsState } from '@/store/modules/common-divisors/common-divisors.state';
 import {
   CommonDivisorsMutationType,
   CommonDivisorsMutations,
 } from '@/store/modules/common-divisors/common-divisors.mutations';
+import { CommonDivisorsState } from '@/store/modules/common-divisors/common-divisors.state';
+import { State } from '@/store/state';
 import { SortOptions } from '@/typings/enums';
+import { ActionContext, ActionTree } from 'vuex';
 
 export enum CommonDivisorsActionTypes {
   SetCommonDivisorNumber1 = 'SET_COMMON_DIVISOR_NUMBER_ONE',

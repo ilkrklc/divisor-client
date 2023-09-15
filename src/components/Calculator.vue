@@ -30,15 +30,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-
-import { CalculationType } from '@/typings/enums';
-
 import { useStore } from '@/hooks/useStore';
 import { GreetingActionTypes } from '@/store/modules/greeting/greeting.actions';
-
-import DivisorsForm from './DivisorsForm.vue';
+import { CalculationType } from '@/typings/enums';
+import { defineComponent, ref } from 'vue';
 import CommonDivisorsForm from './CommonDivisorsForm.vue';
+import DivisorsForm from './DivisorsForm.vue';
 
 export default defineComponent({
   components: { DivisorsForm, CommonDivisorsForm },
@@ -106,7 +103,9 @@ export default defineComponent({
       flex-grow: 1;
       background: transparent;
       border: none;
-      transition: color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+      transition:
+        color 0.25s ease-in-out,
+        box-shadow 0.25s ease-in-out;
       cursor: pointer;
       border-bottom: 2.5px solid #4ad295;
 

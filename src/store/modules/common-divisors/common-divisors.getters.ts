@@ -1,8 +1,7 @@
-import { GetterTree } from 'vuex';
-
-import { CommonDivisorFormState } from '@/typings/interfaces';
-import { State } from '@/store/state';
 import { CommonDivisorsState } from '@/store/modules/common-divisors/common-divisors.state';
+import { State } from '@/store/state';
+import { CommonDivisorFormState } from '@/typings/interfaces';
+import { GetterTree } from 'vuex';
 
 export type CommonDivisorsGetters = {
   commonDivisorFormState(state: CommonDivisorsState): CommonDivisorFormState;

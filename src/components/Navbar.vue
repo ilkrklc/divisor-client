@@ -87,7 +87,9 @@ export default defineComponent({
       border-bottom-color: transparent;
       width: 6rem;
       height: 2.75rem;
-      transition: color 0.1s ease-in, border-bottom-color 0.2s ease-in,
+      transition:
+        color 0.1s ease-in,
+        border-bottom-color 0.2s ease-in,
         font-size 0.05ms ease-in;
 
       &:not(:first-child) {

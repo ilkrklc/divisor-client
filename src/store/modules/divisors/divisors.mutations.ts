@@ -1,7 +1,6 @@
-import { MutationTree } from 'vuex';
-
 import { DivisorsState } from '@/store/modules/divisors/divisors.state';
 import { SortOptions } from '@/typings/enums';
+import { MutationTree } from 'vuex';
 
 export enum DivisorsMutationType {
   SetDivisorsNumber = 'SET_DIVISORS_NUMBER',

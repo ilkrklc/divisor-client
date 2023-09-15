@@ -1,5 +1,5 @@
 <template>
-  <form class="form" :id="id" @submit.prevent="onSubmit">
+  <form class="form" :id="id" @submit.prevent="() => onSubmit()">
     <slot />
     <span class="form-error" :id="`${id}-error`">
       {{ ValidationErrors.CommonFormError }}
@@ -8,9 +8,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-
 import { ValidationErrors } from '@/typings/enums';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   props: {

@@ -8,7 +8,7 @@
         id="number1"
         autocomplete="off"
         v-model="state.number1"
-        @input="setNumber1($event.target)"
+        @input="setNumber1($event.target as HTMLInputElement)"
         placeholder="Ex: 63"
       />
       <small>{{
@@ -25,7 +25,7 @@
         id="number2"
         autocomplete="off"
         v-model="state.number2"
-        @input="setNumber2($event.target)"
+        @input="setNumber2($event.target as HTMLInputElement)"
         placeholder="Ex: 21"
       />
       <small>{{
@@ -40,7 +40,9 @@
         v-model="state.sort"
         name="sort"
         id="sort"
-        @change="setSort($event.target.value)"
+        @change="
+          setSort(($event.target as HTMLInputElement).value as SortOptions)
+        "
       >
         <option
           :key="sortOption.value"
@@ -51,28 +53,26 @@
         </option>
       </select>
     </label>
-    <button type="submit">
-      Calculate
-    </button>
+    <button type="submit">Calculate</button>
   </form-wrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 
-import { useStore } from '@/hooks/useStore';
+import {
+  toggleFormErrorText,
+  toggleInputErrorText,
+  validateNumberInput,
+  validateSortList,
+} from '@/helpers/validation.helpers';
 import { useSortOptions } from '@/hooks/useSortOptions';
+import { useStore } from '@/hooks/useStore';
+import CommonDivisorResult from '@/models/common-divisor-result.model';
+import RecentItem from '@/models/recent-item.model';
 import { CommonDivisorsActionTypes } from '@/store/modules/common-divisors/common-divisors.actions';
 import { RecentActionTypes } from '@/store/modules/recent/recent.actions';
 import { SortOptions, ValidationErrors } from '@/typings/enums';
-import {
-  validateSortList,
-  validateNumberInput,
-  toggleInputErrorText,
-  toggleFormErrorText,
-} from '@/helpers/validation.helpers';
-import CommonDivisorResult from '@/models/common-divisor-result.model';
-import RecentItem from '@/models/recent-item.model';
 
 import FormWrapper from '@/components/FormWrapper.vue';
 

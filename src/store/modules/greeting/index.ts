@@ -1,27 +1,26 @@
 import {
-  Module,
-  Store as VuexStore,
-  CommitOptions,
-  DispatchOptions,
-} from 'vuex';
-
-import { State } from '@/store/state';
+  GreetingActions,
+  greetingActions,
+} from '@/store/modules/greeting/greeting.actions';
+import {
+  GreetingGetters,
+  greetingGetters,
+} from '@/store/modules/greeting/greeting.getters';
+import {
+  GreetingMutations,
+  greetingMutations,
+} from '@/store/modules/greeting/greeting.mutations';
 import {
   GreetingState,
   greetingState,
 } from '@/store/modules/greeting/greeting.state';
+import { State } from '@/store/state';
 import {
-  greetingMutations,
-  GreetingMutations,
-} from '@/store/modules/greeting/greeting.mutations';
-import {
-  greetingActions,
-  GreetingActions,
-} from '@/store/modules/greeting/greeting.actions';
-import {
-  greetingGetters,
-  GreetingGetters,
-} from '@/store/modules/greeting/greeting.getters';
+  CommitOptions,
+  DispatchOptions,
+  Module,
+  Store as VuexStore,
+} from 'vuex';
 
 export const greetingModule: Module<GreetingState, State> = {
   state: greetingState,
@@ -36,7 +35,7 @@ export type GreetingModule<S = GreetingState> = Omit<
 > & {
   commit<
     K extends keyof GreetingMutations,
-    P extends Parameters<GreetingMutations[K]>[1]
+    P extends Parameters<GreetingMutations[K]>[1],
   >(
     key: K,
     payload?: P,
